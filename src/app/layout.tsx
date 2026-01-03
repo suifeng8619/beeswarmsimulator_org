@@ -18,6 +18,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://beeswarmsimulator.org'),
   title: {
     default: 'BSS Nexus - Bee Swarm Simulator Trading Hub',
     template: '%s | BSS Nexus',
