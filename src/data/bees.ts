@@ -1,39 +1,58 @@
 import { Bee } from '@/types/database'
 
-// All 46 bees in Bee Swarm Simulator
+// All 46 bees in Bee Swarm Simulator - Complete data from Wiki
+// Last Updated: 2026-01-03
 export const bees: Bee[] = [
-  // Common (1)
+  // ==================== COMMON (1) ====================
   {
     id: '1',
     name: 'Basic Bee',
     slug: 'basic-bee',
     rarity: 'common',
     color: 'colorless',
+    energy: 20,
+    speed: 14,
+    attack: 1,
+    gather_amount: 10,
     image_url: '/images/bees/basic-bee.png',
     description: 'The most basic bee. A good all-rounder that can help with any task.',
-    abilities: ['Gather Pollen', 'Make Honey']
+    abilities: ['Bomb', 'Gather Pollen'],
+    gifted_ability: '+20% Pollen',
+    obtain_method: 'Starting bee, eggs, Royal Jelly'
   },
 
-  // Rare (9)
+  // ==================== RARE (9) ====================
   {
     id: '2',
     name: 'Bomber Bee',
     slug: 'bomber-bee',
     rarity: 'rare',
-    color: 'red',
+    color: 'colorless',
+    energy: 20,
+    speed: 12.6,
+    attack: 1,
+    gather_amount: 10,
     image_url: '/images/bees/bomber-bee.png',
     description: 'A bee that specializes in bombs that can collect pollen from a large area.',
-    abilities: ['Bomb', 'Red Bomb']
+    abilities: ['Bomb+', 'Bomb Sync'],
+    gifted_ability: '+10% Bomb Pollen',
+    obtain_method: 'Basic Egg, Silver Egg, Gold Egg, Royal Jelly'
   },
   {
     id: '3',
     name: 'Brave Bee',
     slug: 'brave-bee',
     rarity: 'rare',
-    color: 'red',
+    color: 'colorless',
+    energy: 20,
+    speed: 15.4,
+    attack: 3,
+    gather_amount: 10,
     image_url: '/images/bees/brave-bee.png',
     description: 'A courageous bee that fights monsters with extra power.',
-    abilities: ['Boost', 'Token Link']
+    abilities: ['Bomb', 'Focus'],
+    gifted_ability: '+10% Critical Chance',
+    obtain_method: 'Eggs, Royal Jelly'
   },
   {
     id: '4',
@@ -41,9 +60,15 @@ export const bees: Bee[] = [
     slug: 'bumble-bee',
     rarity: 'rare',
     color: 'blue',
+    energy: 40,
+    speed: 11.9,
+    attack: 3,
+    gather_amount: 10,
     image_url: '/images/bees/bumble-bee.png',
     description: 'A fluffy bee that produces blue boost tokens.',
-    abilities: ['Boost', 'Blue Boost']
+    abilities: ['Blue Bomb', 'Blue Boost'],
+    gifted_ability: '+10% Blue Pollen',
+    obtain_method: 'Eggs, Royal Jelly'
   },
   {
     id: '5',
@@ -51,9 +76,15 @@ export const bees: Bee[] = [
     slug: 'cool-bee',
     rarity: 'rare',
     color: 'blue',
+    energy: 25,
+    speed: 14,
+    attack: 2,
+    gather_amount: 10,
     image_url: '/images/bees/cool-bee.png',
     description: 'A chill bee with shades that creates blue bombs.',
-    abilities: ['Bomb', 'Blue Bomb']
+    abilities: ['Blue Bomb+', 'Haste'],
+    gifted_ability: '+5% Bee Movespeed',
+    obtain_method: 'Eggs, Royal Jelly'
   },
   {
     id: '6',
@@ -61,9 +92,15 @@ export const bees: Bee[] = [
     slug: 'hasty-bee',
     rarity: 'rare',
     color: 'colorless',
+    energy: 20,
+    speed: 18.2,
+    attack: 1,
+    gather_amount: 10,
     image_url: '/images/bees/hasty-bee.png',
     description: 'One of the fastest bees. Creates haste tokens.',
-    abilities: ['Haste', 'Haste+']
+    abilities: ['Haste', 'Haste+'],
+    gifted_ability: '+10% Player Movespeed',
+    obtain_method: 'Eggs, Royal Jelly'
   },
   {
     id: '7',
@@ -71,9 +108,15 @@ export const bees: Bee[] = [
     slug: 'looker-bee',
     rarity: 'rare',
     color: 'colorless',
+    energy: 20,
+    speed: 14,
+    attack: 1,
+    gather_amount: 10,
     image_url: '/images/bees/looker-bee.png',
     description: 'A bee with excellent vision that helps find tokens.',
-    abilities: ['Token Link', 'Focus']
+    abilities: ['Token Link', 'Focus'],
+    gifted_ability: '+5% Super-Crit Chance',
+    obtain_method: 'Eggs, Royal Jelly'
   },
   {
     id: '8',
@@ -81,19 +124,31 @@ export const bees: Bee[] = [
     slug: 'rad-bee',
     rarity: 'rare',
     color: 'red',
+    energy: 25,
+    speed: 14,
+    attack: 2,
+    gather_amount: 10,
     image_url: '/images/bees/rad-bee.png',
     description: 'A totally rad bee that boosts red pollen collection.',
-    abilities: ['Boost', 'Red Boost']
+    abilities: ['Red Bomb+', 'Haste'],
+    gifted_ability: '+5% Bee Movespeed',
+    obtain_method: 'Eggs, Royal Jelly'
   },
   {
     id: '9',
     name: 'Rascal Bee',
     slug: 'rascal-bee',
     rarity: 'rare',
-    color: 'colorless',
+    color: 'red',
+    energy: 30,
+    speed: 15.4,
+    attack: 4,
+    gather_amount: 10,
     image_url: '/images/bees/rascal-bee.png',
-    description: 'A mischievous bee that creates honey tokens.',
-    abilities: ['Honey Gift', 'Token Link']
+    description: 'A mischievous bee with high attack power.',
+    abilities: ['Red Bomb', 'Rage'],
+    gifted_ability: '+5% Bee Attack',
+    obtain_method: 'Eggs, Royal Jelly'
   },
   {
     id: '10',
@@ -101,21 +156,33 @@ export const bees: Bee[] = [
     slug: 'stubborn-bee',
     rarity: 'rare',
     color: 'colorless',
+    energy: 60,
+    speed: 11.2,
+    attack: 1,
+    gather_amount: 10,
     image_url: '/images/bees/stubborn-bee.png',
-    description: 'A persistent bee that gathers extra pollen.',
-    abilities: ['Gather Pollen', 'Token Link']
+    description: 'A persistent bee with high energy.',
+    abilities: ['Bomb', 'Haste'],
+    gifted_ability: '+5% Bee Gather Pollen',
+    obtain_method: 'Eggs, Royal Jelly'
   },
 
-  // Epic (11)
+  // ==================== EPIC (11) ====================
   {
     id: '11',
     name: 'Bubble Bee',
     slug: 'bubble-bee',
     rarity: 'epic',
     color: 'blue',
+    energy: 30,
+    speed: 14,
+    attack: 2,
+    gather_amount: 10,
     image_url: '/images/bees/bubble-bee.png',
     description: 'A bubbly bee that creates bubbles to collect pollen.',
-    abilities: ['Bubble Bombs', 'Blue Bomb']
+    abilities: ['Blue Bomb', 'Gathering Bubbles'],
+    gifted_ability: '+25% Bubble Duration',
+    obtain_method: 'Eggs, Royal Jelly'
   },
   {
     id: '12',
@@ -123,9 +190,15 @@ export const bees: Bee[] = [
     slug: 'bucko-bee',
     rarity: 'epic',
     color: 'blue',
+    energy: 30,
+    speed: 14,
+    attack: 3,
+    gather_amount: 10,
     image_url: '/images/bees/bucko-bee.png',
     description: 'The leader of blue bees. Gives powerful blue buffs.',
-    abilities: ['Blue Boost', 'Blue Bomb+']
+    abilities: ['Blue Bomb+', 'Blue Boost'],
+    gifted_ability: '+25% Blue Bomb Pollen',
+    obtain_method: 'Eggs, Royal Jelly'
   },
   {
     id: '13',
@@ -133,19 +206,31 @@ export const bees: Bee[] = [
     slug: 'commander-bee',
     rarity: 'epic',
     color: 'colorless',
+    energy: 30,
+    speed: 14,
+    attack: 2,
+    gather_amount: 10,
     image_url: '/images/bees/commander-bee.png',
     description: 'Commands other bees to work harder.',
-    abilities: ['Focus', 'Melody']
+    abilities: ['Focus', 'Rally'],
+    gifted_ability: '+10% Bee Attack',
+    obtain_method: 'Eggs, Royal Jelly'
   },
   {
     id: '14',
     name: 'Demo Bee',
     slug: 'demo-bee',
     rarity: 'epic',
-    color: 'red',
+    color: 'colorless',
+    energy: 30,
+    speed: 12.6,
+    attack: 2,
+    gather_amount: 20,
     image_url: '/images/bees/demo-bee.png',
     description: 'An explosive bee that loves demolition.',
-    abilities: ['Bomb+', 'Red Bomb+']
+    abilities: ['Bomb+', 'Bomb Sync', 'Buzz Bomb'],
+    gifted_ability: '+20% Bomb Pollen',
+    obtain_method: 'Eggs, Royal Jelly'
   },
   {
     id: '15',
@@ -153,9 +238,15 @@ export const bees: Bee[] = [
     slug: 'exhausted-bee',
     rarity: 'epic',
     color: 'colorless',
+    energy: 10,
+    speed: 11.2,
+    attack: 1,
+    gather_amount: 10,
     image_url: '/images/bees/exhausted-bee.png',
     description: 'A tired bee that somehow still works hard.',
-    abilities: ['Token Link', 'Gather Pollen']
+    abilities: ['Bomb', 'Wake Up'],
+    gifted_ability: '+5% Bee Energy',
+    obtain_method: 'Eggs, Royal Jelly'
   },
   {
     id: '16',
@@ -163,9 +254,15 @@ export const bees: Bee[] = [
     slug: 'fire-bee',
     rarity: 'epic',
     color: 'red',
+    energy: 25,
+    speed: 15.4,
+    attack: 4,
+    gather_amount: 10,
     image_url: '/images/bees/fire-bee.png',
     description: 'A hot-tempered bee that creates flames.',
-    abilities: ['Flame', 'Red Boost+']
+    abilities: ['Red Bomb', 'Flame Heat'],
+    gifted_ability: '+25% Flame Pollen',
+    obtain_method: 'Eggs, Royal Jelly'
   },
   {
     id: '17',
@@ -173,9 +270,15 @@ export const bees: Bee[] = [
     slug: 'frosty-bee',
     rarity: 'epic',
     color: 'blue',
+    energy: 25,
+    speed: 14,
+    attack: 3,
+    gather_amount: 10,
     image_url: '/images/bees/frosty-bee.png',
     description: 'An icy bee that freezes pollen in place.',
-    abilities: ['Freeze', 'Blue Boost+']
+    abilities: ['Blue Bomb', 'Blue Boost'],
+    gifted_ability: '+10% Blue Pollen',
+    obtain_method: 'Eggs, Royal Jelly'
   },
   {
     id: '18',
@@ -183,9 +286,15 @@ export const bees: Bee[] = [
     slug: 'honey-bee',
     rarity: 'epic',
     color: 'colorless',
+    energy: 20,
+    speed: 14,
+    attack: 1,
+    gather_amount: 10,
     image_url: '/images/bees/honey-bee.png',
     description: 'Produces bonus honey from all sources.',
-    abilities: ['Honey Gift', 'Honey Mark']
+    abilities: ['Honey Gift', 'Token Link'],
+    gifted_ability: '+10% Honey Per Pollen',
+    obtain_method: 'Eggs, Royal Jelly'
   },
   {
     id: '19',
@@ -193,9 +302,15 @@ export const bees: Bee[] = [
     slug: 'rage-bee',
     rarity: 'epic',
     color: 'red',
+    energy: 30,
+    speed: 15.4,
+    attack: 4,
+    gather_amount: 10,
     image_url: '/images/bees/rage-bee.png',
     description: 'An angry bee that builds up rage for power.',
-    abilities: ['Rage', 'Token Link']
+    abilities: ['Red Bomb', 'Rage'],
+    gifted_ability: '+15% Bee Attack',
+    obtain_method: 'Eggs, Royal Jelly'
   },
   {
     id: '20',
@@ -203,9 +318,15 @@ export const bees: Bee[] = [
     slug: 'riley-bee',
     rarity: 'epic',
     color: 'red',
+    energy: 30,
+    speed: 14,
+    attack: 3,
+    gather_amount: 10,
     image_url: '/images/bees/riley-bee.png',
     description: 'The leader of red bees. Gives powerful red buffs.',
-    abilities: ['Red Boost', 'Red Bomb+']
+    abilities: ['Red Bomb+', 'Red Boost'],
+    gifted_ability: '+25% Red Bomb Pollen',
+    obtain_method: 'Eggs, Royal Jelly'
   },
   {
     id: '21',
@@ -213,21 +334,33 @@ export const bees: Bee[] = [
     slug: 'shocked-bee',
     rarity: 'epic',
     color: 'colorless',
+    energy: 20,
+    speed: 19.6,
+    attack: 2,
+    gather_amount: 10,
     image_url: '/images/bees/shocked-bee.png',
-    description: 'An electric bee that creates shocking bursts.',
-    abilities: ['Shock', 'Token Link']
+    description: 'A fast bee with +40% movement speed bonus.',
+    abilities: ['Haste', 'Token Link'],
+    gifted_ability: 'x1.1 White Pollen',
+    obtain_method: 'Eggs, Royal Jelly'
   },
 
-  // Legendary (8)
+  // ==================== LEGENDARY (8) ====================
   {
     id: '22',
     name: 'Baby Bee',
     slug: 'baby-bee',
     rarity: 'legendary',
     color: 'colorless',
+    energy: 15,
+    speed: 10.5,
+    attack: 0,
+    gather_amount: 10,
     image_url: '/images/bees/baby-bee.png',
-    description: 'An adorable baby bee that loves everyone.',
-    abilities: ['Baby Love', 'Token Link']
+    description: 'The only bee with 0 attack. Grants Baby Love for x2 pollen.',
+    abilities: ['Baby Love'],
+    gifted_ability: '+25% Loot Luck',
+    obtain_method: 'Eggs, Royal Jelly, Tunnel Bear drop'
   },
   {
     id: '23',
@@ -235,9 +368,15 @@ export const bees: Bee[] = [
     slug: 'carpenter-bee',
     rarity: 'legendary',
     color: 'colorless',
+    energy: 25,
+    speed: 11.2,
+    attack: 5,
+    gather_amount: 10,
     image_url: '/images/bees/carpenter-bee.png',
-    description: 'A skilled bee that builds and constructs.',
-    abilities: ['Mark', 'Token Link']
+    description: 'A skilled bee that creates Honey and Pollen Marks.',
+    abilities: ['Honey Mark+', 'Pollen Mark'],
+    gifted_ability: '+25% Pollen From Tools',
+    obtain_method: 'Eggs, Royal Jelly'
   },
   {
     id: '24',
@@ -245,9 +384,15 @@ export const bees: Bee[] = [
     slug: 'demon-bee',
     rarity: 'legendary',
     color: 'red',
+    energy: 20,
+    speed: 10.5,
+    attack: 8,
+    gather_amount: 35,
     image_url: '/images/bees/demon-bee.png',
-    description: 'A dark bee with powerful abilities.',
-    abilities: ['Flame', 'Dark Flame']
+    description: 'A dark bee with Gathering Flames passive.',
+    abilities: ['Red Bomb', 'Red Bomb+', 'Gathering Flames'],
+    gifted_ability: '+20% Instant Bomb Conversion',
+    obtain_method: 'Eggs, Royal Jelly'
   },
   {
     id: '25',
@@ -255,19 +400,31 @@ export const bees: Bee[] = [
     slug: 'diamond-bee',
     rarity: 'legendary',
     color: 'blue',
+    energy: 20,
+    speed: 14,
+    attack: 1,
+    gather_amount: 10,
     image_url: '/images/bees/diamond-bee.png',
-    description: 'A precious bee made of pure diamond.',
-    abilities: ['Freeze', 'Diamond Drain']
+    description: 'A precious bee with +920 convert amount.',
+    abilities: ['Blue Boost', 'Honey Gift+', 'Shimmering Honey'],
+    gifted_ability: 'x1.2 Convert Rate',
+    obtain_method: 'Eggs, Royal Jelly, Diamond Egg'
   },
   {
     id: '26',
     name: 'Lion Bee',
     slug: 'lion-bee',
     rarity: 'legendary',
-    color: 'red',
+    color: 'colorless',
+    energy: 60,
+    speed: 19.6,
+    attack: 10,
+    gather_amount: 20,
     image_url: '/images/bees/lion-bee.png',
-    description: 'A fierce bee with a mighty roar.',
-    abilities: ['Rage', 'Token Link']
+    description: 'A fierce bee with the highest attack among Legendaries.',
+    abilities: ['Buzz Bomb+'],
+    gifted_ability: '+5% Gifted Bee Pollen',
+    obtain_method: 'Eggs, Royal Jelly'
   },
   {
     id: '27',
@@ -275,9 +432,15 @@ export const bees: Bee[] = [
     slug: 'music-bee',
     rarity: 'legendary',
     color: 'colorless',
+    energy: 20,
+    speed: 16.1,
+    attack: 1,
+    gather_amount: 16,
     image_url: '/images/bees/music-bee.png',
-    description: 'A melodic bee that plays sweet tunes.',
-    abilities: ['Melody', 'Focus']
+    description: 'A melodic bee that grants +100% Critical Power.',
+    abilities: ['Melody', 'Focus', 'Token Link'],
+    gifted_ability: '+25% Pollen From Bee Gathering',
+    obtain_method: 'Music Bee Jelly (Beesmas events)'
   },
   {
     id: '28',
@@ -285,31 +448,49 @@ export const bees: Bee[] = [
     slug: 'ninja-bee',
     rarity: 'legendary',
     color: 'blue',
+    energy: 20,
+    speed: 21,
+    attack: 4,
+    gather_amount: 10,
     image_url: '/images/bees/ninja-bee.png',
-    description: 'A stealthy bee that moves like a shadow.',
-    abilities: ['Haste+', 'Token Link']
+    description: 'The fastest Legendary bee at 21 speed.',
+    abilities: ['Haste', 'Blue Bomb+'],
+    gifted_ability: '+5% Bee Movespeed',
+    obtain_method: 'Eggs, Royal Jelly'
   },
   {
     id: '29',
     name: 'Shy Bee',
     slug: 'shy-bee',
     rarity: 'legendary',
-    color: 'colorless',
+    color: 'red',
+    energy: 40,
+    speed: 18.2,
+    attack: 2,
+    gather_amount: 10,
     image_url: '/images/bees/shy-bee.png',
-    description: 'A timid but powerful bee.',
-    abilities: ['Boost', 'Token Link']
+    description: 'A timid bee with Nectar Lover passive (2x Nectar).',
+    abilities: ['Red Boost', 'Red Bomb', 'Nectar Lover'],
+    gifted_ability: '+5% Bee Ability Pollen',
+    obtain_method: 'Eggs, Royal Jelly'
   },
 
-  // Mythic (6)
+  // ==================== MYTHIC (6) ====================
   {
     id: '30',
     name: 'Buoyant Bee',
     slug: 'buoyant-bee',
     rarity: 'mythic',
-    color: 'colorless',
+    color: 'blue',
+    energy: 60,
+    speed: 14,
+    attack: 4,
+    gather_amount: 15,
     image_url: '/images/bees/buoyant-bee.png',
-    description: 'A floaty bee that lifts pollen into the air.',
-    abilities: ['Balloon Blessing', 'Inspire']
+    description: 'A floaty bee with Balloon Enthusiast (x3 convert from balloons).',
+    abilities: ['Blue Bomb', 'Inflate Balloons', 'Balloon Enthusiast'],
+    gifted_ability: 'Surprise Party - Summons Gold Balloons for all players',
+    obtain_method: 'Mythic Egg, Royal Jelly (0.004%)'
   },
   {
     id: '31',
@@ -317,19 +498,31 @@ export const bees: Bee[] = [
     slug: 'fuzzy-bee',
     rarity: 'mythic',
     color: 'colorless',
+    energy: 50,
+    speed: 11.9,
+    attack: 3,
+    gather_amount: 100,
     image_url: '/images/bees/fuzzy-bee.png',
-    description: 'The fuzziest bee with powerful fuzz bombs.',
-    abilities: ['Fuzz Bombs', 'Pollen Haze']
+    description: 'The fuzziest bee with highest base gather amount (+90).',
+    abilities: ['Fuzz Bombs', 'Buzz Bomb+', 'Fuzzy Coat'],
+    gifted_ability: 'Pollen Haze - Summons yellow haze that pollinates flowers',
+    obtain_method: 'Mythic Egg, Royal Jelly (0.004%), Robux'
   },
   {
     id: '32',
     name: 'Precise Bee',
     slug: 'precise-bee',
     rarity: 'mythic',
-    color: 'colorless',
+    color: 'red',
+    energy: 40,
+    speed: 11.2,
+    attack: 8,
+    gather_amount: 20,
     image_url: '/images/bees/precise-bee.png',
-    description: 'An accurate bee that never misses.',
-    abilities: ['Target Practice', 'Super Focus']
+    description: 'A sniper bee with Target Practice and long-range attacks.',
+    abilities: ['Target Practice', 'Sniper'],
+    gifted_ability: '+3% Super-Crit Chance',
+    obtain_method: 'Mythic Egg, Royal Jelly (0.004%)'
   },
   {
     id: '33',
@@ -337,9 +530,15 @@ export const bees: Bee[] = [
     slug: 'spicy-bee',
     rarity: 'mythic',
     color: 'red',
+    energy: 20,
+    speed: 14,
+    attack: 5,
+    gather_amount: 14,
     image_url: '/images/bees/spicy-bee.png',
-    description: 'A hot bee that heats up the competition.',
-    abilities: ['Inferno', 'Flame Fuel']
+    description: 'A hot bee with Steam Engine (up to +100% speed/gather with Flame Heat).',
+    abilities: ['Inferno', 'Rage', 'Steam Engine'],
+    gifted_ability: 'Flame Fuel - Oil into flames for longer duration and conversion',
+    obtain_method: 'Mythic Egg, Royal Jelly (0.004%)'
   },
   {
     id: '34',
@@ -347,9 +546,15 @@ export const bees: Bee[] = [
     slug: 'tadpole-bee',
     rarity: 'mythic',
     color: 'blue',
+    energy: 10,
+    speed: 11.2,
+    attack: 1,
+    gather_amount: 10,
     image_url: '/images/bees/tadpole-bee.png',
-    description: 'A watery bee that commands frogs.',
-    abilities: ['Frog Call', 'Bubble Bloat']
+    description: 'A watery bee that summons frogs to collect resources.',
+    abilities: ['Blue Boost', 'Summon Frog', 'Gathering Bubbles+'],
+    gifted_ability: 'Baby Love + 25% Bubble Duration',
+    obtain_method: 'Mythic Egg, Royal Jelly (0.004%), Beesmas 2020'
   },
   {
     id: '35',
@@ -357,21 +562,33 @@ export const bees: Bee[] = [
     slug: 'vector-bee',
     rarity: 'mythic',
     color: 'colorless',
+    energy: 45,
+    speed: 16.24,
+    attack: 5,
+    gather_amount: 18,
     image_url: '/images/bees/vector-bee.png',
-    description: 'A mathematical bee that calculates everything.',
-    abilities: ['Triangulate', 'Mark Surge']
+    description: 'A mathematical bee with Triangulate ability.',
+    abilities: ['Pollen Mark+', 'Triangulate'],
+    gifted_ability: 'Mark Surge - Extends marks and collects pollen',
+    obtain_method: 'Mythic Egg, Royal Jelly (0.004%)'
   },
 
-  // Event (11)
+  // ==================== EVENT (11) ====================
   {
     id: '36',
     name: 'Bear Bee',
     slug: 'bear-bee',
     rarity: 'event',
     color: 'colorless',
+    energy: 35,
+    speed: 14,
+    attack: 5,
+    gather_amount: 15,
     image_url: '/images/bees/bear-bee.png',
-    description: 'A bee dressed as a bear. From Robux purchase.',
-    abilities: ['Bear Morph', 'Loot Luck']
+    description: 'A bee dressed as a bear. Transforms you into bears!',
+    abilities: ['Bear Morph'],
+    gifted_ability: '+10% Pollen, 20% chance to transform into rare bears',
+    obtain_method: '800 Robux, Tunnel Bear drop, Retro Swarm Challenge'
   },
   {
     id: '37',
@@ -379,9 +596,15 @@ export const bees: Bee[] = [
     slug: 'cobalt-bee',
     rarity: 'event',
     color: 'blue',
+    energy: 35,
+    speed: 18.2,
+    attack: 7,
+    gather_amount: 10,
     image_url: '/images/bees/cobalt-bee.png',
-    description: 'A brilliant blue bee from the Cobalt Guard.',
-    abilities: ['Blue Pulse', 'Token Link']
+    description: 'Blue counterpart to Crimson. Blue Pulse bounces between blue bees.',
+    abilities: ['Blue Pulse', 'Blue Bomb Sync'],
+    gifted_ability: 'Blue Pulse converts pollen instantly',
+    obtain_method: '250 Tickets (Ticket Tent)'
   },
   {
     id: '38',
@@ -389,9 +612,15 @@ export const bees: Bee[] = [
     slug: 'crimson-bee',
     rarity: 'event',
     color: 'red',
+    energy: 35,
+    speed: 18.2,
+    attack: 7,
+    gather_amount: 10,
     image_url: '/images/bees/crimson-bee.png',
-    description: 'A fierce red bee from the Crimson Guard.',
-    abilities: ['Red Pulse', 'Token Link']
+    description: 'Red counterpart to Cobalt. Red Pulse bounces between red bees.',
+    abilities: ['Red Pulse', 'Red Bomb Sync'],
+    gifted_ability: 'Red Pulse converts pollen instantly',
+    obtain_method: '250 Tickets (Ticket Tent)'
   },
   {
     id: '39',
@@ -399,9 +628,15 @@ export const bees: Bee[] = [
     slug: 'digital-bee',
     rarity: 'event',
     color: 'colorless',
+    energy: 20,
+    speed: 11.9,
+    attack: 1,
+    gather_amount: 125,
     image_url: '/images/bees/digital-bee.png',
-    description: 'A digital bee from the virtual realm.',
-    abilities: ['Mind Hack', 'Glitch']
+    description: 'A glitchy bee that corrupts fields for bonus tokens.',
+    abilities: ['Glitch', 'Mind Hack', 'Drive Expansion'],
+    gifted_ability: 'Map Corruption - Corrupts random fields for all players',
+    obtain_method: 'Robo Bear Shop (7.7M Honey + Drives)'
   },
   {
     id: '40',
@@ -409,9 +644,15 @@ export const bees: Bee[] = [
     slug: 'festive-bee',
     rarity: 'event',
     color: 'red',
+    energy: 20,
+    speed: 16.1,
+    attack: 1,
+    gather_amount: 40,
     image_url: '/images/bees/festive-bee.png',
-    description: 'A jolly bee from Beesmas events.',
-    abilities: ['Festive Blessing', 'Beesmas Cheer']
+    description: 'A jolly bee that gives Festive Gift to all players.',
+    abilities: ['Festive Gift', 'Honey Mark', 'Red Bomb+'],
+    gifted_ability: 'x1.25 Convert Rate at Hive',
+    obtain_method: '500 Tickets (Ticket Tent)'
   },
   {
     id: '41',
@@ -419,9 +660,15 @@ export const bees: Bee[] = [
     slug: 'gummy-bee',
     rarity: 'event',
     color: 'colorless',
+    energy: 50,
+    speed: 14,
+    attack: 3,
+    gather_amount: 10,
     image_url: '/images/bees/gummy-bee.png',
-    description: 'A bouncy bee made of gummy. Very rare.',
-    abilities: ['Gummy Morph', 'Goo Trail']
+    description: 'A bouncy gummy bee that covers fields in goo.',
+    abilities: ['Gumdrop Barrage', 'Glob'],
+    gifted_ability: '+5% Honey Per Pollen',
+    obtain_method: '2,500 Gumdrops (Gummy Bee Egg Claim)'
   },
   {
     id: '42',
@@ -429,9 +676,15 @@ export const bees: Bee[] = [
     slug: 'photon-bee',
     rarity: 'event',
     color: 'colorless',
+    energy: 999999999,
+    speed: 21,
+    attack: 4,
+    gather_amount: 20,
     image_url: '/images/bees/photon-bee.png',
-    description: 'A bee made of pure light.',
-    abilities: ['Beamstorm', 'Token Link']
+    description: 'A bee made of pure light with unlimited energy!',
+    abilities: ['Beamstorm', 'Haste'],
+    gifted_ability: '+5% Instant Conversion, white beams',
+    obtain_method: '500 Tickets (Ticket Tent)'
   },
   {
     id: '43',
@@ -439,9 +692,15 @@ export const bees: Bee[] = [
     slug: 'puppy-bee',
     rarity: 'event',
     color: 'colorless',
+    energy: 40,
+    speed: 16.1,
+    attack: 2,
+    gather_amount: 25,
     image_url: '/images/bees/puppy-bee.png',
-    description: 'An adorable puppy dressed as a bee.',
-    abilities: ['Fetch', 'Puppy Love']
+    description: 'An adorable puppy bee with Fetch ability.',
+    abilities: ['Fetch', 'Puppy Love'],
+    gifted_ability: '+20% Bond From Treats',
+    obtain_method: '500 Tickets (Ticket Tent)'
   },
   {
     id: '44',
@@ -449,19 +708,31 @@ export const bees: Bee[] = [
     slug: 'tabby-bee',
     rarity: 'event',
     color: 'colorless',
+    energy: 28,
+    speed: 16.1,
+    attack: 4,
+    gather_amount: 110,
     image_url: '/images/bees/tabby-bee.png',
-    description: 'A cat-like bee that gains Tabby Love over time.',
-    abilities: ['Scratch', 'Tabby Love']
+    description: 'A cat-like bee that gains permanent Tabby Love stacks (max 1000).',
+    abilities: ['Scratch', 'Tabby Love'],
+    gifted_ability: '+50% Critical Power, Scratch always crits',
+    obtain_method: '500 Tickets (Ticket Tent)'
   },
   {
     id: '45',
     name: 'Vicious Bee',
     slug: 'vicious-bee',
     rarity: 'event',
-    color: 'colorless',
+    color: 'blue',
+    energy: 50,
+    speed: 17.5,
+    attack: 9,
+    gather_amount: 10,
     image_url: '/images/bees/vicious-bee.png',
-    description: 'A dangerous bee that hunts mobs.',
-    abilities: ['Impale', 'Token Link']
+    description: 'A dangerous bee that impales enemies for 5% of their health.',
+    abilities: ['Impale', 'Blue Bomb+'],
+    gifted_ability: '-15% Mob Respawn Time',
+    obtain_method: '250 Stingers (Vicious Bee Egg Claim)'
   },
   {
     id: '46',
@@ -469,20 +740,26 @@ export const bees: Bee[] = [
     slug: 'windy-bee',
     rarity: 'event',
     color: 'colorless',
+    energy: 20,
+    speed: 19.6,
+    attack: 4,
+    gather_amount: 10,
     image_url: '/images/bees/windy-bee.png',
-    description: 'A powerful bee that commands the wind.',
-    abilities: ['Tornado', 'Cloud']
+    description: 'A powerful bee with +40% Movespeed and Rain Cloud ability.',
+    abilities: ['White Boost', 'Rain Cloud', 'Tornado'],
+    gifted_ability: '+15% Instant White Conversion, x2 Cloud Boosts',
+    obtain_method: 'Cloud Vials + Spirit Petal at Wind Shrine'
   }
 ]
 
 // Rarity display info - Game accurate colors
 export const beeRarities = {
-  common: { name: 'Common', color: '#9CA3AF', bgColor: '#CD7F32' }, // Bronze/Copper
-  rare: { name: 'Rare', color: '#60A5FA', bgColor: '#E5E7EB' }, // White/Silver
-  epic: { name: 'Epic', color: '#A78BFA', bgColor: '#FCD34D' }, // Bright Yellow
-  legendary: { name: 'Legendary', color: '#FBBF24', bgColor: '#22D3D1' }, // Aqua/Cyan
-  mythic: { name: 'Mythic', color: '#EC4899', bgColor: '#C084FC' }, // Light Purple
-  event: { name: 'Event', color: '#10B981', bgColor: '#22C55E' } // Green
+  common: { name: 'Common', color: '#9CA3AF', bgColor: '#CD7F32' },
+  rare: { name: 'Rare', color: '#60A5FA', bgColor: '#E5E7EB' },
+  epic: { name: 'Epic', color: '#A78BFA', bgColor: '#FCD34D' },
+  legendary: { name: 'Legendary', color: '#FBBF24', bgColor: '#22D3D1' },
+  mythic: { name: 'Mythic', color: '#EC4899', bgColor: '#C084FC' },
+  event: { name: 'Event', color: '#10B981', bgColor: '#22C55E' }
 } as const
 
 // Color display info
@@ -527,6 +804,35 @@ export function searchBees(query: string): Bee[] {
     b.name.toLowerCase().includes(lower) ||
     b.rarity.toLowerCase().includes(lower) ||
     b.color.toLowerCase().includes(lower) ||
-    b.description?.toLowerCase().includes(lower)
+    b.description?.toLowerCase().includes(lower) ||
+    b.abilities.some(a => a.toLowerCase().includes(lower))
   )
+}
+
+// Get bee by slug
+export function getBeeBySlug(slug: string): Bee | undefined {
+  return bees.find(b => b.slug === slug)
+}
+
+// Get bee by id
+export function getBeeById(id: string): Bee | undefined {
+  return bees.find(b => b.id === id)
+}
+
+// Bee statistics
+export const beeStats = {
+  total: 46,
+  byRarity: {
+    common: 1,
+    rare: 9,
+    epic: 11,
+    legendary: 8,
+    mythic: 6,
+    event: 11
+  },
+  byColor: {
+    red: 11,
+    blue: 10,
+    colorless: 25
+  }
 }

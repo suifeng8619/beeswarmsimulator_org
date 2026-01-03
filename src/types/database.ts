@@ -86,9 +86,15 @@ export interface Database {
           slug: string
           rarity: 'common' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'event'
           color: 'red' | 'blue' | 'colorless'
+          energy: number
+          speed: number
+          attack: number
+          gather_amount: number
           image_url: string | null
           description: string | null
-          abilities: Json | null
+          abilities: string[]
+          gifted_ability: string | null
+          obtain_method: string | null
         }
         Insert: {
           id?: string
@@ -96,9 +102,15 @@ export interface Database {
           slug: string
           rarity: 'common' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'event'
           color: 'red' | 'blue' | 'colorless'
+          energy?: number
+          speed?: number
+          attack?: number
+          gather_amount?: number
           image_url?: string | null
           description?: string | null
-          abilities?: Json | null
+          abilities?: string[]
+          gifted_ability?: string | null
+          obtain_method?: string | null
         }
         Update: {
           id?: string
@@ -106,9 +118,15 @@ export interface Database {
           slug?: string
           rarity?: 'common' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'event'
           color?: 'red' | 'blue' | 'colorless'
+          energy?: number
+          speed?: number
+          attack?: number
+          gather_amount?: number
           image_url?: string | null
           description?: string | null
-          abilities?: Json | null
+          abilities?: string[]
+          gifted_ability?: string | null
+          obtain_method?: string | null
         }
       }
       codes: {

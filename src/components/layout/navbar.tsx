@@ -2,13 +2,14 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Menu, X, Scale, Calculator, Grid3X3, Ticket, Bot, Search } from 'lucide-react'
+import { Menu, X, Scale, Calculator, Grid3X3, Ticket, Bot, Search, BookOpen } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { cn } from '@/lib/utils'
 
 const navigation = [
+  { name: 'Bees', href: '/bees', icon: BookOpen },
   { name: 'Value List', href: '/values', icon: Scale },
   { name: 'Calculator', href: '/calculator', icon: Calculator },
   { name: 'Hive Builder', href: '/hive-builder', icon: Grid3X3 },

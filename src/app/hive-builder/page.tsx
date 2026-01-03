@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useMemo, useRef, useCallback, useEffect } from 'react'
-import { Search, Trash2, Share2, Grid3X3, ChevronUp, ChevronDown, Sparkles } from 'lucide-react'
+import { Search, Trash2, Share2, Grid3X3, ChevronUp, ChevronDown, Sparkles, Minus, Plus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -11,6 +11,7 @@ import { Label } from '@/components/ui/label'
 import { toast } from 'sonner'
 import { bees, beeRarities } from '@/data/bees'
 import { cn } from '@/lib/utils'
+import { BeeDetailModal } from '@/components/bee-detail-modal'
 import type { Bee } from '@/types/database'
 
 // Honeycomb layout matching game: 5 columns × 5 rows = 25 slots
@@ -37,6 +38,8 @@ export default function HiveBuilderPage() {
   const [isMobile, setIsMobile] = useState(false)
   const [placeAsGifted, setPlaceAsGifted] = useState(false)
   const [defaultLevel, setDefaultLevel] = useState(12)
+  const [selectedBee, setSelectedBee] = useState<Bee | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   // Touch drag state
   const [touchDragging, setTouchDragging] = useState(false)
@@ -50,6 +53,16 @@ export default function HiveBuilderPage() {
     window.addEventListener('resize', checkMobile)
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
+
+  // Update all hive bees when defaultLevel changes
+  useEffect(() => {
+    setHiveSlots(prev => prev.map(bee => {
+      if (bee) {
+        return { ...bee, level: defaultLevel }
+      }
+      return bee
+    }))
+  }, [defaultLevel])
 
   const filteredBees = useMemo(() => {
     let result = [...bees]
@@ -358,7 +371,7 @@ export default function HiveBuilderPage() {
 
           {/* Bee Selection Panel */}
           <div className="order-2">
-            <Card className="bg-yellow-900/40 border-yellow-600/50 backdrop-blur sticky top-4">
+            <Card className="bg-yellow-900/40 border-yellow-600/50 backdrop-blur">
               <CardHeader className="pb-2">
                 <button
                   className="flex items-center justify-between w-full lg:cursor-default"
@@ -381,14 +394,23 @@ export default function HiveBuilderPage() {
                   </div>
                   <div className="flex items-center justify-between">
                     <Label className="text-sm text-yellow-100">等级</Label>
-                    <Input
-                      type="number"
-                      min={1}
-                      max={25}
-                      value={defaultLevel}
-                      onChange={(e) => setDefaultLevel(Math.min(25, Math.max(1, parseInt(e.target.value) || 1)))}
-                      className="w-16 h-7 text-center bg-yellow-900/50 border-yellow-600/50 text-yellow-100"
-                    />
+                    <div className="flex items-center gap-0 bg-yellow-900/50 border border-yellow-600/50 rounded-lg overflow-hidden">
+                      <button
+                        onClick={() => setDefaultLevel(Math.max(1, defaultLevel - 1))}
+                        className="w-8 h-8 flex items-center justify-center text-yellow-400 hover:bg-yellow-600/30 transition-colors"
+                      >
+                        <Minus className="h-3.5 w-3.5" />
+                      </button>
+                      <span className="w-10 h-8 flex items-center justify-center text-yellow-100 font-semibold text-sm border-x border-yellow-600/30">
+                        {defaultLevel}
+                      </span>
+                      <button
+                        onClick={() => setDefaultLevel(Math.min(25, defaultLevel + 1))}
+                        className="w-8 h-8 flex items-center justify-center text-yellow-400 hover:bg-yellow-600/30 transition-colors"
+                      >
+                        <Plus className="h-3.5 w-3.5" />
+                      </button>
+                    </div>
                   </div>
                 </div>
 
@@ -413,8 +435,8 @@ export default function HiveBuilderPage() {
                 </div>
 
                 {/* Bee List */}
-                <ScrollArea className={cn('pr-2', isMobile ? 'h-[200px]' : 'h-[450px]')}>
-                  <div className="grid grid-cols-3 gap-2">
+                <ScrollArea className={cn('pr-2', isMobile ? 'h-[200px]' : 'h-[590px]')}>
+                  <div className="grid grid-cols-5 gap-1.5 pt-1">
                     {filteredBees.map((bee) => (
                       <BeeCard
                         key={bee.id}
@@ -423,6 +445,10 @@ export default function HiveBuilderPage() {
                         onDragEnd={handleDragEnd}
                         onTouchStart={handleTouchStart}
                         getRarityBgColor={getRarityBgColor}
+                        onClick={() => {
+                          setSelectedBee(bee)
+                          setIsModalOpen(true)
+                        }}
                       />
                     ))}
                   </div>
@@ -476,6 +502,16 @@ export default function HiveBuilderPage() {
           </div>
         </div>
       )}
+
+      {/* Bee Detail Modal */}
+      <BeeDetailModal
+        bee={selectedBee}
+        open={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false)
+          setSelectedBee(null)
+        }}
+      />
     </div>
   )
 }
@@ -568,33 +604,48 @@ function HexSlot({
       >
         {bee ? (
           <>
-            {/* Bee face */}
+            {/* Bee face - larger and slightly higher */}
             {bee.image_url ? (
               <img
                 src={bee.image_url}
                 alt={bee.name}
-                className="w-14 h-14 object-contain pointer-events-none"
+                className="w-20 h-20 object-contain pointer-events-none"
+                style={{ marginTop: '-10px' }}
                 draggable={false}
               />
             ) : (
-              <span className="text-4xl">🐝</span>
+              <span className="text-6xl" style={{ marginTop: '-10px' }}>🐝</span>
             )}
 
-            {/* Level number */}
-            <span
-              className="absolute text-sm font-bold text-white drop-shadow-md"
+            {/* Level number - bottom edge, full width bar */}
+            <div
+              className="absolute font-bold text-white text-center"
               style={{
-                top: 10,
-                left: 14,
-                textShadow: '1px 1px 2px rgba(0,0,0,0.8), -1px -1px 2px rgba(0,0,0,0.8)'
+                bottom: 0,
+                left: '25%',
+                right: '25%',
+                backgroundColor: 'rgba(0,0,0,0.7)',
+                padding: '3px 0',
+                fontSize: '13px',
+                borderRadius: '0',
               }}
             >
               {bee.level || 1}
-            </span>
+            </div>
 
-            {/* Gifted star */}
+            {/* Gifted star - top center */}
             {bee.isGifted && (
-              <span className="absolute top-2 right-3 text-sm">⭐</span>
+              <span
+                className="absolute text-base"
+                style={{
+                  top: 6,
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.5))',
+                }}
+              >
+                ⭐
+              </span>
             )}
           </>
         ) : (
@@ -649,7 +700,7 @@ function RarityButton({
       style={{
         backgroundColor: rarity === 'all' ? '#6B5B4F' : bgColor,
         borderColor: '#DAA520',
-        color: rarity === 'rare' || rarity === 'epic' ? '#1f2937' : '#fff',
+        color: rarity === 'all' || rarity === 'common' ? '#fff' : '#1f2937',
       }}
     >
       {label}
@@ -664,14 +715,22 @@ function BeeCard({
   onDragEnd,
   onTouchStart,
   getRarityBgColor,
+  onClick,
 }: {
   bee: Bee
   onDragStart: (e: React.DragEvent, bee: Bee) => void
   onDragEnd: () => void
   onTouchStart: (e: React.TouchEvent, bee: Bee) => void
   getRarityBgColor: (rarity: string) => string
+  onClick?: () => void
 }) {
   const bgColor = getRarityBgColor(bee.rarity)
+
+  const handleClick = (e: React.MouseEvent) => {
+    // Prevent click if it was a drag operation
+    e.stopPropagation()
+    onClick?.()
+  }
 
   return (
     <div
@@ -679,31 +738,36 @@ function BeeCard({
       onDragStart={(e) => onDragStart(e, bee)}
       onDragEnd={onDragEnd}
       onTouchStart={(e) => onTouchStart(e, bee)}
+      onClick={handleClick}
       className={cn(
-        "p-2 rounded-lg border-2 transition-all",
-        "cursor-grab active:cursor-grabbing touch-none select-none",
-        "hover:scale-105 hover:shadow-lg"
+        "p-2 rounded-lg border-2 transition-all aspect-square",
+        "cursor-pointer active:cursor-grabbing select-none",
+        "hover:scale-105 hover:shadow-lg",
+        "flex flex-col items-center justify-center"
       )}
       style={{
         backgroundColor: bgColor,
         borderColor: '#DAA520',
       }}
     >
-      <div className="h-10 w-10 mx-auto flex items-center justify-center">
+      <div className="flex-1 w-full flex items-center justify-center">
         {bee.image_url ? (
           <img
             src={bee.image_url}
             alt={bee.name}
-            className="h-9 w-9 object-contain pointer-events-none"
+            className="w-[85%] h-auto object-contain pointer-events-none"
             draggable={false}
           />
         ) : (
-          <span className="text-xl">🐝</span>
+          <span className="text-3xl">🐝</span>
         )}
       </div>
       <div
-        className="text-[10px] text-center mt-1 truncate font-medium"
-        style={{ color: bee.rarity === 'rare' || bee.rarity === 'epic' ? '#1f2937' : '#fff' }}
+        className="text-xs text-center mt-1 truncate font-bold w-full px-0.5"
+        style={{
+          color: bee.rarity === 'common' ? '#fff' : '#1f2937',
+          textShadow: bee.rarity === 'common' ? '0 1px 2px rgba(0,0,0,0.6)' : '0 0 1px rgba(255,255,255,0.3)'
+        }}
       >
         {bee.name}
       </div>

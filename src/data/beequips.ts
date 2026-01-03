@@ -1,451 +1,471 @@
 import { Beequip } from '@/types/database'
 
 // Beequip data - equipment that can be attached to bees
+// Source: Bee Swarm Simulator Wiki
+// Last Updated: 2026-01-03
 export const beequips: Beequip[] = [
-  // Regular Beequips
+  // ==================== REGULAR BEEQUIPS (22) ====================
   {
     id: '1',
-    name: 'Beekeeper\'s Boots',
-    slug: 'beekeepers-boots',
+    name: 'Thimble',
+    slug: 'thimble',
     category: 'regular',
-    image_url: '/images/beequips/beekeepers-boots.png',
+    image_url: '/images/beequips/thimble.png',
     base_value: 500,
-    max_potential: 5,
+    max_potential: 3,
     trend: 'stable',
-    updated_at: new Date().toISOString()
+    updated_at: '2026-01-03T00:00:00.000Z'
   },
   {
     id: '2',
-    name: 'Bubble Wand',
-    slug: 'bubble-wand',
-    category: 'regular',
-    image_url: '/images/beequips/bubble-wand.png',
-    base_value: 800,
-    max_potential: 5,
-    trend: 'up',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '3',
-    name: 'Charm Bracelet',
-    slug: 'charm-bracelet',
-    category: 'regular',
-    image_url: '/images/beequips/charm-bracelet.png',
-    base_value: 1200,
-    max_potential: 5,
-    trend: 'stable',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '4',
-    name: 'Electro Magnet',
-    slug: 'electro-magnet',
-    category: 'regular',
-    image_url: '/images/beequips/electro-magnet.png',
-    base_value: 1500,
-    max_potential: 5,
-    trend: 'stable',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '5',
-    name: 'Golden Scarf',
-    slug: 'golden-scarf',
-    category: 'regular',
-    image_url: '/images/beequips/golden-scarf.png',
-    base_value: 2000,
-    max_potential: 5,
-    trend: 'up',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '6',
-    name: 'Honey Mask',
-    slug: 'honey-mask',
-    category: 'regular',
-    image_url: '/images/beequips/honey-mask.png',
-    base_value: 1800,
-    max_potential: 5,
-    trend: 'stable',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '7',
-    name: 'Pink Shades',
-    slug: 'pink-shades',
-    category: 'regular',
-    image_url: '/images/beequips/pink-shades.png',
-    base_value: 900,
-    max_potential: 5,
-    trend: 'down',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '8',
-    name: 'Propeller Hat',
-    slug: 'propeller-hat',
-    category: 'regular',
-    image_url: '/images/beequips/propeller-hat.png',
-    base_value: 600,
-    max_potential: 5,
-    trend: 'stable',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '9',
-    name: 'Red Bandana',
-    slug: 'red-bandana',
-    category: 'regular',
-    image_url: '/images/beequips/red-bandana.png',
-    base_value: 700,
-    max_potential: 5,
-    trend: 'stable',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '10',
-    name: 'Silver Stinger',
-    slug: 'silver-stinger',
-    category: 'regular',
-    image_url: '/images/beequips/silver-stinger.png',
-    base_value: 2500,
-    max_potential: 5,
-    trend: 'up',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '11',
-    name: 'Single Mitten',
-    slug: 'single-mitten',
-    category: 'regular',
-    image_url: '/images/beequips/single-mitten.png',
-    base_value: 550,
-    max_potential: 5,
-    trend: 'stable',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '12',
-    name: 'Blue Scarf',
-    slug: 'blue-scarf',
-    category: 'regular',
-    image_url: '/images/beequips/blue-scarf.png',
-    base_value: 1100,
-    max_potential: 5,
-    trend: 'stable',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '13',
-    name: 'Whistle',
-    slug: 'whistle',
-    category: 'regular',
-    image_url: '/images/beequips/whistle.png',
-    base_value: 1000,
-    max_potential: 5,
-    trend: 'stable',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '14',
-    name: 'Lei',
-    slug: 'lei',
-    category: 'regular',
-    image_url: '/images/beequips/lei.png',
-    base_value: 850,
-    max_potential: 5,
-    trend: 'down',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '15',
     name: 'Sweatband',
     slug: 'sweatband',
     category: 'regular',
     image_url: '/images/beequips/sweatband.png',
-    base_value: 650,
-    max_potential: 5,
+    base_value: 600,
+    max_potential: 4,
     trend: 'stable',
-    updated_at: new Date().toISOString()
+    updated_at: '2026-01-03T00:00:00.000Z'
   },
   {
-    id: '16',
-    name: 'Kazoo',
-    slug: 'kazoo',
-    category: 'regular',
-    image_url: '/images/beequips/kazoo.png',
-    base_value: 750,
-    max_potential: 5,
-    trend: 'stable',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '17',
-    name: 'Camo Bandana',
-    slug: 'camo-bandana',
-    category: 'regular',
-    image_url: '/images/beequips/camo-bandana.png',
-    base_value: 950,
-    max_potential: 5,
-    trend: 'up',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '18',
-    name: 'Super Stinger',
-    slug: 'super-stinger',
-    category: 'regular',
-    image_url: '/images/beequips/super-stinger.png',
-    base_value: 3000,
-    max_potential: 5,
-    trend: 'up',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '19',
-    name: 'Antenna',
-    slug: 'antenna',
-    category: 'regular',
-    image_url: '/images/beequips/antenna.png',
-    base_value: 1400,
-    max_potential: 5,
-    trend: 'stable',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '20',
+    id: '3',
     name: 'Bandage',
     slug: 'bandage',
     category: 'regular',
     image_url: '/images/beequips/bandage.png',
     base_value: 400,
-    max_potential: 5,
+    max_potential: 3,
     trend: 'stable',
-    updated_at: new Date().toISOString()
+    updated_at: '2026-01-03T00:00:00.000Z'
   },
   {
-    id: '21',
+    id: '4',
     name: 'Thumbtack',
     slug: 'thumbtack',
     category: 'regular',
     image_url: '/images/beequips/thumbtack.png',
     base_value: 350,
+    max_potential: 3,
+    trend: 'stable',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '5',
+    name: 'Camo Bandana',
+    slug: 'camo-bandana',
+    category: 'regular',
+    image_url: '/images/beequips/camo-bandana.png',
+    base_value: 800,
+    max_potential: 5,
+    trend: 'up',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '6',
+    name: 'Bottle Cap',
+    slug: 'bottle-cap',
+    category: 'regular',
+    image_url: '/images/beequips/bottle-cap.png',
+    base_value: 450,
+    max_potential: 4,
+    trend: 'stable',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '7',
+    name: 'Kazoo',
+    slug: 'kazoo',
+    category: 'regular',
+    image_url: '/images/beequips/kazoo.png',
+    base_value: 700,
     max_potential: 5,
     trend: 'stable',
-    updated_at: new Date().toISOString()
+    updated_at: '2026-01-03T00:00:00.000Z'
   },
-
-  // Beesmas Beequips
+  {
+    id: '8',
+    name: 'Smiley Sticker',
+    slug: 'smiley-sticker',
+    category: 'regular',
+    image_url: '/images/beequips/smiley-sticker.png',
+    base_value: 500,
+    max_potential: 4,
+    trend: 'stable',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '9',
+    name: 'Whistle',
+    slug: 'whistle',
+    category: 'regular',
+    image_url: '/images/beequips/whistle.png',
+    base_value: 650,
+    max_potential: 5,
+    trend: 'stable',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '10',
+    name: 'Charm Bracelet',
+    slug: 'charm-bracelet',
+    category: 'regular',
+    image_url: '/images/beequips/charm-bracelet.png',
+    base_value: 900,
+    max_potential: 6,
+    trend: 'up',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '11',
+    name: 'Paperclip',
+    slug: 'paperclip',
+    category: 'regular',
+    image_url: '/images/beequips/paperclip.png',
+    base_value: 300,
+    max_potential: 3,
+    trend: 'stable',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '12',
+    name: 'Beret',
+    slug: 'beret',
+    category: 'regular',
+    image_url: '/images/beequips/beret.png',
+    base_value: 750,
+    max_potential: 5,
+    trend: 'stable',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '13',
+    name: 'Bang Snap',
+    slug: 'bang-snap',
+    category: 'regular',
+    image_url: '/images/beequips/bang-snap.png',
+    base_value: 550,
+    max_potential: 4,
+    trend: 'stable',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '14',
+    name: 'Bead Lizard',
+    slug: 'bead-lizard',
+    category: 'regular',
+    image_url: '/images/beequips/bead-lizard.png',
+    base_value: 600,
+    max_potential: 5,
+    trend: 'stable',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '15',
+    name: 'Pink Shades',
+    slug: 'pink-shades',
+    category: 'regular',
+    image_url: '/images/beequips/pink-shades.png',
+    base_value: 850,
+    max_potential: 6,
+    trend: 'up',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '16',
+    name: 'Lei',
+    slug: 'lei',
+    category: 'regular',
+    image_url: '/images/beequips/lei.png',
+    base_value: 700,
+    max_potential: 5,
+    trend: 'stable',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '17',
+    name: 'Demon Talisman',
+    slug: 'demon-talisman',
+    category: 'regular',
+    image_url: '/images/beequips/demon-talisman.png',
+    base_value: 5000,
+    max_potential: 13,
+    trend: 'up',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '18',
+    name: 'Camphor Lip Balm',
+    slug: 'camphor-lip-balm',
+    category: 'regular',
+    image_url: '/images/beequips/camphor-lip-balm.png',
+    base_value: 800,
+    max_potential: 6,
+    trend: 'stable',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '19',
+    name: 'Autumn Sunhat',
+    slug: 'autumn-sunhat',
+    category: 'regular',
+    image_url: '/images/beequips/autumn-sunhat.png',
+    base_value: 950,
+    max_potential: 7,
+    trend: 'up',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '20',
+    name: 'Rose Headband',
+    slug: 'rose-headband',
+    category: 'regular',
+    image_url: '/images/beequips/rose-headband.png',
+    base_value: 1000,
+    max_potential: 7,
+    trend: 'up',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '21',
+    name: 'Pink Eraser',
+    slug: 'pink-eraser',
+    category: 'regular',
+    image_url: '/images/beequips/pink-eraser.png',
+    base_value: 400,
+    max_potential: 3,
+    trend: 'stable',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
   {
     id: '22',
-    name: 'Beesmas Top',
-    slug: 'beesmas-top',
-    category: 'beesmas',
-    image_url: '/images/beequips/beesmas-top.png',
-    base_value: 4000,
+    name: 'Candy Ring',
+    slug: 'candy-ring',
+    category: 'regular',
+    image_url: '/images/beequips/candy-ring.png',
+    base_value: 650,
     max_potential: 5,
     trend: 'stable',
-    updated_at: new Date().toISOString()
+    updated_at: '2026-01-03T00:00:00.000Z'
   },
+
+  // ==================== BEESMAS BEEQUIPS (19) ====================
   {
     id: '23',
-    name: 'Festive Wreath',
-    slug: 'festive-wreath',
-    category: 'beesmas',
-    image_url: '/images/beequips/festive-wreath.png',
-    base_value: 5000,
-    max_potential: 5,
-    trend: 'up',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '24',
-    name: 'Paper Angel',
-    slug: 'paper-angel',
-    category: 'beesmas',
-    image_url: '/images/beequips/paper-angel.png',
-    base_value: 3500,
-    max_potential: 5,
-    trend: 'stable',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '25',
-    name: 'Reindeer Antlers',
-    slug: 'reindeer-antlers',
-    category: 'beesmas',
-    image_url: '/images/beequips/reindeer-antlers.png',
-    base_value: 4500,
-    max_potential: 5,
-    trend: 'up',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '26',
-    name: 'Snow Tiara',
-    slug: 'snow-tiara',
-    category: 'beesmas',
-    image_url: '/images/beequips/snow-tiara.png',
-    base_value: 6000,
-    max_potential: 5,
-    trend: 'up',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '27',
-    name: 'Warm Scarf',
-    slug: 'warm-scarf',
-    category: 'beesmas',
-    image_url: '/images/beequips/warm-scarf.png',
-    base_value: 2800,
-    max_potential: 5,
-    trend: 'stable',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '28',
-    name: 'Snowglobe',
-    slug: 'snowglobe',
-    category: 'beesmas',
-    image_url: '/images/beequips/snowglobe.png',
-    base_value: 5500,
-    max_potential: 5,
-    trend: 'stable',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '29',
     name: 'Elf Cap',
     slug: 'elf-cap',
     category: 'beesmas',
     image_url: '/images/beequips/elf-cap.png',
-    base_value: 3200,
-    max_potential: 5,
-    trend: 'down',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '30',
-    name: 'Toy Drum',
-    slug: 'toy-drum',
-    category: 'beesmas',
-    image_url: '/images/beequips/toy-drum.png',
-    base_value: 2500,
-    max_potential: 5,
-    trend: 'stable',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '31',
-    name: 'Toy Horn',
-    slug: 'toy-horn',
-    category: 'beesmas',
-    image_url: '/images/beequips/toy-horn.png',
-    base_value: 2200,
-    max_potential: 5,
-    trend: 'stable',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '32',
-    name: 'Gingerbread Tie',
-    slug: 'gingerbread-tie',
-    category: 'beesmas',
-    image_url: '/images/beequips/gingerbread-tie.png',
-    base_value: 3800,
-    max_potential: 5,
-    trend: 'up',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '33',
-    name: 'Candy Cane',
-    slug: 'candy-cane',
-    category: 'beesmas',
-    image_url: '/images/beequips/candy-cane.png',
-    base_value: 1800,
-    max_potential: 5,
-    trend: 'stable',
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: '34',
-    name: 'Ornament',
-    slug: 'ornament',
-    category: 'beesmas',
-    image_url: '/images/beequips/ornament.png',
     base_value: 2000,
-    max_potential: 5,
+    max_potential: 7,
     trend: 'stable',
-    updated_at: new Date().toISOString()
+    updated_at: '2026-01-03T00:00:00.000Z'
   },
   {
-    id: '35',
-    name: 'Mittens',
-    slug: 'mittens',
+    id: '24',
+    name: 'Single Mitten',
+    slug: 'single-mitten',
     category: 'beesmas',
-    image_url: '/images/beequips/mittens.png',
+    image_url: '/images/beequips/single-mitten.png',
     base_value: 1500,
     max_potential: 5,
-    trend: 'down',
-    updated_at: new Date().toISOString()
+    trend: 'stable',
+    updated_at: '2026-01-03T00:00:00.000Z'
   },
   {
-    id: '36',
+    id: '25',
+    name: 'Warm Scarf',
+    slug: 'warm-scarf',
+    category: 'beesmas',
+    image_url: '/images/beequips/warm-scarf.png',
+    base_value: 1800,
+    max_potential: 6,
+    trend: 'stable',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '26',
     name: 'Peppermint Antennas',
     slug: 'peppermint-antennas',
     category: 'beesmas',
     image_url: '/images/beequips/peppermint-antennas.png',
-    base_value: 4200,
-    max_potential: 5,
+    base_value: 2500,
+    max_potential: 8,
     trend: 'up',
-    updated_at: new Date().toISOString()
+    updated_at: '2026-01-03T00:00:00.000Z'
   },
   {
-    id: '37',
-    name: 'Snowflake Sticker',
-    slug: 'snowflake-sticker-beequip',
+    id: '27',
+    name: 'Beesmas Top',
+    slug: 'beesmas-top',
     category: 'beesmas',
-    image_url: '/images/beequips/snowflake-sticker.png',
+    image_url: '/images/beequips/beesmas-top.png',
+    base_value: 2200,
+    max_potential: 7,
+    trend: 'stable',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '28',
+    name: 'Pinecone',
+    slug: 'pinecone',
+    category: 'beesmas',
+    image_url: '/images/beequips/pinecone.png',
     base_value: 1200,
     max_potential: 5,
     trend: 'stable',
-    updated_at: new Date().toISOString()
+    updated_at: '2026-01-03T00:00:00.000Z'
   },
   {
-    id: '38',
-    name: 'Holly',
-    slug: 'holly',
+    id: '29',
+    name: 'Icicles',
+    slug: 'icicles',
     category: 'beesmas',
-    image_url: '/images/beequips/holly.png',
+    image_url: '/images/beequips/icicles.png',
     base_value: 1600,
-    max_potential: 5,
+    max_potential: 6,
     trend: 'stable',
-    updated_at: new Date().toISOString()
+    updated_at: '2026-01-03T00:00:00.000Z'
   },
   {
-    id: '39',
-    name: 'Bell',
-    slug: 'bell',
+    id: '30',
+    name: 'Beesmas Tree Hat',
+    slug: 'beesmas-tree-hat',
     category: 'beesmas',
-    image_url: '/images/beequips/bell.png',
+    image_url: '/images/beequips/beesmas-tree-hat.png',
+    base_value: 2800,
+    max_potential: 8,
+    trend: 'up',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '31',
+    name: 'Bubble Light',
+    slug: 'bubble-light',
+    category: 'beesmas',
+    image_url: '/images/beequips/bubble-light.png',
     base_value: 1400,
     max_potential: 5,
     trend: 'stable',
-    updated_at: new Date().toISOString()
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '32',
+    name: 'Snow Tiara',
+    slug: 'snow-tiara',
+    category: 'beesmas',
+    image_url: '/images/beequips/snow-tiara.png',
+    base_value: 4000,
+    max_potential: 10,
+    trend: 'up',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '33',
+    name: 'Snowglobe',
+    slug: 'snowglobe',
+    category: 'beesmas',
+    image_url: '/images/beequips/snowglobe.png',
+    base_value: 3500,
+    max_potential: 9,
+    trend: 'up',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '34',
+    name: 'Reindeer Antlers',
+    slug: 'reindeer-antlers',
+    category: 'beesmas',
+    image_url: '/images/beequips/reindeer-antlers.png',
+    base_value: 3000,
+    max_potential: 8,
+    trend: 'up',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '35',
+    name: 'Toy Horn',
+    slug: 'toy-horn',
+    category: 'beesmas',
+    image_url: '/images/beequips/toy-horn.png',
+    base_value: 1800,
+    max_potential: 6,
+    trend: 'stable',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '36',
+    name: 'Paper Angel',
+    slug: 'paper-angel',
+    category: 'beesmas',
+    image_url: '/images/beequips/paper-angel.png',
+    base_value: 2000,
+    max_potential: 7,
+    trend: 'stable',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '37',
+    name: 'Toy Drum',
+    slug: 'toy-drum',
+    category: 'beesmas',
+    image_url: '/images/beequips/toy-drum.png',
+    base_value: 1600,
+    max_potential: 6,
+    trend: 'stable',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '38',
+    name: 'Lump Of Coal',
+    slug: 'lump-of-coal',
+    category: 'beesmas',
+    image_url: '/images/beequips/lump-of-coal.png',
+    base_value: 800,
+    max_potential: 4,
+    trend: 'down',
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '39',
+    name: 'Poinsettia',
+    slug: 'poinsettia',
+    category: 'beesmas',
+    image_url: '/images/beequips/poinsettia.png',
+    base_value: 2200,
+    max_potential: 7,
+    trend: 'stable',
+    updated_at: '2026-01-03T00:00:00.000Z'
   },
   {
     id: '40',
-    name: 'Snowman Head',
-    slug: 'snowman-head',
+    name: 'Electric Candle',
+    slug: 'electric-candle',
     category: 'beesmas',
-    image_url: '/images/beequips/snowman-head.png',
-    base_value: 2600,
-    max_potential: 5,
+    image_url: '/images/beequips/electric-candle.png',
+    base_value: 1900,
+    max_potential: 6,
     trend: 'stable',
-    updated_at: new Date().toISOString()
+    updated_at: '2026-01-03T00:00:00.000Z'
+  },
+  {
+    id: '41',
+    name: 'Festive Wreath',
+    slug: 'festive-wreath',
+    category: 'beesmas',
+    image_url: '/images/beequips/festive-wreath.png',
+    base_value: 6000,
+    max_potential: 10,
+    trend: 'up',
+    updated_at: '2026-01-03T00:00:00.000Z'
   }
 ]
+
+// Beequip statistics
+export const beequipStats = {
+  total: beequips.length,
+  regular: beequips.filter(b => b.category === 'regular').length,
+  beesmas: beequips.filter(b => b.category === 'beesmas').length
+}
 
 // Category display names
 export const beequipCategories = {
@@ -455,7 +475,7 @@ export const beequipCategories = {
 
 // Calculate potential value based on max potential
 export function calculateBeequipValue(beequip: Beequip, potential: number): number {
-  const multiplier = 1 + (potential - 1) * 0.5 // Each potential level adds 50%
+  const multiplier = 1 + (potential - 1) * 0.5
   return Math.round(beequip.base_value * multiplier)
 }
 
@@ -481,4 +501,14 @@ export function searchBeequips(query: string): Beequip[] {
     b.name.toLowerCase().includes(lower) ||
     b.category.toLowerCase().includes(lower)
   )
+}
+
+// Get beequip by slug
+export function getBeequipBySlug(slug: string): Beequip | undefined {
+  return beequips.find(b => b.slug === slug)
+}
+
+// Get beequip by id
+export function getBeequipById(id: string): Beequip | undefined {
+  return beequips.find(b => b.id === id)
 }
