@@ -1,10 +1,11 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, TrendingUp, TrendingDown, Minus, Calendar, Tag, Star, Zap } from 'lucide-react'
+import { ArrowLeft, TrendingUp, TrendingDown, Minus, Calendar, Tag, Star, Zap, BookOpen, Grid3X3, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { beequips, beequipCategories, calculateBeequipValue } from '@/data/beequips'
+import { stickers } from '@/data/stickers'
 import { ItemCard } from '@/components/items/item-card'
 import type { Metadata } from 'next'
 import type { Beequip } from '@/types/database'
@@ -25,9 +26,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: 'Beequip Not Found' }
   }
 
+  const url = `https://beeswarmsimulator.org/beequips/${slug}`
+  const description = `Current base value of ${beequip.name} is ${beequip.base_value.toLocaleString()}. View trading info, potential values, and related beequips.`
+
   return {
     title: `${beequip.name} Value & Trading Info`,
-    description: `Current base value of ${beequip.name} is ${beequip.base_value.toLocaleString()}. View trading info, potential values, and related beequips.`,
+    description,
     keywords: [
       beequip.name,
       'BSS beequip',
@@ -35,13 +39,26 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       'trading value',
       beequip.category,
     ],
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title: `${beequip.name} - BSS Nexus`,
       description: `Base Value: ${beequip.base_value.toLocaleString()} | ${beequipCategories[beequip.category as keyof typeof beequipCategories]}`,
+      url,
+      type: 'article',
+      images: beequip.image_url ? [beequip.image_url] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${beequip.name} | BSS Nexus`,
+      description: `Base Value: ${beequip.base_value.toLocaleString()}`,
       images: beequip.image_url ? [beequip.image_url] : undefined,
     },
   }
 }
+
+export const revalidate = 3600 // ISR: revalidate every hour
 
 export async function generateStaticParams() {
   return beequips.map((beequip) => ({
@@ -81,6 +98,9 @@ export default async function BeequipDetailPage({ params }: PageProps) {
   const relatedBeequips = beequips
     .filter((b) => b.category === beequip.category && b.id !== beequip.id)
     .slice(0, 4)
+
+  // Get some related stickers for cross-linking
+  const relatedStickers = stickers.slice(0, 3)
 
   // Calculate values for each potential level
   const potentialValues = Array.from({ length: 5 }, (_, i) =>
@@ -276,6 +296,33 @@ export default async function BeequipDetailPage({ params }: PageProps) {
                   </span>
                 </div>
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Explore More */}
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-lg">Explore More</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              <Link href="/bees">
+                <Button variant="outline" className="w-full justify-start gap-2">
+                  <BookOpen className="h-4 w-4 text-orange-500" />
+                  Bee Encyclopedia
+                </Button>
+              </Link>
+              <Link href="/values">
+                <Button variant="outline" className="w-full justify-start gap-2">
+                  <Sparkles className="h-4 w-4 text-pink-500" />
+                  View Stickers
+                </Button>
+              </Link>
+              <Link href="/hive-builder">
+                <Button variant="outline" className="w-full justify-start gap-2">
+                  <Grid3X3 className="h-4 w-4 text-purple-500" />
+                  Hive Builder
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         </div>

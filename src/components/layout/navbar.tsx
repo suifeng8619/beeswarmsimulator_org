@@ -77,12 +77,12 @@ export function Navbar() {
           {/* Mobile Menu Button */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon">
-                <Menu className="h-5 w-5" />
+              <Button variant="ghost" size="icon" className="h-11 w-11">
+                <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-80">
+            <SheetContent side="right" className="w-[min(90vw,320px)]">
               <div className="flex flex-col gap-6 pt-6">
                 {/* Mobile Search */}
                 <form onSubmit={handleSearch}>

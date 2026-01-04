@@ -1,10 +1,11 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, TrendingUp, TrendingDown, Minus, Calendar, Tag, Star } from 'lucide-react'
+import { ArrowLeft, TrendingUp, TrendingDown, Minus, Calendar, Tag, Star, BookOpen, Grid3X3, Package } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { stickers, stickerCategories, getTopValueStickers } from '@/data/stickers'
+import { beequips } from '@/data/beequips'
 import { ItemCard } from '@/components/items/item-card'
 import type { Metadata } from 'next'
 import type { Sticker } from '@/types/database'
@@ -25,9 +26,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: 'Sticker Not Found' }
   }
 
+  const url = `https://beeswarmsimulator.org/stickers/${slug}`
+  const description = `Current value of ${sticker.name} is ${sticker.value.toLocaleString()}. View trading info, trends, and related items for this ${stickerCategories[sticker.category as keyof typeof stickerCategories]} sticker.`
+
   return {
     title: `${sticker.name} Value & Trading Info`,
-    description: `Current value of ${sticker.name} is ${sticker.value.toLocaleString()}. View trading info, trends, and related items for this ${stickerCategories[sticker.category as keyof typeof stickerCategories]} sticker.`,
+    description,
     keywords: [
       sticker.name,
       'BSS sticker',
@@ -35,13 +39,26 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       'trading value',
       sticker.category,
     ],
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title: `${sticker.name} - BSS Nexus`,
       description: `Value: ${sticker.value.toLocaleString()} | ${stickerCategories[sticker.category as keyof typeof stickerCategories]}`,
+      url,
+      type: 'article',
+      images: sticker.image_url ? [sticker.image_url] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${sticker.name} | BSS Nexus`,
+      description: `Value: ${sticker.value.toLocaleString()}`,
       images: sticker.image_url ? [sticker.image_url] : undefined,
     },
   }
 }
+
+export const revalidate = 3600 // ISR: revalidate every hour
 
 export async function generateStaticParams() {
   return stickers.map((sticker) => ({
@@ -81,6 +98,9 @@ export default async function StickerDetailPage({ params }: PageProps) {
   const relatedStickers = stickers
     .filter((s) => s.category === sticker.category && s.id !== sticker.id)
     .slice(0, 4)
+
+  // Get some related beequips for cross-linking
+  const relatedBeequips = beequips.slice(0, 3)
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -233,6 +253,33 @@ export default async function StickerDetailPage({ params }: PageProps) {
                   </span>
                 </div>
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Explore More */}
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-lg">Explore More</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              <Link href="/bees">
+                <Button variant="outline" className="w-full justify-start gap-2">
+                  <BookOpen className="h-4 w-4 text-orange-500" />
+                  Bee Encyclopedia
+                </Button>
+              </Link>
+              <Link href="/values?tab=beequips">
+                <Button variant="outline" className="w-full justify-start gap-2">
+                  <Package className="h-4 w-4 text-blue-500" />
+                  View Beequips
+                </Button>
+              </Link>
+              <Link href="/hive-builder">
+                <Button variant="outline" className="w-full justify-start gap-2">
+                  <Grid3X3 className="h-4 w-4 text-purple-500" />
+                  Hive Builder
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         </div>

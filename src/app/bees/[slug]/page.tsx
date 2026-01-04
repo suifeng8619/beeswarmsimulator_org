@@ -1,14 +1,17 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, Zap, Sword, Wind, Sparkles, Gift, Star, Package } from 'lucide-react'
+import { ArrowLeft, Zap, Sword, Wind, Sparkles, Gift, Star, Package, Calculator, Grid3X3, ArrowRight } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { bees, beeRarities, beeColors, getBeeBySlug } from '@/data/bees'
+import { beequips } from '@/data/beequips'
 
 interface PageProps {
   params: Promise<{ slug: string }>
 }
+
+export const revalidate = 3600 // ISR: revalidate every hour
 
 export async function generateStaticParams() {
   return bees.map((bee) => ({
@@ -20,9 +23,29 @@ export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params
   const bee = getBeeBySlug(slug)
   if (!bee) return { title: 'Bee Not Found' }
+
+  const url = `https://beeswarmsimulator.org/bees/${slug}`
+
   return {
     title: `${bee.name} - Bee Encyclopedia | BSS Nexus`,
-    description: bee.description,
+    description: bee.description || `Learn about ${bee.name} in Bee Swarm Simulator. Stats, abilities, and how to obtain this ${bee.rarity} bee.`,
+    keywords: [bee.name, 'BSS bee', 'Bee Swarm Simulator', bee.rarity, bee.color],
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: `${bee.name} - Bee Encyclopedia | BSS Nexus`,
+      description: bee.description || `Learn about ${bee.name} in Bee Swarm Simulator.`,
+      url,
+      type: 'article',
+      images: bee.image_url ? [bee.image_url] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${bee.name} | BSS Nexus`,
+      description: bee.description || `Learn about ${bee.name} in Bee Swarm Simulator.`,
+      images: bee.image_url ? [bee.image_url] : undefined,
+    },
   }
 }
 
@@ -66,6 +89,9 @@ export default async function BeeDetailPage({ params }: PageProps) {
   const relatedBees = bees
     .filter(b => b.id !== bee.id && (b.rarity === bee.rarity || b.color === bee.color))
     .slice(0, 6)
+
+  // Get recommended beequips (random selection for now, could be smarter)
+  const recommendedBeequips = beequips.slice(0, 4)
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-100 to-amber-50">
@@ -153,10 +179,10 @@ export default async function BeeDetailPage({ params }: PageProps) {
 
                 {/* Abilities */}
                 <div className="mb-6">
-                  <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
+                  <h2 className="font-bold text-lg mb-3 flex items-center gap-2">
                     <Star className="h-5 w-5 text-amber-500" />
                     Abilities
-                  </h3>
+                  </h2>
                   <div className="flex flex-wrap gap-2">
                     {bee.abilities.map((ability, idx) => (
                       <Badge key={idx} variant="secondary" className="text-sm px-3 py-1">
@@ -169,10 +195,10 @@ export default async function BeeDetailPage({ params }: PageProps) {
                 {/* Gifted Ability */}
                 {bee.gifted_ability && (
                   <div className="mb-6">
-                    <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
+                    <h2 className="font-bold text-lg mb-3 flex items-center gap-2">
                       <Gift className="h-5 w-5 text-purple-500" />
                       Gifted Ability
-                    </h3>
+                    </h2>
                     <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
                       <p className="text-purple-800">{bee.gifted_ability}</p>
                     </div>
@@ -182,10 +208,10 @@ export default async function BeeDetailPage({ params }: PageProps) {
                 {/* Obtain Method */}
                 {bee.obtain_method && (
                   <div>
-                    <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
+                    <h2 className="font-bold text-lg mb-3 flex items-center gap-2">
                       <Package className="h-5 w-5 text-amber-500" />
                       How to Obtain
-                    </h3>
+                    </h2>
                     <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
                       <p className="text-amber-800">{bee.obtain_method}</p>
                     </div>
@@ -282,6 +308,63 @@ export default async function BeeDetailPage({ params }: PageProps) {
                 </CardContent>
               </Card>
             )}
+
+            {/* Recommended Beequips */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Recommended Beequips</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2">
+                  {recommendedBeequips.map((beequip) => (
+                    <Link key={beequip.id} href={`/beequips/${beequip.slug}`}>
+                      <div className="flex items-center gap-2 p-2 rounded-lg hover:bg-secondary/50 transition-colors">
+                        {beequip.image_url ? (
+                          <img
+                            src={beequip.image_url}
+                            alt={beequip.name}
+                            className="w-8 h-8 object-contain"
+                          />
+                        ) : (
+                          <span className="text-xl">🎒</span>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <div className="text-sm font-medium truncate">{beequip.name}</div>
+                          <div className="text-xs text-gray-500">{beequip.base_value.toLocaleString()} value</div>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+                <Link href="/values?tab=beequips" className="block mt-3">
+                  <Button variant="outline" size="sm" className="w-full">
+                    View All Beequips
+                    <ArrowRight className="h-3 w-3 ml-1" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Quick Tools */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Tools</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <Link href="/calculator">
+                  <Button variant="outline" className="w-full justify-start gap-2">
+                    <Calculator className="h-4 w-4 text-blue-500" />
+                    Trade Calculator
+                  </Button>
+                </Link>
+                <Link href="/hive-builder">
+                  <Button variant="outline" className="w-full justify-start gap-2">
+                    <Grid3X3 className="h-4 w-4 text-purple-500" />
+                    Hive Builder
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>
