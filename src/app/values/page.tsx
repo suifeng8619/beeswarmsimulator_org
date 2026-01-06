@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import ValuesClient from './values-client'
+import { fetchStickers, fetchBeequips } from '@/lib/queries'
 
 export const metadata: Metadata = {
   title: 'Value List',
@@ -21,6 +22,10 @@ export const metadata: Metadata = {
   },
 }
 
-export default function ValuesPage() {
-  return <ValuesClient />
+export default async function ValuesPage() {
+  const [stickers, beequips] = await Promise.all([
+    fetchStickers(),
+    fetchBeequips(),
+  ])
+  return <ValuesClient initialStickers={stickers} initialBeequips={beequips} />
 }

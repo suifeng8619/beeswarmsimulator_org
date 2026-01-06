@@ -4,7 +4,7 @@ import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { Search, ArrowUpDown, Zap, Sword, Wind, Sparkles } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
-import { bees, beeRarities, beeColors } from '@/data/bees'
+import { beeRarities, beeColors } from '@/data/bees'
 import { cn } from '@/lib/utils'
 import type { Bee } from '@/types/database'
 
@@ -13,7 +13,12 @@ type SortOrder = 'asc' | 'desc'
 
 const rarityOrder = ['common', 'rare', 'epic', 'legendary', 'mythic', 'event']
 
-export default function BeesClient() {
+interface BeesClientProps {
+  initialBees: Bee[]
+}
+
+export default function BeesClient({ initialBees }: BeesClientProps) {
+  const bees = initialBees
   const [search, setSearch] = useState('')
   const [filterRarity, setFilterRarity] = useState<string>('all')
   const [filterColor, setFilterColor] = useState<string>('all')

@@ -4,23 +4,18 @@ import { ArrowLeft, TrendingUp, TrendingDown, Minus, Calendar, Tag, Star, BookOp
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { stickers, stickerCategories, getTopValueStickers } from '@/data/stickers'
-import { beequips } from '@/data/beequips'
+import { stickerCategories } from '@/data/stickers'
+import { fetchStickers, fetchStickerBySlug, fetchBeequips } from '@/lib/queries'
 import { ItemCard } from '@/components/items/item-card'
 import type { Metadata } from 'next'
-import type { Sticker } from '@/types/database'
 
 interface PageProps {
   params: Promise<{ slug: string }>
 }
 
-function getSticker(slug: string): Sticker | undefined {
-  return stickers.find((s) => s.slug === slug)
-}
-
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const sticker = getSticker(slug)
+  const sticker = await fetchStickerBySlug(slug)
 
   if (!sticker) {
     return { title: 'Sticker Not Found' }
@@ -61,6 +56,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export const revalidate = 3600 // ISR: revalidate every hour
 
 export async function generateStaticParams() {
+  const stickers = await fetchStickers()
   return stickers.map((sticker) => ({
     slug: sticker.slug,
   }))
@@ -68,7 +64,11 @@ export async function generateStaticParams() {
 
 export default async function StickerDetailPage({ params }: PageProps) {
   const { slug } = await params
-  const sticker = getSticker(slug)
+  const [sticker, stickers, beequips] = await Promise.all([
+    fetchStickerBySlug(slug),
+    fetchStickers(),
+    fetchBeequips(),
+  ])
 
   if (!sticker) {
     notFound()

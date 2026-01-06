@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { Search, SlidersHorizontal, TrendingUp, TrendingDown, Minus, LayoutGrid, List } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -23,8 +23,8 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { ItemCard } from '@/components/items/item-card'
-import { stickers, stickerCategories } from '@/data/stickers'
-import { beequips, beequipCategories } from '@/data/beequips'
+import { stickerCategories } from '@/data/stickers'
+import { beequipCategories } from '@/data/beequips'
 import { cn } from '@/lib/utils'
 import type { Sticker, Beequip, Trend } from '@/types/database'
 
@@ -41,12 +41,36 @@ function TrendIndicator({ trend }: { trend: Trend }) {
   return <Minus className="h-4 w-4 text-muted-foreground" />
 }
 
-export default function ValuesClient() {
+interface ValuesClientProps {
+  initialStickers: Sticker[]
+  initialBeequips: Beequip[]
+}
+
+export default function ValuesClient({ initialStickers, initialBeequips }: ValuesClientProps) {
+  const stickers = initialStickers
+  const beequips = initialBeequips
   const [activeTab, setActiveTab] = useState<'stickers' | 'beequips'>('stickers')
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState<string>('all')
   const [sort, setSort] = useState<SortOption>('value-desc')
   const [viewMode, setViewMode] = useState<ViewMode>('table')
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Auto-switch to grid view on mobile for better UX
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768
+      setIsMobile(mobile)
+      // Auto-switch to grid on mobile if currently in table view
+      if (mobile && viewMode === 'table') {
+        setViewMode('grid')
+      }
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, []) // Only run on mount
 
   const categories = activeTab === 'stickers' ? stickerCategories : beequipCategories
   const items = activeTab === 'stickers' ? stickers : beequips
@@ -172,8 +196,8 @@ export default function ValuesClient() {
             </SelectContent>
           </Select>
 
-          {/* View Toggle */}
-          <div className="flex gap-1 border rounded-md p-1">
+          {/* View Toggle - hidden on mobile since table doesn't work well */}
+          <div className="hidden sm:flex gap-1 border rounded-md p-1">
             <Button
               variant={viewMode === 'table' ? 'secondary' : 'ghost'}
               size="icon"
@@ -207,7 +231,7 @@ export default function ValuesClient() {
 
         {/* Content */}
         <TabsContent value="stickers" className="mt-0">
-          {viewMode === 'table' ? (
+          {activeTab === 'stickers' && (viewMode === 'table' ? (
             <StickerTable items={filteredItems as Sticker[]} />
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -215,11 +239,11 @@ export default function ValuesClient() {
                 <ItemCard key={sticker.id} item={sticker} type="sticker" />
               ))}
             </div>
-          )}
+          ))}
         </TabsContent>
 
         <TabsContent value="beequips" className="mt-0">
-          {viewMode === 'table' ? (
+          {activeTab === 'beequips' && (viewMode === 'table' ? (
             <BeequipTable items={filteredItems as Beequip[]} />
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -227,7 +251,7 @@ export default function ValuesClient() {
                 <ItemCard key={beequip.id} item={beequip} type="beequip" />
               ))}
             </div>
-          )}
+          ))}
         </TabsContent>
       </Tabs>
     </div>
@@ -272,7 +296,7 @@ function StickerTable({ items }: { items: Sticker[] }) {
                 </Badge>
               </TableCell>
               <TableCell className="text-right font-semibold text-honey">
-                {sticker.value.toLocaleString()}
+                {(sticker.value ?? 0).toLocaleString()}
               </TableCell>
               <TableCell className="text-center">
                 <div className="flex justify-center">
@@ -330,7 +354,7 @@ function BeequipTable({ items }: { items: Beequip[] }) {
                 </Badge>
               </TableCell>
               <TableCell className="text-right font-semibold text-honey">
-                {beequip.base_value.toLocaleString()}
+                {(beequip.base_value ?? 0).toLocaleString()}
               </TableCell>
               <TableCell className="text-center">
                 <Badge variant="outline">{beequip.max_potential}/5</Badge>

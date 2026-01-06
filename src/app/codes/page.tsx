@@ -11,7 +11,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 import { CodeCard } from '@/components/items/code-card'
-import { getActiveCodes, getExpiredCodes } from '@/data/codes'
+import { fetchActiveCodes, fetchExpiredCodes } from '@/lib/queries'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -74,9 +74,11 @@ const faqs = [
   },
 ]
 
-export default function CodesPage() {
-  const activeCodes = getActiveCodes()
-  const expiredCodes = getExpiredCodes()
+export default async function CodesPage() {
+  const [activeCodes, expiredCodes] = await Promise.all([
+    fetchActiveCodes(),
+    fetchExpiredCodes(),
+  ])
 
   return (
     <div className="container mx-auto px-4 py-8">

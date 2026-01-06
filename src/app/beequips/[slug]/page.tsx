@@ -4,23 +4,18 @@ import { ArrowLeft, TrendingUp, TrendingDown, Minus, Calendar, Tag, Star, Zap, B
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { beequips, beequipCategories, calculateBeequipValue } from '@/data/beequips'
-import { stickers } from '@/data/stickers'
+import { beequipCategories, calculateBeequipValue } from '@/data/beequips'
+import { fetchBeequips, fetchBeequipBySlug, fetchStickers } from '@/lib/queries'
 import { ItemCard } from '@/components/items/item-card'
 import type { Metadata } from 'next'
-import type { Beequip } from '@/types/database'
 
 interface PageProps {
   params: Promise<{ slug: string }>
 }
 
-function getBeequip(slug: string): Beequip | undefined {
-  return beequips.find((b) => b.slug === slug)
-}
-
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const beequip = getBeequip(slug)
+  const beequip = await fetchBeequipBySlug(slug)
 
   if (!beequip) {
     return { title: 'Beequip Not Found' }
@@ -61,6 +56,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export const revalidate = 3600 // ISR: revalidate every hour
 
 export async function generateStaticParams() {
+  const beequips = await fetchBeequips()
   return beequips.map((beequip) => ({
     slug: beequip.slug,
   }))
@@ -68,7 +64,11 @@ export async function generateStaticParams() {
 
 export default async function BeequipDetailPage({ params }: PageProps) {
   const { slug } = await params
-  const beequip = getBeequip(slug)
+  const [beequip, beequips, stickers] = await Promise.all([
+    fetchBeequipBySlug(slug),
+    fetchBeequips(),
+    fetchStickers(),
+  ])
 
   if (!beequip) {
     notFound()

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import BeesClient from './bees-client'
+import { fetchBees } from '@/lib/queries'
 
 export const metadata: Metadata = {
   title: 'Bee Encyclopedia',
@@ -21,6 +22,7 @@ export const metadata: Metadata = {
   },
 }
 
-export default function BeesPage() {
-  return <BeesClient />
+export default async function BeesPage() {
+  const bees = await fetchBees()
+  return <BeesClient initialBees={bees} />
 }

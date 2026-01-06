@@ -4,8 +4,8 @@ import { ArrowLeft, Zap, Sword, Wind, Sparkles, Gift, Star, Package, Calculator,
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { bees, beeRarities, beeColors, getBeeBySlug } from '@/data/bees'
-import { beequips } from '@/data/beequips'
+import { beeRarities } from '@/data/bees'
+import { fetchBees, fetchBeeBySlug, fetchBeequips } from '@/lib/queries'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -14,6 +14,7 @@ interface PageProps {
 export const revalidate = 3600 // ISR: revalidate every hour
 
 export async function generateStaticParams() {
+  const bees = await fetchBees()
   return bees.map((bee) => ({
     slug: bee.slug,
   }))
@@ -21,13 +22,13 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params
-  const bee = getBeeBySlug(slug)
+  const bee = await fetchBeeBySlug(slug)
   if (!bee) return { title: 'Bee Not Found' }
 
   const url = `https://beeswarmsimulator.org/bees/${slug}`
 
   return {
-    title: `${bee.name} - Bee Encyclopedia | BSS Nexus`,
+    title: `${bee.name} - Bee Encyclopedia`,
     description: bee.description || `Learn about ${bee.name} in Bee Swarm Simulator. Stats, abilities, and how to obtain this ${bee.rarity} bee.`,
     keywords: [bee.name, 'BSS bee', 'Bee Swarm Simulator', bee.rarity, bee.color],
     alternates: {
@@ -51,11 +52,18 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function BeeDetailPage({ params }: PageProps) {
   const { slug } = await params
-  const bee = getBeeBySlug(slug)
+  const [bee, allBees, allBeequips] = await Promise.all([
+    fetchBeeBySlug(slug),
+    fetchBees(),
+    fetchBeequips(),
+  ])
 
   if (!bee) {
     notFound()
   }
+
+  const bees = allBees
+  const beequips = allBeequips
 
   const getRarityBgColor = (rarity: string) => {
     const colors: Record<string, string> = {

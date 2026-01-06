@@ -157,6 +157,7 @@ export interface Database {
           id: string
           user_id: string | null
           share_token: string
+          name: string | null
           config: Json
           stats: Json | null
           created_at: string
@@ -165,6 +166,7 @@ export interface Database {
           id?: string
           user_id?: string | null
           share_token: string
+          name?: string | null
           config: Json
           stats?: Json | null
           created_at?: string
@@ -173,6 +175,7 @@ export interface Database {
           id?: string
           user_id?: string | null
           share_token?: string
+          name?: string | null
           config?: Json
           stats?: Json | null
           created_at?: string
