@@ -59,9 +59,9 @@ async function compareData() {
   if (giftedBee && dbGiftedBee) {
     console.log('\n   Gifted Basic Bee 属性对比:')
     console.log(
-      `   - is_gifted: 静态=${giftedBee.is_gifted}, DB=${dbGiftedBee.is_gifted}`
+      `   - is_gifted: 静态=${(giftedBee as unknown as { is_gifted: boolean }).is_gifted}, DB=${(dbGiftedBee as unknown as { is_gifted: boolean }).is_gifted}`
     )
-    console.log(`   - abilities: 静态=${giftedBee.abilities?.length || 0}, DB=${dbGiftedBee.abilities?.length || 0}`)
+    console.log(`   - abilities: 静态=${(giftedBee as unknown as { abilities?: unknown[] }).abilities?.length || 0}, DB=${(dbGiftedBee as unknown as { abilities?: unknown[] }).abilities?.length || 0}`)
   }
 
   // Check stickers count

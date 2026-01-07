@@ -1,12 +1,15 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowLeft, TrendingUp, TrendingDown, Minus, Calendar, Tag, Star, BookOpen, Grid3X3, Package } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { stickerCategories } from '@/data/stickers'
-import { fetchStickers, fetchStickerBySlug, fetchBeequips } from '@/lib/queries'
+import { ITEM_VALUES } from '@/data/game-values'
+import { fetchStickers, fetchStickerBySlug, fetchRelatedStickers, fetchTrendingBeequips } from '@/lib/queries'
 import { ItemCard } from '@/components/items/item-card'
+import { ProductJsonLd, BreadcrumbJsonLd } from '@/components/seo/json-ld'
 import type { Metadata } from 'next'
 
 interface PageProps {
@@ -64,15 +67,17 @@ export async function generateStaticParams() {
 
 export default async function StickerDetailPage({ params }: PageProps) {
   const { slug } = await params
-  const [sticker, stickers, beequips] = await Promise.all([
-    fetchStickerBySlug(slug),
-    fetchStickers(),
-    fetchBeequips(),
-  ])
+  const sticker = await fetchStickerBySlug(slug)
 
   if (!sticker) {
     notFound()
   }
+
+  // Fetch related data after we have the sticker (more efficient)
+  const [relatedStickers, relatedBeequips] = await Promise.all([
+    fetchRelatedStickers(sticker.id, sticker.category, 4),
+    fetchTrendingBeequips(3),
+  ])
 
   const TrendIcon =
     sticker.trend === 'up'
@@ -95,18 +100,31 @@ export default async function StickerDetailPage({ params }: PageProps) {
         ? 'bg-red-500/10'
         : 'bg-muted'
 
-  const relatedStickers = stickers
-    .filter((s) => s.category === sticker.category && s.id !== sticker.id)
-    .slice(0, 4)
-
-  // Get some related beequips for cross-linking
-  const relatedBeequips = beequips.slice(0, 3)
+  const baseUrl = 'https://beeswarmsimulator.org'
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Back Button */}
-      <Button asChild variant="ghost" className="mb-6">
-        <Link href="/values">
+    <>
+      <ProductJsonLd
+        name={sticker.name}
+        description={`${sticker.name} sticker in Bee Swarm Simulator. Current value: ${sticker.value.toLocaleString()}`}
+        image={sticker.image_url}
+        url={`${baseUrl}/stickers/${sticker.slug}`}
+        category={stickerCategories[sticker.category as keyof typeof stickerCategories]}
+        value={sticker.value}
+        trend={sticker.trend}
+        dateModified={sticker.updated_at}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', url: baseUrl },
+          { name: 'Values', url: `${baseUrl}/values` },
+          { name: sticker.name, url: `${baseUrl}/stickers/${sticker.slug}` },
+        ]}
+      />
+      <div className="container mx-auto px-4 py-8">
+        {/* Back Button */}
+        <Button asChild variant="ghost" className="mb-6">
+          <Link href="/values">
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back to Value List
         </Link>
@@ -120,12 +138,14 @@ export default async function StickerDetailPage({ params }: PageProps) {
               <div className="flex flex-col md:flex-row gap-6">
                 {/* Image */}
                 <div className="flex-shrink-0">
-                  <div className="h-32 w-32 rounded-xl bg-secondary/50 flex items-center justify-center">
+                  <div className="h-32 w-32 rounded-xl bg-secondary/50 flex items-center justify-center relative">
                     {sticker.image_url ? (
-                      <img
+                      <Image
                         src={sticker.image_url}
                         alt={sticker.name}
-                        className="h-28 w-28 object-contain"
+                        width={112}
+                        height={112}
+                        className="object-contain"
                       />
                     ) : (
                       <span className="text-6xl">🐝</span>
@@ -243,13 +263,13 @@ export default async function StickerDetailPage({ params }: PageProps) {
                 <div className="flex justify-between">
                   <span>Basic Eggs</span>
                   <span className="font-semibold">
-                    {Math.round(sticker.value / 375).toLocaleString()}x
+                    {Math.round(sticker.value / ITEM_VALUES.BASIC_EGG).toLocaleString()}x
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Royal Jellies</span>
                   <span className="font-semibold">
-                    {Math.round(sticker.value / 1200).toLocaleString()}x
+                    {Math.round(sticker.value / ITEM_VALUES.ROYAL_JELLY).toLocaleString()}x
                   </span>
                 </div>
               </div>
@@ -285,19 +305,20 @@ export default async function StickerDetailPage({ params }: PageProps) {
         </div>
       </div>
 
-      {/* Related Items */}
-      {relatedStickers.length > 0 && (
-        <div className="mt-12">
-          <h2 className="text-2xl font-bold mb-6">
-            Similar {stickerCategories[sticker.category as keyof typeof stickerCategories]}
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {relatedStickers.map((s) => (
-              <ItemCard key={s.id} item={s} type="sticker" />
-            ))}
+        {/* Related Items */}
+        {relatedStickers.length > 0 && (
+          <div className="mt-12">
+            <h2 className="text-2xl font-bold mb-6">
+              Similar {stickerCategories[sticker.category as keyof typeof stickerCategories]}
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {relatedStickers.map((s) => (
+                <ItemCard key={s.id} item={s} type="sticker" />
+              ))}
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   )
 }

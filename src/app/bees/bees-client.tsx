@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Search, ArrowUpDown, Zap, Sword, Wind, Sparkles } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { beeRarities, beeColors } from '@/data/bees'
@@ -294,10 +295,12 @@ function BeeCard({
           style={{ backgroundColor: getRarityBgColor(bee.rarity) }}
         >
           {bee.image_url ? (
-            <img
+            <Image
               src={bee.image_url}
               alt={bee.name}
-              className="w-20 h-20 mx-auto object-contain drop-shadow-md"
+              width={80}
+              height={80}
+              className="mx-auto object-contain drop-shadow-md"
             />
           ) : (
             <span className="text-6xl">🐝</span>

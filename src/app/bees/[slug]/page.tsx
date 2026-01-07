@@ -1,17 +1,19 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowLeft, Zap, Sword, Wind, Sparkles, Gift, Star, Package, Calculator, Grid3X3, ArrowRight } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { beeRarities } from '@/data/bees'
-import { fetchBees, fetchBeeBySlug, fetchBeequips } from '@/lib/queries'
+import { fetchBees, fetchBeeBySlug, fetchRelatedBees, fetchTrendingBeequips } from '@/lib/queries'
+import { BeeJsonLd, BreadcrumbJsonLd } from '@/components/seo/json-ld'
 
 interface PageProps {
   params: Promise<{ slug: string }>
 }
 
-export const revalidate = 3600 // ISR: revalidate every hour
+export const revalidate = 86400 // ISR: revalidate every 24 hours (bee data is stable)
 
 export async function generateStaticParams() {
   const bees = await fetchBees()
@@ -52,18 +54,17 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function BeeDetailPage({ params }: PageProps) {
   const { slug } = await params
-  const [bee, allBees, allBeequips] = await Promise.all([
-    fetchBeeBySlug(slug),
-    fetchBees(),
-    fetchBeequips(),
-  ])
+  const bee = await fetchBeeBySlug(slug)
 
   if (!bee) {
     notFound()
   }
 
-  const bees = allBees
-  const beequips = allBeequips
+  // Fetch related data after we have the bee (more efficient)
+  const [relatedBees, trendingBeequips] = await Promise.all([
+    fetchRelatedBees(bee.id, bee.rarity, bee.color, 6),
+    fetchTrendingBeequips(4),
+  ])
 
   const getRarityBgColor = (rarity: string) => {
     const colors: Record<string, string> = {
@@ -93,16 +94,30 @@ export default async function BeeDetailPage({ params }: PageProps) {
   const rarityInfo = beeRarities[bee.rarity as keyof typeof beeRarities]
   const colorInfo = getColorInfo(bee.color)
 
-  // Find related bees (same rarity or color)
-  const relatedBees = bees
-    .filter(b => b.id !== bee.id && (b.rarity === bee.rarity || b.color === bee.color))
-    .slice(0, 6)
+  // Use trending beequips as recommendations (already sorted by value)
+  const recommendedBeequips = trendingBeequips
 
-  // Get recommended beequips (random selection for now, could be smarter)
-  const recommendedBeequips = beequips.slice(0, 4)
+  const baseUrl = 'https://beeswarmsimulator.org'
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-100 to-amber-50">
+    <>
+      <BeeJsonLd
+        name={bee.name}
+        description={bee.description || `${bee.name} is a ${bee.rarity} ${bee.color} bee in Bee Swarm Simulator.`}
+        image={bee.image_url}
+        url={`${baseUrl}/bees/${bee.slug}`}
+        rarity={rarityInfo?.name || bee.rarity}
+        color={colorInfo.name}
+        abilities={bee.abilities}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', url: baseUrl },
+          { name: 'Bees', url: `${baseUrl}/bees` },
+          { name: bee.name, url: `${baseUrl}/bees/${bee.slug}` },
+        ]}
+      />
+      <div className="min-h-screen bg-gradient-to-b from-amber-100 to-amber-50">
       <div className="container mx-auto px-4 py-8">
         {/* Back Button */}
         <Link href="/bees">
@@ -121,12 +136,14 @@ export default async function BeeDetailPage({ params }: PageProps) {
                 className="p-8 flex flex-col md:flex-row items-center gap-6"
                 style={{ backgroundColor: getRarityBgColor(bee.rarity) }}
               >
-                <div className="w-32 h-32 flex items-center justify-center">
+                <div className="w-32 h-32 flex items-center justify-center relative">
                   {bee.image_url ? (
-                    <img
+                    <Image
                       src={bee.image_url}
                       alt={bee.name}
-                      className="w-full h-full object-contain"
+                      fill
+                      className="object-contain"
+                      sizes="128px"
                     />
                   ) : (
                     <span className="text-8xl">🐝</span>
@@ -295,11 +312,15 @@ export default async function BeeDetailPage({ params }: PageProps) {
                           style={{ backgroundColor: getRarityBgColor(relBee.rarity) }}
                         >
                           {relBee.image_url ? (
-                            <img
-                              src={relBee.image_url}
-                              alt={relBee.name}
-                              className="w-10 h-10 mx-auto object-contain"
-                            />
+                            <div className="w-10 h-10 mx-auto relative">
+                              <Image
+                                src={relBee.image_url}
+                                alt={relBee.name}
+                                fill
+                                className="object-contain"
+                                sizes="40px"
+                              />
+                            </div>
                           ) : (
                             <span className="text-2xl">🐝</span>
                           )}
@@ -328,11 +349,15 @@ export default async function BeeDetailPage({ params }: PageProps) {
                     <Link key={beequip.id} href={`/beequips/${beequip.slug}`}>
                       <div className="flex items-center gap-2 p-2 rounded-lg hover:bg-secondary/50 transition-colors">
                         {beequip.image_url ? (
-                          <img
-                            src={beequip.image_url}
-                            alt={beequip.name}
-                            className="w-8 h-8 object-contain"
-                          />
+                          <div className="w-8 h-8 relative flex-shrink-0">
+                            <Image
+                              src={beequip.image_url}
+                              alt={beequip.name}
+                              fill
+                              className="object-contain"
+                              sizes="32px"
+                            />
+                          </div>
                         ) : (
                           <span className="text-xl">🎒</span>
                         )}
@@ -377,6 +402,7 @@ export default async function BeeDetailPage({ params }: PageProps) {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

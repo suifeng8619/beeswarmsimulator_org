@@ -13,6 +13,9 @@ import {
   TrendingUp,
   Shield,
   Zap,
+  Gift,
+  Sparkles,
+  Cog,
 } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -271,6 +274,208 @@ export default function GuidesPage() {
             </div>
           </CardContent>
         </Card>
+      </section>
+
+      {/* Beesmas 2025 */}
+      <section className="mb-16">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="h-10 w-10 rounded-lg bg-red-500/20 flex items-center justify-center">
+            <Gift className="h-5 w-5 text-red-500" />
+          </div>
+          <h2 className="text-2xl font-bold">Beesmas 2025</h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Offline Voucher</CardTitle>
+              <CardDescription>New feature from 14th Gift Box</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3 text-sm text-muted-foreground">
+              <p>Allows offline progress accumulation for up to 24 hours:</p>
+              <ul className="list-disc list-inside space-y-1">
+                <li>Planters continue growing</li>
+                <li>Blender keeps processing</li>
+                <li>Gingerbread House produces items</li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>New Features</CardTitle>
+              <CardDescription>Soft launched December 26, 2025</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-2 text-sm text-muted-foreground">
+              <p><strong className="text-foreground">Decoration Quests</strong> - New seasonal quest line</p>
+              <p><strong className="text-foreground">Gift Boxes</strong> - Daily rewards including Offline Voucher</p>
+              <p><strong className="text-foreground">Blooms</strong> - New field mechanic</p>
+              <p><strong className="text-foreground">Catalog</strong> - Browse seasonal items</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Quest Requirements</CardTitle>
+              <CardDescription>Unlock prerequisites</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3 text-sm text-muted-foreground">
+              <div>
+                <p className="font-medium text-foreground">Spirit Bear&apos;s Beesmas Quest</p>
+                <p className="text-xs">Complete Spirit Bear&apos;s first normal quest</p>
+              </div>
+              <div>
+                <p className="font-medium text-foreground">Honey Bee&apos;s Beesmas Quest</p>
+                <p className="text-xs">Complete Black Bear&apos;s Beesmas Quest + Own Honey Mask</p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Sticker System */}
+      <section className="mb-16">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="h-10 w-10 rounded-lg bg-pink-500/20 flex items-center justify-center">
+            <Sparkles className="h-5 w-5 text-pink-500" />
+          </div>
+          <h2 className="text-2xl font-bold">Sticker System</h2>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Getting Stickers</CardTitle>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-2">
+              <p><strong className="text-foreground">Hidden Stickers:</strong> Found stuck to surfaces around the map</p>
+              <ul className="list-disc list-inside text-xs space-y-1 mt-2">
+                <li>0 bees = 1 sticker spawns</li>
+                <li>40 bees = 7 stickers spawn</li>
+                <li>Max 7 on map at once</li>
+                <li>Despawn after 1 week</li>
+              </ul>
+              <p className="mt-3"><strong className="text-foreground">Sticker Sprouts:</strong> Spawn every 3 hours</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Using Stickers</CardTitle>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-2">
+              <p>Three options for each sticker:</p>
+              <ul className="list-disc list-inside space-y-1">
+                <li><strong>Apply to hive</strong> - Cosmetic only, no stat bonus</li>
+                <li><strong>Trade</strong> - Exchange with other players</li>
+                <li><strong>Submit to Sticker Stack</strong> - Get permanent boosts</li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Sticker Stack</CardTitle>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-2">
+              <p><strong className="text-foreground">Base Boosts:</strong></p>
+              <ul className="list-disc list-inside text-xs space-y-1">
+                <li>+20% Convert Rate</li>
+                <li>+10% Capacity</li>
+                <li>+5% Pollen</li>
+              </ul>
+              <p className="mt-2 text-xs">Each sticker type can only be submitted once. Stack Boosts accumulate. Duration builds from 15 min to 1 hour max.</p>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Game Mechanics */}
+      <section className="mb-16">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="h-10 w-10 rounded-lg bg-yellow-500/20 flex items-center justify-center">
+            <Cog className="h-5 w-5 text-yellow-500" />
+          </div>
+          <h2 className="text-2xl font-bold">Game Mechanics</h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Golden Cogmowers Schedule</CardTitle>
+              <CardDescription>When they spawn in Robo Bear Challenge</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground">
+              <p className="mb-3"><strong className="text-foreground">Spawn Rounds:</strong></p>
+              <div className="grid grid-cols-3 gap-2 text-center mb-4">
+                <div className="bg-secondary/50 rounded p-2">3, 4, 6</div>
+                <div className="bg-secondary/50 rounded p-2">12, 13, 16</div>
+                <div className="bg-secondary/50 rounded p-2">21, 22, 23, 24</div>
+              </div>
+              <p className="text-xs"><strong className="text-red-400">NOT</strong> on Miniboss rounds: 5, 10, 15, 20, 25</p>
+              <p className="text-xs"><strong className="text-red-400">NOT</strong> in 35 Bee Zone</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Voucher Prices</CardTitle>
+              <CardDescription>Reference for trading</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground">
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span>Bear Bee Voucher</span>
+                  <span className="font-mono text-honey">800 honey</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span>Cub Buddy Voucher</span>
+                  <span className="font-mono text-honey">600 honey</span>
+                </div>
+              </div>
+              <p className="mt-4 text-xs text-muted-foreground">
+                <strong>Gingerbread Bears:</strong> Limited offer, expires February 28th
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="md:col-span-2 lg:col-span-1">
+            <CardHeader>
+              <CardTitle>Nectar Types</CardTitle>
+              <CardDescription>All 5 types and their boosts</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground">
+              <p className="text-xs mb-2">All types give x1.01 - x1.05 Honey Per Pollen. Stack up to 24 hours.</p>
+              <div className="space-y-2 text-xs">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
+                  <strong className="text-cyan-400">Refreshing:</strong>
+                  <span>Blue Convert, Red Pollen, Bee Ability Pollen</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-blue-400"></span>
+                  <strong className="text-blue-400">Comforting:</strong>
+                  <span>Blue Pollen, Convert At Hive, Colorless Convert</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400"></span>
+                  <strong className="text-amber-400">Satisfying:</strong>
+                  <span>Honey At Hive, Red Convert, White Pollen</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-green-400"></span>
+                  <strong className="text-green-400">Motivating:</strong>
+                  <span>Blue Pollen, Convert Rate, Bee Ability Rate</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-red-400"></span>
+                  <strong className="text-red-400">Invigorating:</strong>
+                  <span>Red Pollen, Convert Rate, Bee Attack</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </section>
 
       {/* Quick Links to Tools */}

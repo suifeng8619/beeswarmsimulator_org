@@ -3,6 +3,7 @@
  * Fetches data from Supabase database
  */
 
+import { cache } from 'react'
 import { supabase } from './supabase'
 import type { Database, Bee, Sticker, Beequip, Code, Json } from '@/types/database'
 
@@ -10,7 +11,8 @@ import type { Database, Bee, Sticker, Beequip, Code, Json } from '@/types/databa
 // BEES QUERIES
 // ============================================
 
-export async function fetchBees(): Promise<Bee[]> {
+// Cached fetch for all bees - deduplicated across render
+export const fetchBees = cache(async (): Promise<Bee[]> => {
   const { data, error } = await supabase
     .from('bees')
     .select('*')
@@ -21,9 +23,10 @@ export async function fetchBees(): Promise<Bee[]> {
     return []
   }
   return data || []
-}
+})
 
-export async function fetchBeeBySlug(slug: string): Promise<Bee | null> {
+// Cached fetch for single bee
+export const fetchBeeBySlug = cache(async (slug: string): Promise<Bee | null> => {
   const { data, error } = await supabase
     .from('bees')
     .select('*')
@@ -35,6 +38,27 @@ export async function fetchBeeBySlug(slug: string): Promise<Bee | null> {
     return null
   }
   return data
+})
+
+// Fetch related bees by rarity or color (more efficient than fetching all)
+export async function fetchRelatedBees(
+  excludeId: string,
+  rarity: string,
+  color: string,
+  limit = 6
+): Promise<Bee[]> {
+  const { data, error } = await supabase
+    .from('bees')
+    .select('*')
+    .neq('id', excludeId)
+    .or(`rarity.eq.${rarity},color.eq.${color}`)
+    .limit(limit)
+
+  if (error) {
+    console.error('Error fetching related bees:', error)
+    return []
+  }
+  return data || []
 }
 
 export async function fetchBeesByRarity(rarity: string): Promise<Bee[]> {
@@ -69,7 +93,8 @@ export async function fetchBeesByColor(color: string): Promise<Bee[]> {
 // STICKERS QUERIES
 // ============================================
 
-export async function fetchStickers(): Promise<Sticker[]> {
+// Cached fetch for all stickers
+export const fetchStickers = cache(async (): Promise<Sticker[]> => {
   const { data, error } = await supabase
     .from('stickers')
     .select('*')
@@ -80,9 +105,10 @@ export async function fetchStickers(): Promise<Sticker[]> {
     return []
   }
   return data || []
-}
+})
 
-export async function fetchStickerBySlug(slug: string): Promise<Sticker | null> {
+// Cached fetch for single sticker
+export const fetchStickerBySlug = cache(async (slug: string): Promise<Sticker | null> => {
   const { data, error } = await supabase
     .from('stickers')
     .select('*')
@@ -94,6 +120,27 @@ export async function fetchStickerBySlug(slug: string): Promise<Sticker | null> 
     return null
   }
   return data
+})
+
+// Fetch related stickers by category (more efficient)
+export async function fetchRelatedStickers(
+  excludeId: string,
+  category: string,
+  limit = 4
+): Promise<Sticker[]> {
+  const { data, error } = await supabase
+    .from('stickers')
+    .select('*')
+    .neq('id', excludeId)
+    .eq('category', category)
+    .order('value', { ascending: false })
+    .limit(limit)
+
+  if (error) {
+    console.error('Error fetching related stickers:', error)
+    return []
+  }
+  return data || []
 }
 
 export async function fetchStickersByCategory(category: string): Promise<Sticker[]> {
@@ -128,7 +175,8 @@ export async function fetchTopValueStickers(limit = 10): Promise<Sticker[]> {
 // BEEQUIPS QUERIES
 // ============================================
 
-export async function fetchBeequips(): Promise<Beequip[]> {
+// Cached fetch for all beequips
+export const fetchBeequips = cache(async (): Promise<Beequip[]> => {
   const { data, error } = await supabase
     .from('beequips')
     .select('*')
@@ -139,9 +187,10 @@ export async function fetchBeequips(): Promise<Beequip[]> {
     return []
   }
   return data || []
-}
+})
 
-export async function fetchBeequipBySlug(slug: string): Promise<Beequip | null> {
+// Cached fetch for single beequip
+export const fetchBeequipBySlug = cache(async (slug: string): Promise<Beequip | null> => {
   const { data, error } = await supabase
     .from('beequips')
     .select('*')
@@ -153,6 +202,43 @@ export async function fetchBeequipBySlug(slug: string): Promise<Beequip | null> 
     return null
   }
   return data
+})
+
+// Fetch related beequips by category (more efficient)
+export async function fetchRelatedBeequips(
+  excludeId: string,
+  category: string,
+  limit = 4
+): Promise<Beequip[]> {
+  const { data, error } = await supabase
+    .from('beequips')
+    .select('*')
+    .neq('id', excludeId)
+    .eq('category', category)
+    .order('base_value', { ascending: false })
+    .limit(limit)
+
+  if (error) {
+    console.error('Error fetching related beequips:', error)
+    return []
+  }
+  return data || []
+}
+
+// Fetch trending beequips (efficient query for recommendations)
+export async function fetchTrendingBeequips(limit = 4): Promise<Beequip[]> {
+  const { data, error } = await supabase
+    .from('beequips')
+    .select('*')
+    .eq('trend', 'up')
+    .order('base_value', { ascending: false })
+    .limit(limit)
+
+  if (error) {
+    console.error('Error fetching trending beequips:', error)
+    return []
+  }
+  return data || []
 }
 
 export async function fetchBeequipsByCategory(category: string): Promise<Beequip[]> {

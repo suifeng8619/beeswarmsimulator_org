@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useRef, useCallback, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Search, Trash2, Share2, Grid3X3, ChevronUp, ChevronDown, Sparkles, Minus, Plus, Calculator, Scale, Bot, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -552,7 +553,7 @@ export default function HiveBuilderClient() {
             }}
           >
             {dragItem.bee.image_url ? (
-              <img src={dragItem.bee.image_url} alt={dragItem.bee.name} className="w-14 h-14 object-contain" />
+              <Image src={dragItem.bee.image_url} alt={dragItem.bee.name} width={56} height={56} className="object-contain" />
             ) : (
               <span className="text-4xl">🐝</span>
             )}
@@ -663,10 +664,12 @@ function HexSlot({
           <>
             {/* Bee face - larger and slightly higher */}
             {bee.image_url ? (
-              <img
+              <Image
                 src={bee.image_url}
                 alt={bee.name}
-                className="w-20 h-20 object-contain pointer-events-none"
+                width={80}
+                height={80}
+                className="object-contain pointer-events-none"
                 style={{ marginTop: '-10px' }}
                 draggable={false}
               />
@@ -807,12 +810,14 @@ function BeeCard({
         borderColor: '#DAA520',
       }}
     >
-      <div className="flex-1 w-full flex items-center justify-center">
+      <div className="flex-1 w-full flex items-center justify-center relative">
         {bee.image_url ? (
-          <img
+          <Image
             src={bee.image_url}
             alt={bee.name}
-            className="w-[85%] h-auto object-contain pointer-events-none"
+            width={56}
+            height={56}
+            className="object-contain pointer-events-none"
             draggable={false}
           />
         ) : (

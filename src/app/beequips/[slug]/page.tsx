@@ -1,12 +1,15 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowLeft, TrendingUp, TrendingDown, Minus, Calendar, Tag, Star, Zap, BookOpen, Grid3X3, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { beequipCategories, calculateBeequipValue } from '@/data/beequips'
-import { fetchBeequips, fetchBeequipBySlug, fetchStickers } from '@/lib/queries'
+import { ITEM_VALUES } from '@/data/game-values'
+import { fetchBeequips, fetchBeequipBySlug, fetchRelatedBeequips, fetchTopValueStickers } from '@/lib/queries'
 import { ItemCard } from '@/components/items/item-card'
+import { ProductJsonLd, BreadcrumbJsonLd } from '@/components/seo/json-ld'
 import type { Metadata } from 'next'
 
 interface PageProps {
@@ -64,15 +67,17 @@ export async function generateStaticParams() {
 
 export default async function BeequipDetailPage({ params }: PageProps) {
   const { slug } = await params
-  const [beequip, beequips, stickers] = await Promise.all([
-    fetchBeequipBySlug(slug),
-    fetchBeequips(),
-    fetchStickers(),
-  ])
+  const beequip = await fetchBeequipBySlug(slug)
 
   if (!beequip) {
     notFound()
   }
+
+  // Fetch related data after we have the beequip (more efficient)
+  const [relatedBeequips, relatedStickers] = await Promise.all([
+    fetchRelatedBeequips(beequip.id, beequip.category, 4),
+    fetchTopValueStickers(3),
+  ])
 
   const TrendIcon =
     beequip.trend === 'up'
@@ -95,23 +100,36 @@ export default async function BeequipDetailPage({ params }: PageProps) {
         ? 'bg-red-500/10'
         : 'bg-muted'
 
-  const relatedBeequips = beequips
-    .filter((b) => b.category === beequip.category && b.id !== beequip.id)
-    .slice(0, 4)
-
-  // Get some related stickers for cross-linking
-  const relatedStickers = stickers.slice(0, 3)
-
   // Calculate values for each potential level
   const potentialValues = Array.from({ length: 5 }, (_, i) =>
     calculateBeequipValue(beequip, i + 1)
   )
 
+  const baseUrl = 'https://beeswarmsimulator.org'
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Back Button */}
-      <Button asChild variant="ghost" className="mb-6">
-        <Link href="/values?tab=beequips">
+    <>
+      <ProductJsonLd
+        name={beequip.name}
+        description={`${beequip.name} beequip in Bee Swarm Simulator. Base value: ${beequip.base_value.toLocaleString()}, Max potential: ${beequip.max_potential}/5`}
+        image={beequip.image_url}
+        url={`${baseUrl}/beequips/${beequip.slug}`}
+        category={beequipCategories[beequip.category as keyof typeof beequipCategories]}
+        value={beequip.base_value}
+        trend={beequip.trend}
+        dateModified={beequip.updated_at}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', url: baseUrl },
+          { name: 'Values', url: `${baseUrl}/values?tab=beequips` },
+          { name: beequip.name, url: `${baseUrl}/beequips/${beequip.slug}` },
+        ]}
+      />
+      <div className="container mx-auto px-4 py-8">
+        {/* Back Button */}
+        <Button asChild variant="ghost" className="mb-6">
+          <Link href="/values?tab=beequips">
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back to Value List
         </Link>
@@ -125,12 +143,14 @@ export default async function BeequipDetailPage({ params }: PageProps) {
               <div className="flex flex-col md:flex-row gap-6">
                 {/* Image */}
                 <div className="flex-shrink-0">
-                  <div className="h-32 w-32 rounded-xl bg-secondary/50 flex items-center justify-center">
+                  <div className="h-32 w-32 rounded-xl bg-secondary/50 flex items-center justify-center relative">
                     {beequip.image_url ? (
-                      <img
+                      <Image
                         src={beequip.image_url}
                         alt={beequip.name}
-                        className="h-28 w-28 object-contain"
+                        width={112}
+                        height={112}
+                        className="object-contain"
                       />
                     ) : (
                       <span className="text-6xl">🎒</span>
@@ -286,13 +306,13 @@ export default async function BeequipDetailPage({ params }: PageProps) {
                 <div className="flex justify-between">
                   <span>Basic Eggs</span>
                   <span className="font-semibold">
-                    {Math.round(beequip.base_value / 375).toLocaleString()}x
+                    {Math.round(beequip.base_value / ITEM_VALUES.BASIC_EGG).toLocaleString()}x
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Royal Jellies</span>
                   <span className="font-semibold">
-                    {Math.round(beequip.base_value / 1200).toLocaleString()}x
+                    {Math.round(beequip.base_value / ITEM_VALUES.ROYAL_JELLY).toLocaleString()}x
                   </span>
                 </div>
               </div>
@@ -328,19 +348,20 @@ export default async function BeequipDetailPage({ params }: PageProps) {
         </div>
       </div>
 
-      {/* Related Items */}
-      {relatedBeequips.length > 0 && (
-        <div className="mt-12">
-          <h2 className="text-2xl font-bold mb-6">
-            More {beequipCategories[beequip.category as keyof typeof beequipCategories]} Beequips
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {relatedBeequips.map((b) => (
-              <ItemCard key={b.id} item={b} type="beequip" />
-            ))}
+        {/* Related Items */}
+        {relatedBeequips.length > 0 && (
+          <div className="mt-12">
+            <h2 className="text-2xl font-bold mb-6">
+              More {beequipCategories[beequip.category as keyof typeof beequipCategories]} Beequips
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {relatedBeequips.map((b) => (
+                <ItemCard key={b.id} item={b} type="beequip" />
+              ))}
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   )
 }

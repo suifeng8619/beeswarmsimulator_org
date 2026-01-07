@@ -127,6 +127,19 @@ export default async function CodesPage() {
               <strong>Pro Tip:</strong> Copy the code directly from this page to avoid typos. Codes are case-sensitive!
             </p>
           </div>
+          <div className="mt-3 p-3 rounded-lg bg-blue-500/10 border border-blue-500/20">
+            <p className="text-sm text-blue-600 dark:text-blue-400">
+              <strong>Note:</strong> Some codes (like 15MMembers) require you to join the official Roblox group first.{' '}
+              <a
+                href="https://www.roblox.com/groups/3982592/Bee-Swarm-Simulator"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:no-underline"
+              >
+                Join the group here
+              </a>
+            </p>
+          </div>
         </CardContent>
       </Card>
 

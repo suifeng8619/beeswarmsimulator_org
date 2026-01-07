@@ -1,22 +1,42 @@
 import { Metadata } from 'next'
-import { Search } from 'lucide-react'
+import Image from 'next/image'
+import { Search, Filter } from 'lucide-react'
 import Link from 'next/link'
 import { searchAll } from '@/lib/queries'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 
-export const metadata: Metadata = {
-  title: 'Search Results',
-  description: 'Search for bees, stickers, and beequips in BSS Nexus.',
-}
+type FilterType = 'all' | 'bees' | 'stickers' | 'beequips'
 
 interface SearchPageProps {
-  searchParams: Promise<{ q?: string }>
+  searchParams: Promise<{ q?: string; type?: FilterType }>
+}
+
+export async function generateMetadata({ searchParams }: SearchPageProps): Promise<Metadata> {
+  const params = await searchParams
+  const query = params.q || ''
+  const filterType = params.type || 'all'
+
+  if (!query) {
+    return {
+      title: 'Search',
+      description: 'Search for bees, stickers, and beequips in BSS Nexus.',
+    }
+  }
+
+  const typeLabel = filterType === 'all' ? 'items' : filterType
+  return {
+    title: `Search: ${query}`,
+    description: `Search results for "${query}" - Find ${typeLabel} in Bee Swarm Simulator.`,
+    robots: { index: false }, // Don't index search result pages
+  }
 }
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
   const params = await searchParams
   const query = params.q || ''
+  const filterType = (params.type || 'all') as FilterType
 
   if (!query) {
     return (
@@ -31,17 +51,57 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   }
 
   const results = await searchAll(query)
-  const totalResults = results.bees.length + results.stickers.length + results.beequips.length
+
+  // Apply type filter
+  const filteredResults = {
+    bees: filterType === 'all' || filterType === 'bees' ? results.bees : [],
+    stickers: filterType === 'all' || filterType === 'stickers' ? results.stickers : [],
+    beequips: filterType === 'all' || filterType === 'beequips' ? results.beequips : [],
+  }
+
+  const totalResults = filteredResults.bees.length + filteredResults.stickers.length + filteredResults.beequips.length
+  const allTotalResults = results.bees.length + results.stickers.length + results.beequips.length
+
+  // Filter options with counts
+  const filterOptions: { type: FilterType; label: string; count: number }[] = [
+    { type: 'all', label: 'All', count: allTotalResults },
+    { type: 'bees', label: 'Bees', count: results.bees.length },
+    { type: 'stickers', label: 'Stickers', count: results.stickers.length },
+    { type: 'beequips', label: 'Beequips', count: results.beequips.length },
+  ]
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
+      <div className="mb-6">
         <h1 className="text-3xl font-bold mb-2">
           Search Results for &quot;{query}&quot;
         </h1>
         <p className="text-muted-foreground">
           Found {totalResults} result{totalResults !== 1 ? 's' : ''}
+          {filterType !== 'all' && ` in ${filterType}`}
         </p>
+      </div>
+
+      {/* Filter Tabs */}
+      <div className="flex flex-wrap gap-2 mb-6">
+        <Filter className="h-5 w-5 text-muted-foreground self-center mr-1" />
+        {filterOptions.map((option) => (
+          <Link
+            key={option.type}
+            href={`/search?q=${encodeURIComponent(query)}${option.type !== 'all' ? `&type=${option.type}` : ''}`}
+          >
+            <Button
+              variant={filterType === option.type ? 'default' : 'outline'}
+              size="sm"
+              className={filterType === option.type ? 'bg-honey text-honey-foreground hover:bg-honey-dark' : ''}
+            >
+              {option.label}
+              <Badge variant="secondary" className="ml-2 text-xs">
+                {option.count}
+              </Badge>
+            </Button>
+          </Link>
+        ))}
       </div>
 
       {totalResults === 0 ? (
@@ -50,9 +110,16 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
             <Search className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
             <h2 className="text-xl font-semibold mb-2">No results found</h2>
             <p className="text-muted-foreground">
-              Try adjusting your search terms or browse our collections.
+              {filterType !== 'all'
+                ? `No ${filterType} found for "${query}". Try removing the filter or adjusting your search.`
+                : 'Try adjusting your search terms or browse our collections.'}
             </p>
             <div className="flex justify-center gap-4 mt-6">
+              {filterType !== 'all' && (
+                <Link href={`/search?q=${encodeURIComponent(query)}`} className="text-honey hover:underline">
+                  Show All Results
+                </Link>
+              )}
               <Link href="/bees" className="text-honey hover:underline">
                 Browse Bees
               </Link>
@@ -65,23 +132,25 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
       ) : (
         <div className="space-y-8">
           {/* Bees Section */}
-          {results.bees.length > 0 && (
+          {filteredResults.bees.length > 0 && (
             <section>
               <div className="flex items-center gap-2 mb-4">
                 <h2 className="text-xl font-semibold">Bees</h2>
-                <Badge variant="secondary">{results.bees.length}</Badge>
+                <Badge variant="secondary">{filteredResults.bees.length}</Badge>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                {results.bees.map((bee) => (
+                {filteredResults.bees.map((bee) => (
                   <Link key={bee.id} href={`/bees/${bee.slug}`}>
                     <Card className="hover:border-honey transition-colors h-full">
                       <CardContent className="p-4">
                         <div className="flex items-center gap-3">
                           {bee.image_url ? (
-                            <img
+                            <Image
                               src={bee.image_url}
                               alt={bee.name}
-                              className="h-12 w-12 object-contain"
+                              width={48}
+                              height={48}
+                              className="object-contain"
                             />
                           ) : (
                             <div className="h-12 w-12 bg-secondary rounded-lg flex items-center justify-center">
@@ -109,23 +178,25 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
           )}
 
           {/* Stickers Section */}
-          {results.stickers.length > 0 && (
+          {filteredResults.stickers.length > 0 && (
             <section>
               <div className="flex items-center gap-2 mb-4">
                 <h2 className="text-xl font-semibold">Stickers</h2>
-                <Badge variant="secondary">{results.stickers.length}</Badge>
+                <Badge variant="secondary">{filteredResults.stickers.length}</Badge>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                {results.stickers.map((sticker) => (
+                {filteredResults.stickers.map((sticker) => (
                   <Link key={sticker.id} href={`/stickers/${sticker.slug}`}>
                     <Card className="hover:border-honey transition-colors h-full">
                       <CardContent className="p-4">
                         <div className="flex items-center gap-3">
                           {sticker.image_url ? (
-                            <img
+                            <Image
                               src={sticker.image_url}
                               alt={sticker.name}
-                              className="h-12 w-12 object-contain"
+                              width={48}
+                              height={48}
+                              className="object-contain"
                             />
                           ) : (
                             <div className="h-12 w-12 bg-secondary rounded-lg flex items-center justify-center">
@@ -148,23 +219,25 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
           )}
 
           {/* Beequips Section */}
-          {results.beequips.length > 0 && (
+          {filteredResults.beequips.length > 0 && (
             <section>
               <div className="flex items-center gap-2 mb-4">
                 <h2 className="text-xl font-semibold">Beequips</h2>
-                <Badge variant="secondary">{results.beequips.length}</Badge>
+                <Badge variant="secondary">{filteredResults.beequips.length}</Badge>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                {results.beequips.map((beequip) => (
+                {filteredResults.beequips.map((beequip) => (
                   <Link key={beequip.id} href={`/beequips/${beequip.slug}`}>
                     <Card className="hover:border-honey transition-colors h-full">
                       <CardContent className="p-4">
                         <div className="flex items-center gap-3">
                           {beequip.image_url ? (
-                            <img
+                            <Image
                               src={beequip.image_url}
                               alt={beequip.name}
-                              className="h-12 w-12 object-contain"
+                              width={48}
+                              height={48}
+                              className="object-contain"
                             />
                           ) : (
                             <div className="h-12 w-12 bg-secondary rounded-lg flex items-center justify-center">

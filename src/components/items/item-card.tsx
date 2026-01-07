@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { TrendingUp, TrendingDown, Minus } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -43,6 +44,12 @@ export function ItemCard({ item, type, size = 'md' }: ItemCardProps) {
     lg: 'h-20 w-20',
   }
 
+  const imageSizes = {
+    sm: 40,
+    md: 56,
+    lg: 80,
+  }
+
   return (
     <Link href={href}>
       <Card className="group transition-all hover:border-honey/50 hover:shadow-md hover:shadow-honey/10 cursor-pointer">
@@ -50,15 +57,17 @@ export function ItemCard({ item, type, size = 'md' }: ItemCardProps) {
           {/* Item Image */}
           <div
             className={cn(
-              'flex items-center justify-center rounded-lg bg-secondary/50 shrink-0',
+              'flex items-center justify-center rounded-lg bg-secondary/50 shrink-0 relative',
               imageClasses[size]
             )}
           >
             {item.image_url ? (
-              <img
+              <Image
                 src={item.image_url}
                 alt={item.name}
-                className={cn('object-contain', imageClasses[size])}
+                width={imageSizes[size]}
+                height={imageSizes[size]}
+                className="object-contain"
               />
             ) : (
               <span className="text-2xl">🐝</span>

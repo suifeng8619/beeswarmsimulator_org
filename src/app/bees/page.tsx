@@ -1,6 +1,10 @@
 import type { Metadata } from 'next'
 import BeesClient from './bees-client'
 import { fetchBees } from '@/lib/queries'
+import { ItemListJsonLd, BreadcrumbJsonLd } from '@/components/seo/json-ld'
+
+// ISR: Bee data is stable, revalidate every 24 hours
+export const revalidate = 86400
 
 export const metadata: Metadata = {
   title: 'Bee Encyclopedia',
@@ -24,5 +28,27 @@ export const metadata: Metadata = {
 
 export default async function BeesPage() {
   const bees = await fetchBees()
-  return <BeesClient initialBees={bees} />
+  const baseUrl = 'https://beeswarmsimulator.org'
+
+  return (
+    <>
+      <ItemListJsonLd
+        name="Bee Encyclopedia - All Bees in Bee Swarm Simulator"
+        description="Complete guide to all bees in Bee Swarm Simulator with stats, abilities, and rarity information."
+        items={bees.map((bee, index) => ({
+          name: bee.name,
+          url: `${baseUrl}/bees/${bee.slug}`,
+          image: bee.image_url,
+          position: index + 1,
+        }))}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', url: baseUrl },
+          { name: 'Bees', url: `${baseUrl}/bees` },
+        ]}
+      />
+      <BeesClient initialBees={bees} />
+    </>
+  )
 }

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo, useEffect } from 'react'
+import Image from 'next/image'
 import { Search, SlidersHorizontal, TrendingUp, TrendingDown, Minus, LayoutGrid, List } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -276,12 +277,14 @@ function StickerTable({ items }: { items: Sticker[] }) {
             <TableRow key={sticker.id} className="cursor-pointer hover:bg-accent/50">
               <TableCell>
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-lg bg-secondary/50 flex items-center justify-center">
+                  <div className="h-10 w-10 rounded-lg bg-secondary/50 flex items-center justify-center relative">
                     {sticker.image_url ? (
-                      <img
+                      <Image
                         src={sticker.image_url}
                         alt={sticker.name}
-                        className="h-8 w-8 object-contain"
+                        width={32}
+                        height={32}
+                        className="object-contain"
                       />
                     ) : (
                       <span className="text-lg">🐝</span>
@@ -334,12 +337,14 @@ function BeequipTable({ items }: { items: Beequip[] }) {
             <TableRow key={beequip.id} className="cursor-pointer hover:bg-accent/50">
               <TableCell>
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-lg bg-secondary/50 flex items-center justify-center">
+                  <div className="h-10 w-10 rounded-lg bg-secondary/50 flex items-center justify-center relative">
                     {beequip.image_url ? (
-                      <img
+                      <Image
                         src={beequip.image_url}
                         alt={beequip.name}
-                        className="h-8 w-8 object-contain"
+                        width={32}
+                        height={32}
+                        className="object-contain"
                       />
                     ) : (
                       <span className="text-lg">🎒</span>

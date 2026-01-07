@@ -102,3 +102,115 @@ export function BreadcrumbJsonLd({ items }: { items: Array<{ name: string; url: 
 
   return <JsonLd data={data} />
 }
+
+// Product/Item structured data for stickers and beequips
+interface ProductJsonLdProps {
+  name: string
+  description: string
+  image?: string | null
+  url: string
+  category: string
+  value: number
+  trend: 'up' | 'down' | 'stable'
+  dateModified: string
+}
+
+export function ProductJsonLd({ name, description, image, url, category, value, trend, dateModified }: ProductJsonLdProps) {
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name,
+    description,
+    image: image || 'https://beeswarmsimulator.org/og-image.png',
+    url,
+    category,
+    brand: {
+      '@type': 'Brand',
+      name: 'Bee Swarm Simulator',
+    },
+    offers: {
+      '@type': 'Offer',
+      price: value,
+      priceCurrency: 'BSS', // Virtual currency
+      availability: 'https://schema.org/InStock',
+      priceValidUntil: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+    },
+    additionalProperty: [
+      {
+        '@type': 'PropertyValue',
+        name: 'Trend',
+        value: trend,
+      },
+    ],
+  }
+
+  return <JsonLd data={data} />
+}
+
+// Bee/Character structured data
+interface BeeJsonLdProps {
+  name: string
+  description: string
+  image?: string | null
+  url: string
+  rarity: string
+  color: string
+  abilities: string[]
+}
+
+export function BeeJsonLd({ name, description, image, url, rarity, color, abilities }: BeeJsonLdProps) {
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'Thing',
+    name,
+    description,
+    image: image || 'https://beeswarmsimulator.org/og-image.png',
+    url,
+    additionalType: 'GameCharacter',
+    additionalProperty: [
+      {
+        '@type': 'PropertyValue',
+        name: 'Rarity',
+        value: rarity,
+      },
+      {
+        '@type': 'PropertyValue',
+        name: 'Color',
+        value: color,
+      },
+      {
+        '@type': 'PropertyValue',
+        name: 'Abilities',
+        value: abilities.join(', '),
+      },
+    ],
+  }
+
+  return <JsonLd data={data} />
+}
+
+// ItemList for collection pages
+interface ItemListJsonLdProps {
+  items: Array<{ name: string; url: string; image?: string | null; position: number }>
+  name: string
+  description: string
+}
+
+export function ItemListJsonLd({ items, name, description }: ItemListJsonLdProps) {
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name,
+    description,
+    numberOfItems: items.length,
+    itemListElement: items.map((item) => ({
+      '@type': 'ListItem',
+      position: item.position,
+      name: item.name,
+      url: item.url,
+      image: item.image || undefined,
+    })),
+  }
+
+  return <JsonLd data={data} />
+}

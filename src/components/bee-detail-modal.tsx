@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Zap, Sword, Wind, Sparkles, Gift, Star, Package, ExternalLink } from 'lucide-react'
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
 import { Badge } from '@/components/ui/badge'
@@ -52,10 +53,11 @@ export function BeeDetailModal({ bee, open, onClose }: BeeDetailModalProps) {
           {/* Bee ghost image */}
           {bee.image_url && (
             <>
-              <img
+              <Image
                 src={bee.image_url}
                 alt=""
-                className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] max-w-none h-auto opacity-40"
+                fill
+                className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-none opacity-40 object-cover"
                 style={{ filter: 'blur(10px)' }}
               />
               {/* Gradient overlay for fade effect - very light */}
@@ -79,10 +81,12 @@ export function BeeDetailModal({ bee, open, onClose }: BeeDetailModalProps) {
 
           <div className="w-32 h-32 flex items-center justify-center flex-shrink-0 relative z-10 bg-white/20 rounded-xl backdrop-blur-sm">
             {bee.image_url ? (
-              <img
+              <Image
                 src={bee.image_url}
                 alt={bee.name}
-                className="w-28 h-28 object-contain drop-shadow-lg"
+                width={112}
+                height={112}
+                className="object-contain drop-shadow-lg"
               />
             ) : (
               <span className="text-7xl">🐝</span>

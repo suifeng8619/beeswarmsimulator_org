@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Metadata } from 'next'
 import { Search, Scale, Calculator, Grid3X3, Ticket, Bot, ArrowRight, TrendingUp, BookOpen, Zap, Star, HelpCircle, Sparkles, Target, Shield, Sword, Crown, Map, Users, Award, Clock, Gift, Flame, Droplets, Sun, Heart, ChevronRight, CheckCircle, AlertCircle, Lightbulb, Trophy, Gem, Leaf } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -12,6 +13,9 @@ import { beequips } from '@/data/beequips'
 import { getActiveCodes, getRecentCodes } from '@/data/codes'
 import { bees, beeRarities } from '@/data/bees'
 import { WebsiteJsonLd, FaqJsonLd, SoftwareAppJsonLd } from '@/components/seo/json-ld'
+
+// ISR: Homepage shows trending data, revalidate every 4 hours
+export const revalidate = 14400
 
 // Page-specific metadata with JSON-LD
 export const metadata: Metadata = {
@@ -533,10 +537,12 @@ export default function HomePage() {
                     }}
                   >
                     {bee.image_url ? (
-                      <img
+                      <Image
                         src={bee.image_url}
                         alt={bee.name}
-                        className="w-16 h-16 mx-auto object-contain"
+                        width={64}
+                        height={64}
+                        className="mx-auto object-contain"
                       />
                     ) : (
                       <span className="text-4xl">🐝</span>

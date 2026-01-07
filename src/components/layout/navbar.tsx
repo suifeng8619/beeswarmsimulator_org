@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Menu, X, Scale, Calculator, Grid3X3, Ticket, Bot, Search, BookOpen } from 'lucide-react'
+import { Menu, X, Scale, Calculator, Grid3X3, Ticket, Bot, Search, BookOpen, Compass } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
@@ -14,6 +14,7 @@ const navigation = [
   { name: 'Calculator', href: '/calculator', icon: Calculator },
   { name: 'Hive Builder', href: '/hive-builder', icon: Grid3X3 },
   { name: 'Codes', href: '/codes', icon: Ticket },
+  { name: 'Guides', href: '/guides', icon: Compass },
   { name: 'AI Advisor', href: '/advisor', icon: Bot },
 ]
 
@@ -43,7 +44,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:gap-1">
+          <div className="hidden lg:flex lg:items-center lg:gap-1">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -76,7 +77,7 @@ export function Navbar() {
 
           {/* Mobile Menu Button */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger asChild className="md:hidden">
+            <SheetTrigger asChild className="lg:hidden">
               <Button variant="ghost" size="icon" className="h-11 w-11">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle menu</span>
@@ -128,7 +129,7 @@ export function Navbar() {
           </Sheet>
 
           {/* Desktop Sign In */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <Button asChild variant="ghost" className="text-muted-foreground hover:text-foreground">
               <Link href="/login">Sign In</Link>
             </Button>
