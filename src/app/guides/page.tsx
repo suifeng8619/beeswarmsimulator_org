@@ -16,6 +16,12 @@ import {
   Gift,
   Sparkles,
   Cog,
+  AlertTriangle,
+  CheckCircle2,
+  ShieldAlert,
+  Users,
+  TestTube,
+  Award,
 } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -161,6 +167,18 @@ export default function GuidesPage() {
           <h2 className="text-2xl font-bold">Trading Tips</h2>
         </div>
 
+        {/* Trading Status Banner */}
+        <div className="mb-6 p-4 rounded-lg bg-green-500/10 border border-green-500/20">
+          <div className="flex items-center gap-2">
+            <CheckCircle2 className="h-5 w-5 text-green-500" />
+            <span className="font-semibold text-green-500">Trading Fully Re-enabled</span>
+            <span className="text-xs text-muted-foreground ml-2">as of January 6, 2026</span>
+          </div>
+          <p className="text-sm text-muted-foreground mt-1">
+            After the December 19 player file rework, trading was limited to Hive Hub only. Full trading is now restored in all areas.
+          </p>
+        </div>
+
         <div className="grid md:grid-cols-3 gap-6">
           <Card>
             <CardHeader>
@@ -221,6 +239,78 @@ export default function GuidesPage() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Trading Rules from Official Discord */}
+        <Card className="mt-6">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <ShieldAlert className="h-5 w-5 text-purple-500" />
+              Official Trading Rules
+            </CardTitle>
+            <CardDescription>Rules from the official BSS Discord server</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold mb-3 text-sm">What&apos;s NOT Allowed:</h4>
+                <ul className="text-sm text-muted-foreground space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-500 mt-0.5">✗</span>
+                    <span><strong className="text-foreground">No real-world trading</strong> - Never trade in-game items for real money</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-500 mt-0.5">✗</span>
+                    <span><strong className="text-foreground">No cross-trading</strong> - BSS items only, no trading for items from other games</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-500 mt-0.5">✗</span>
+                    <span><strong className="text-foreground">No value lists (Rule 8)</strong> - Official Discord prohibits posting value lists</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-3 text-sm">Important Info:</h4>
+                <ul className="text-sm text-muted-foreground space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500 mt-0.5">✓</span>
+                    <span><strong className="text-foreground">2-minute cooldown</strong> - Shared across all trade channels</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500 mt-0.5">✓</span>
+                    <span><strong className="text-foreground">@Quest Hotshot role required</strong> - Needed to access trade channels</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Users className="h-4 w-4 text-blue-500 mt-0.5" />
+                    <span>Join the{' '}
+                      <a href="https://www.roblox.com/groups/3982592/Bee-Swarm-Simulator" target="_blank" rel="noopener noreferrer" className="text-honey hover:underline">
+                        official Roblox group
+                      </a>{' '}for full access</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="mt-4 pt-4 border-t border-border">
+              <h4 className="font-semibold mb-2 text-sm flex items-center gap-2">
+                <Shield className="h-4 w-4 text-amber-500" />
+                Safety Tips:
+              </h4>
+              <div className="grid md:grid-cols-3 gap-3 text-xs text-muted-foreground">
+                <div className="flex items-start gap-2">
+                  <span className="text-amber-500">⚠</span>
+                  <span>Never click suspicious links</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-amber-500">⚠</span>
+                  <span>Don&apos;t download any files</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-amber-500">⚠</span>
+                  <span>Never scan QR codes</span>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </section>
 
       {/* Hive Building */}
@@ -276,6 +366,93 @@ export default function GuidesPage() {
         </Card>
       </section>
 
+      {/* Equipment Guide */}
+      <section className="mb-16">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="h-10 w-10 rounded-lg bg-amber-500/20 flex items-center justify-center">
+            <Award className="h-5 w-5 text-amber-500" />
+          </div>
+          <h2 className="text-2xl font-bold">Equipment Guide</h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Diamond Mask vs Gummy Mask</CardTitle>
+              <CardDescription>Community recommendation from #game-discussion</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <div className="p-3 rounded-lg bg-blue-500/10 border border-blue-500/20">
+                <p className="font-semibold text-blue-400 mb-1">Diamond Mask Recommended</p>
+                <p className="text-xs">Players report Diamond Mask outperforms Gummy Mask even without macro usage</p>
+              </div>
+              <p>The Diamond Mask provides better overall performance for most playstyles, especially for active players.</p>
+              <p className="text-xs text-muted-foreground">Note: Gummy Mask may still be viable for specific strategies</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Beequips Importance</CardTitle>
+              <CardDescription>Significant honey boost via Hive Bonuses</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <p><strong className="text-foreground">Beequips provide major boosts</strong> to your honey production through Hive Bonuses system.</p>
+              <div className="mt-3 p-3 rounded-lg bg-secondary/50">
+                <p className="text-xs font-mono text-honey">Example Impact:</p>
+                <p className="text-xs mt-1">Good beequips can multiply your honey rate significantly when combined with proper amulets</p>
+              </div>
+              <p className="text-xs">Focus on beequips that match your hive color for maximum efficiency</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>SSA (Supreme Star Amulet)</CardTitle>
+              <CardDescription>Game-changing endgame item</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <div className="p-3 rounded-lg bg-purple-500/10 border border-purple-500/20">
+                <p className="font-semibold text-purple-400 mb-1">4x Earnings Increase</p>
+                <p className="text-xs">Community reports show SSA can quadruple your honey production</p>
+              </div>
+              <p>The Supreme Star Amulet is one of the most impactful items in the game. Prioritize obtaining it once you reach endgame.</p>
+              <p className="text-xs text-amber-500">Tip: Work on Star Jelly collection and Star Treat acquisition</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Reference Values */}
+        <Card className="mt-6">
+          <CardHeader>
+            <CardTitle>Reference Values & Stats</CardTitle>
+            <CardDescription>Community-reported benchmarks</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold mb-3 text-sm">Shower Permanent Passive:</h4>
+                <div className="flex items-center gap-3 p-3 rounded-lg bg-secondary/50">
+                  <Zap className="h-5 w-5 text-blue-400" />
+                  <div>
+                    <p className="font-mono text-honey">1.25x Capacity Bonus</p>
+                    <p className="text-xs text-muted-foreground">Permanent boost from Shower ability</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-3 text-sm">Level 11 Hive Example:</h4>
+                <div className="p-3 rounded-lg bg-secondary/50">
+                  <p className="text-xs text-muted-foreground mb-2">With good amulets + beequips:</p>
+                  <p className="font-mono text-lg text-honey">~50B/hour</p>
+                  <p className="text-xs text-muted-foreground mt-1">Production rate varies by playstyle and field</p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
       {/* Beesmas 2025 */}
       <section className="mb-16">
         <div className="flex items-center gap-3 mb-6">
@@ -284,6 +461,34 @@ export default function GuidesPage() {
           </div>
           <h2 className="text-2xl font-bold">Beesmas 2025</h2>
         </div>
+
+        {/* Timeline Banner */}
+        <Card className="mb-6 border-red-500/30 bg-red-500/5">
+          <CardContent className="py-4">
+            <h3 className="font-semibold mb-3 flex items-center gap-2">
+              <CheckCircle2 className="h-4 w-4 text-green-500" />
+              Update Timeline
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+              <div className="bg-background/50 rounded p-2">
+                <div className="font-mono text-honey">Dec 19</div>
+                <div className="text-muted-foreground">Player File Rework</div>
+              </div>
+              <div className="bg-background/50 rounded p-2">
+                <div className="font-mono text-honey">Dec 24</div>
+                <div className="text-muted-foreground">Offline Voucher Added</div>
+              </div>
+              <div className="bg-background/50 rounded p-2">
+                <div className="font-mono text-honey">Dec 26</div>
+                <div className="text-muted-foreground">Soft Launch</div>
+              </div>
+              <div className="bg-background/50 rounded p-2">
+                <div className="font-mono text-honey">v588-v589</div>
+                <div className="text-muted-foreground">Bug Fixes</div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
@@ -298,6 +503,7 @@ export default function GuidesPage() {
                 <li>Blender keeps processing</li>
                 <li>Gingerbread House produces items</li>
               </ul>
+              <p className="text-xs mt-2 text-amber-500">Tip: Use before logging off for max benefit!</p>
             </CardContent>
           </Card>
 
@@ -402,6 +608,40 @@ export default function GuidesPage() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
             <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <TestTube className="h-5 w-5 text-cyan-500" />
+                Test Realm
+              </CardTitle>
+              <CardDescription>Official testing environment</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <p>Try out new features and updates before they go live in the main game.</p>
+              <div className="p-3 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
+                <p className="text-xs font-semibold text-cyan-400 mb-2">Access Test Realm:</p>
+                <a
+                  href="https://www.roblox.com/games/3719762683/Bee-Swarm-Simulator"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-honey hover:underline text-xs block"
+                >
+                  → Open Test Realm Game
+                </a>
+              </div>
+              <ul className="text-xs space-y-1">
+                <li className="flex items-start gap-2">
+                  <span className="text-green-500">✓</span>
+                  <span>Free private servers available</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-amber-500">!</span>
+                  <span>Discord staff NOT affiliated with Test Realm</span>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
               <CardTitle>Golden Cogmowers Schedule</CardTitle>
               <CardDescription>When they spawn in Robo Bear Challenge</CardDescription>
             </CardHeader>
@@ -473,6 +713,51 @@ export default function GuidesPage() {
                   <span>Red Pollen, Convert Rate, Bee Attack</span>
                 </div>
               </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Troubleshooting */}
+      <section className="mb-16">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="h-10 w-10 rounded-lg bg-orange-500/20 flex items-center justify-center">
+            <AlertTriangle className="h-5 w-5 text-orange-500" />
+          </div>
+          <h2 className="text-2xl font-bold">Troubleshooting</h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Error 267 - Kicked from Game</CardTitle>
+              <CardDescription>Common connection error and how to fix it</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <p>Error 267 usually means you were disconnected due to server issues or anti-cheat detection. Try these solutions:</p>
+              <ul className="list-disc list-inside space-y-2">
+                <li><strong className="text-foreground">Wait 5 minutes</strong> - Give the server time to reset your session</li>
+                <li><strong className="text-foreground">Use a private server</strong> - Less crowded servers are more stable</li>
+                <li><strong className="text-foreground">Join Hive Hub first</strong> - Then teleport to the main game from there</li>
+                <li><strong className="text-foreground">Check your internet</strong> - Unstable connections can trigger kicks</li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Code Not Working</CardTitle>
+              <CardDescription>Why codes might fail to redeem</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <ul className="list-disc list-inside space-y-2">
+                <li><strong className="text-foreground">Case-sensitive</strong> - Enter codes exactly as shown</li>
+                <li><strong className="text-foreground">Already used</strong> - Each code works only once per account</li>
+                <li><strong className="text-foreground">Expired</strong> - Codes can expire without notice</li>
+                <li><strong className="text-foreground">Group required</strong> - Some codes (like 15MMembers) need you to{' '}
+                  <a href="https://www.roblox.com/groups/3982592/Bee-Swarm-Simulator" target="_blank" rel="noopener noreferrer" className="text-honey hover:underline">join the Roblox group</a> first
+                </li>
+              </ul>
             </CardContent>
           </Card>
         </div>
