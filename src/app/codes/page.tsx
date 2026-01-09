@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Ticket, Info, HelpCircle, Gift, ArrowRight, Scale, Calculator, Lightbulb } from 'lucide-react'
+import { Ticket, Info, HelpCircle, Gift } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/accordion'
 import { CodeCard } from '@/components/items/code-card'
 import { fetchActiveCodes, fetchExpiredCodes } from '@/lib/queries'
+import { RecommendedTools, recommendedToolsConfig } from '@/components/recommended-tools'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -252,58 +253,11 @@ export default async function CodesPage() {
         </Accordion>
       </section>
 
-      {/* Related Tools */}
-      <section className="mb-12">
-        <div className="flex items-center gap-3 mb-6">
-          <Lightbulb className="h-6 w-6 text-honey" />
-          <h2 className="text-2xl font-bold">More Tools</h2>
-        </div>
-        <div className="grid md:grid-cols-2 gap-4">
-          <Card className="hover:bg-secondary/50 transition-colors">
-            <CardContent className="p-6">
-              <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-lg bg-green-500/20 flex items-center justify-center">
-                  <Scale className="h-6 w-6 text-green-500" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-semibold mb-1">Value List</h3>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    Check the value of items you get from codes to see how much they&apos;re worth in trades.
-                  </p>
-                  <Button asChild variant="outline" size="sm">
-                    <Link href="/values">
-                      Check Values
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="hover:bg-secondary/50 transition-colors">
-            <CardContent className="p-6">
-              <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-lg bg-blue-500/20 flex items-center justify-center">
-                  <Calculator className="h-6 w-6 text-blue-500" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-semibold mb-1">Trade Calculator</h3>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    Calculate fair trades and make sure you&apos;re getting a good deal.
-                  </p>
-                  <Button asChild variant="outline" size="sm">
-                    <Link href="/calculator">
-                      Calculate Trades
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
+      {/* Recommended Tools - Optimized for conversion */}
+      <RecommendedTools
+        title="Got your codes? Try these next:"
+        tools={recommendedToolsConfig.afterCodes}
+      />
 
       {/* Disclaimer */}
       <div className="text-center text-sm text-muted-foreground border-t border-border pt-8">

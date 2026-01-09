@@ -24,6 +24,7 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { ItemCard } from '@/components/items/item-card'
+import { RecommendedTools, recommendedToolsConfig } from '@/components/recommended-tools'
 import { stickerCategories } from '@/data/stickers'
 import { beequipCategories } from '@/data/beequips'
 import { cn } from '@/lib/utils'
@@ -255,6 +256,12 @@ export default function ValuesClient({ initialStickers, initialBeequips }: Value
           ))}
         </TabsContent>
       </Tabs>
+
+      {/* Recommended Tools - Help users explore trading tools */}
+      <RecommendedTools
+        title="Now that you know the values:"
+        tools={recommendedToolsConfig.afterValues}
+      />
     </div>
   )
 }

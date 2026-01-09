@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
+import { trackCodeCopy } from '@/lib/plausible'
 import type { Code } from '@/types/database'
 
 interface CodeCardProps {
@@ -20,6 +21,10 @@ export function CodeCard({ code }: CodeCardProps) {
       await navigator.clipboard.writeText(code.code)
       setCopied(true)
       toast.success('Code copied to clipboard!')
+
+      // Track code copy event for analytics
+      trackCodeCopy(code.code)
+
       setTimeout(() => setCopied(false), 2000)
     } catch {
       toast.error('Failed to copy code')
