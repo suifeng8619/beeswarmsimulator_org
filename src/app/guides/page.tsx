@@ -730,6 +730,38 @@ export default function GuidesPage() {
         <div className="grid md:grid-cols-2 gap-6">
           <Card>
             <CardHeader>
+              <CardTitle>Session Lock Error</CardTitle>
+              <CardDescription>Cannot rejoin after disconnecting</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <p>If you see &quot;session locked&quot; or &quot;PostLoadVersion error&quot; when trying to rejoin:</p>
+              <ul className="list-disc list-inside space-y-2">
+                <li><strong className="text-foreground">Wait at least 5 minutes</strong> - The lock needs time to resolve</li>
+                <li><strong className="text-foreground">Don&apos;t spam rejoin</strong> - This can extend the lock duration</li>
+                <li><strong className="text-foreground">Try a different server</strong> - Join a new server version if available</li>
+              </ul>
+              <p className="text-xs text-amber-500 mt-3">Note: This is a known issue being actively fixed by the developer</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Server Version Issues</CardTitle>
+              <CardDescription>Old server problems and fixes</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <p>If you&apos;re on an older server version (below 574), you may experience:</p>
+              <ul className="list-disc list-inside space-y-2">
+                <li><strong className="text-foreground">Bubbles not working</strong></li>
+                <li><strong className="text-foreground">Blender losing progress</strong> when you leave</li>
+                <li><strong className="text-foreground">Some quests not available</strong></li>
+              </ul>
+              <p className="text-xs text-green-500 mt-3">Solution: Join a newer server version (576+) or wait for automatic server update</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
               <CardTitle>Error 267 - Kicked from Game</CardTitle>
               <CardDescription>Common connection error and how to fix it</CardDescription>
             </CardHeader>
