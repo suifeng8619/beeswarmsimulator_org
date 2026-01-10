@@ -7,6 +7,9 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 
+// Force dynamic rendering for search page with query parameters
+export const dynamic = 'force-dynamic'
+
 type FilterType = 'all' | 'bees' | 'stickers' | 'beequips'
 
 interface SearchPageProps {
