@@ -35,7 +35,8 @@ export function RecommendedTools({
   tools,
   variant = 'default',
 }: RecommendedToolsProps) {
-  if (tools.length === 0) return null;
+  // Safety check: ensure tools is an array
+  if (!tools || !Array.isArray(tools) || tools.length === 0) return null;
 
   return (
     <section className="mt-12 border-t pt-8">

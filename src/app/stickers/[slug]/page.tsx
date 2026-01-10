@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 }
 
-export const revalidate = 3600 // ISR: revalidate every hour
+export const revalidate = 86400 // ISR: revalidate every 24 hours (sticker values don't change that frequently)
 
 export async function generateStaticParams() {
   const stickers = await fetchStickers()

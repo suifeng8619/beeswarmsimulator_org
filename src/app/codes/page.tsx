@@ -1,9 +1,7 @@
-import Link from 'next/link'
 import { Ticket, Info, HelpCircle, Gift } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Button } from '@/components/ui/button'
 import {
   Accordion,
   AccordionContent,
@@ -76,10 +74,14 @@ const faqs = [
 ]
 
 export default async function CodesPage() {
-  const [activeCodes, expiredCodes] = await Promise.all([
+  const [activeCodesData, expiredCodesData] = await Promise.all([
     fetchActiveCodes(),
     fetchExpiredCodes(),
   ])
+
+  // Ensure we always have arrays, even if the fetch fails
+  const activeCodes = activeCodesData || []
+  const expiredCodes = expiredCodesData || []
 
   return (
     <div className="container mx-auto px-4 py-8">

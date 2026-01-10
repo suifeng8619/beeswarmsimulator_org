@@ -11,6 +11,15 @@ const nextConfig: NextConfig = {
         hostname: 'imagers.beeswarmsimulator.org',
       },
     ],
+    // Reduce image optimization workload on Vercel
+    deviceSizes: [640, 750, 828, 1080, 1200],
+    imageSizes: [16, 32, 48, 64, 96],
+  },
+
+  // Experimental features for better performance
+  experimental: {
+    // Optimize package imports
+    optimizePackageImports: ['lucide-react', '@supabase/supabase-js'],
   },
 
   // HTTP headers for caching

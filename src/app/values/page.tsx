@@ -3,8 +3,8 @@ import ValuesClient from './values-client'
 import { fetchStickers, fetchBeequips } from '@/lib/queries'
 import { ItemListJsonLd, BreadcrumbJsonLd } from '@/components/seo/json-ld'
 
-// ISR: Value data changes frequently, revalidate every hour
-export const revalidate = 3600
+// ISR: Value data changes daily, revalidate every 24 hours (reduces Vercel function calls by 24x)
+export const revalidate = 86400
 
 export const metadata: Metadata = {
   title: 'Value List',

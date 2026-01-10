@@ -322,46 +322,136 @@ export default function GuidesPage() {
           <h2 className="text-2xl font-bold">Hive Building Strategies</h2>
         </div>
 
+        {/* Hive Size Debate */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle>29 Bees vs 38 Bees</CardTitle>
+            <CardDescription>Community discussion from #game-discussion</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="p-4 rounded-lg bg-blue-500/10 border border-blue-500/20">
+                <h4 className="font-semibold text-blue-400 mb-2">29 Bees Strategy</h4>
+                <ul className="text-sm text-muted-foreground space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500 mt-0.5">+</span>
+                    <span>More focused hive bonuses</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500 mt-0.5">+</span>
+                    <span>Easier to manage bee abilities</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500 mt-0.5">+</span>
+                    <span>Better for specialized color builds</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="p-4 rounded-lg bg-purple-500/10 border border-purple-500/20">
+                <h4 className="font-semibold text-purple-400 mb-2">38 Bees Strategy</h4>
+                <ul className="text-sm text-muted-foreground space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500 mt-0.5">+</span>
+                    <span>More versatile for different fields</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500 mt-0.5">+</span>
+                    <span>Can maintain more buffs simultaneously</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500 mt-0.5">+</span>
+                    <span>Better coverage with event bees</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <p className="text-sm text-muted-foreground mt-4">
+              <strong className="text-foreground">Community Insight:</strong> Both strategies work. Choose based on your playstyle: 29 for min-maxing, 38 for flexibility.
+            </p>
+          </CardContent>
+        </Card>
+
+        <div className="grid md:grid-cols-2 gap-6 mb-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Zap className="h-5 w-5 text-yellow-500" />
+                Color Specialization
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground mb-4">
+                As you progress, consider specializing in a color (Red, Blue, or White). This lets you stack
+                bonuses and become more efficient in specific fields.
+              </p>
+              <ul className="text-sm text-muted-foreground space-y-2">
+                <li><strong className="text-red-400">Red Hive:</strong> High attack, good for fighting mobs</li>
+                <li><strong className="text-blue-400">Blue Hive:</strong> Efficient pollen collection</li>
+                <li><strong className="text-gray-300">White Hive:</strong> Balanced, good for all fields</li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Essential Bees to Keep</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground mb-4">
+                Some bees are valuable regardless of your hive color:
+              </p>
+              <ul className="text-sm text-muted-foreground space-y-1">
+                <li>- <strong>Vicious Bee:</strong> Mob fighting</li>
+                <li>- <strong>Tabby Bee:</strong> Scratch stacking</li>
+                <li>- <strong>Photon Bee:</strong> Beamstorm ability</li>
+                <li>- <strong>Gummy Bee:</strong> Goo coverage</li>
+                <li>- <strong>Digital Bee:</strong> Map control</li>
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Bee Positioning Tips */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle>Bee Positioning Tips</CardTitle>
+            <CardDescription>Community-tested configurations</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3 text-sm text-muted-foreground">
+              <div className="flex items-start gap-3">
+                <div className="h-6 w-6 rounded-full bg-purple-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">1</div>
+                <div>
+                  <p className="font-semibold text-foreground">Tabby Bee Positioning</p>
+                  <p>Place Tabby Bee in the middle row for optimal scratch coverage across your hive. This maximizes the scratch bonus spread.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="h-6 w-6 rounded-full bg-purple-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">2</div>
+                <div>
+                  <p className="font-semibold text-foreground">Tadpole Bee Placement</p>
+                  <p>Keep Tadpole near other water-affinity bees (like Bubble Bee) to stack moisture bonuses effectively.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="h-6 w-6 rounded-full bg-purple-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">3</div>
+                <div>
+                  <p className="font-semibold text-foreground">Gifted Bee Priority</p>
+                  <p>Always keep at least one gifted bee of each color for the permanent hive bonuses. Don&apos;t replace gifted bees unless you have a duplicate.</p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         <Card>
           <CardContent className="pt-6">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="font-semibold mb-3 flex items-center gap-2">
-                  <Zap className="h-4 w-4 text-yellow-500" />
-                  Color Specialization
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  As you progress, consider specializing in a color (Red, Blue, or White). This lets you stack
-                  bonuses and become more efficient in specific fields.
-                </p>
-                <ul className="text-sm text-muted-foreground space-y-2">
-                  <li><strong className="text-red-400">Red Hive:</strong> High attack, good for fighting mobs</li>
-                  <li><strong className="text-blue-400">Blue Hive:</strong> Efficient pollen collection</li>
-                  <li><strong className="text-gray-300">White Hive:</strong> Balanced, good for all fields</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-3">Essential Bees to Keep</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Some bees are valuable regardless of your hive color:
-                </p>
-                <ul className="text-sm text-muted-foreground space-y-1">
-                  <li>- <strong>Vicious Bee:</strong> Mob fighting</li>
-                  <li>- <strong>Tabby Bee:</strong> Scratch stacking</li>
-                  <li>- <strong>Photon Bee:</strong> Beamstorm ability</li>
-                  <li>- <strong>Gummy Bee:</strong> Goo coverage</li>
-                  <li>- <strong>Digital Bee:</strong> Map control</li>
-                </ul>
-              </div>
-            </div>
-            <div className="mt-6 pt-6 border-t border-border">
-              <Button asChild>
-                <Link href="/hive-builder">
-                  <Grid3X3 className="mr-2 h-4 w-4" />
-                  Plan Your Hive
-                </Link>
-              </Button>
-            </div>
+            <Button asChild>
+              <Link href="/hive-builder">
+                <Grid3X3 className="mr-2 h-4 w-4" />
+                Plan Your Hive
+              </Link>
+            </Button>
           </CardContent>
         </Card>
       </section>
@@ -374,6 +464,39 @@ export default function GuidesPage() {
           </div>
           <h2 className="text-2xl font-bold">Equipment Guide</h2>
         </div>
+
+        {/* Equipment Priority Path */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle>Equipment Upgrade Priority</CardTitle>
+            <CardDescription>Community-recommended upgrade path from Discord discussions</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <div className="h-6 w-6 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">1</div>
+                <div>
+                  <p className="font-semibold text-foreground">Petal Wand → Petal Belt</p>
+                  <p className="text-sm text-muted-foreground">Prioritize Petal Belt first for the significant passive bonuses. Petal Wand can wait.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="h-6 w-6 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">2</div>
+                <div>
+                  <p className="font-semibold text-foreground">Diamond Mask (Recommended)</p>
+                  <p className="text-sm text-muted-foreground">Community consensus: Diamond Mask outperforms Gummy Mask even without macros. Better for active play.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="h-6 w-6 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">3</div>
+                <div>
+                  <p className="font-semibold text-foreground">Focus on Beequips</p>
+                  <p className="text-sm text-muted-foreground">Beequips provide massive Hive Bonuses. Match your hive color for maximum efficiency.</p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
@@ -596,6 +719,86 @@ export default function GuidesPage() {
         </div>
       </section>
 
+      {/* Advanced Tips */}
+      <section className="mb-16">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="h-10 w-10 rounded-lg bg-indigo-500/20 flex items-center justify-center">
+            <Sparkles className="h-5 w-5 text-indigo-500" />
+          </div>
+          <h2 className="text-2xl font-bold">Advanced Tips</h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Mutation Farming Guide</CardTitle>
+              <CardDescription>Efficient ways to get mutated bees</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <p><strong className="text-foreground">Best Methods (Community-tested):</strong></p>
+              <ul className="space-y-2 text-xs">
+                <li className="flex items-start gap-2">
+                  <span className="text-green-500 mt-0.5">1.</span>
+                  <div>
+                    <strong className="text-foreground">Royal Jelly Method</strong>
+                    <p>Use Royal Jelly on low-rarity bees for higher mutation chance</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-500 mt-0.5">2.</span>
+                  <div>
+                    <strong className="text-foreground">Star Jelly Strategy</strong>
+                    <p>Save Star Jellies for event bees - they have unique mutations worth keeping</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-500 mt-0.5">3.</span>
+                  <div>
+                    <strong className="text-foreground">Beesmas Gift Method</strong>
+                    <p>During Beesmas, gift boxes can drop special mutation items</p>
+                  </div>
+                </li>
+              </ul>
+              <div className="mt-3 p-2 rounded bg-amber-500/10 border border-amber-500/20">
+                <p className="text-xs text-amber-400"><strong>Tip:</strong> Don&apos;t waste rare jellies on common bees. Focus on gifted + mutated combos for event bees.</p>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Stick Bug Quest Strategy</CardTitle>
+              <CardDescription>Community tips for this challenging quest</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20">
+                <p className="font-semibold text-red-400 mb-1">Community Consensus:</p>
+                <p className="text-xs">Many players find Stick Bug quest extremely difficult. Don&apos;t feel bad if you struggle!</p>
+              </div>
+              <p><strong className="text-foreground">Tips from #game-help:</strong></p>
+              <ul className="space-y-2 text-xs">
+                <li className="flex items-start gap-2">
+                  <span className="text-green-500">✓</span>
+                  <span>Bring friends or use private server for easier spawns</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-500">✓</span>
+                  <span>Use high-attack bees (Vicious, Lion, etc.) for faster kills</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-500">✓</span>
+                  <span>Stock up on healing items before attempting</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-500">✓</span>
+                  <span>Learn the attack patterns to dodge effectively</span>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* Game Mechanics */}
       <section className="mb-16">
         <div className="flex items-center gap-3 mb-6">
@@ -726,6 +929,68 @@ export default function GuidesPage() {
           </div>
           <h2 className="text-2xl font-bold">Troubleshooting</h2>
         </div>
+
+        {/* Macro Issues - Hot Topic from Discord */}
+        <Card className="mb-6 border-red-500/30">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Bot className="h-5 w-5 text-red-500" />
+              Macro Not Working / Pathing Issues
+            </CardTitle>
+            <CardDescription>Most common issues from #game-help</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4 text-sm text-muted-foreground">
+              <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/20">
+                <p className="font-semibold text-amber-400 mb-2">⚠ Common Problems:</p>
+                <ul className="space-y-1 text-xs">
+                  <li>• Macro stops working after update</li>
+                  <li>• Character gets stuck or takes wrong path</li>
+                  <li>• Macro doesn&apos;t respond to field changes</li>
+                  <li>• Conversion timing issues</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">Quick Fixes:</h4>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-500 font-bold">1.</span>
+                    <div>
+                      <p className="font-semibold text-foreground">Update Your Macro</p>
+                      <p className="text-xs">Game updates often break old macro paths. Download the latest version from trusted sources.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-500 font-bold">2.</span>
+                    <div>
+                      <p className="font-semibold text-foreground">Reset Character Position</p>
+                      <p className="text-xs">If stuck, reset by dying or rejoining. Some macros need a specific starting position.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-500 font-bold">3.</span>
+                    <div>
+                      <p className="font-semibold text-foreground">Check Hive Configuration</p>
+                      <p className="text-xs">Some macros require specific bee positions or hive setups to work properly.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-500 font-bold">4.</span>
+                    <div>
+                      <p className="font-semibold text-foreground">Verify Field Access</p>
+                      <p className="text-xs">Make sure you have unlocked all required fields and items for the macro route.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20">
+                <p className="text-xs"><strong className="text-red-400">Important:</strong> Use macros at your own risk. Only download from trusted sources. The game developer does not officially support macros.</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         <div className="grid md:grid-cols-2 gap-6">
           <Card>
