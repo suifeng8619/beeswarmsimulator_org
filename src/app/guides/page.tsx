@@ -376,19 +376,33 @@ export default function GuidesPage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Zap className="h-5 w-5 text-yellow-500" />
-                Color Specialization
+                Color Specialization Guide
               </CardTitle>
+              <CardDescription>Community-recommended progression path</CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground mb-4">
-                As you progress, consider specializing in a color (Red, Blue, or White). This lets you stack
-                bonuses and become more efficient in specific fields.
-              </p>
-              <ul className="text-sm text-muted-foreground space-y-2">
-                <li><strong className="text-red-400">Red Hive:</strong> High attack, good for fighting mobs</li>
-                <li><strong className="text-blue-400">Blue Hive:</strong> Efficient pollen collection</li>
-                <li><strong className="text-gray-300">White Hive:</strong> Balanced, good for all fields</li>
-              </ul>
+              <div className="space-y-4 text-sm text-muted-foreground">
+                <div className="p-3 rounded-lg bg-purple-500/10 border border-purple-500/20">
+                  <p className="font-semibold text-purple-400 mb-2">📍 Community Consensus:</p>
+                  <p className="text-xs"><strong>Keep a diverse "bomb" hive until you get SSA (Supreme Star Amulet)</strong>. Only commit to a color specialization AFTER obtaining SSA.</p>
+                </div>
+
+                <div>
+                  <p className="font-semibold text-foreground mb-2">Early Game (Before SSA):</p>
+                  <p className="text-xs"><strong className="text-blue-400">Blue is the best choice</strong> - Most efficient for early pollen collection and field coverage. Maintain diversity across all colors for maximum flexibility.</p>
+                </div>
+
+                <div>
+                  <p className="font-semibold text-foreground mb-2">Color Options (After SSA):</p>
+                  <ul className="space-y-2 text-xs">
+                    <li><strong className="text-red-400">Red Hive:</strong> High attack, excellent for mob farming and combat-focused fields</li>
+                    <li><strong className="text-blue-400">Blue Hive:</strong> Superior pollen collection efficiency, ideal for field grinding</li>
+                    <li><strong className="text-gray-300">White Hive:</strong> Balanced versatility, requires Gummy Baller (~50B honey investment)</li>
+                  </ul>
+                </div>
+
+                <p className="text-xs text-amber-500"><strong>Note:</strong> Your final color choice should be based on your playstyle and available resources, not just meta recommendations.</p>
+              </div>
             </CardContent>
           </Card>
 
@@ -539,8 +553,25 @@ export default function GuidesPage() {
                 <p className="font-semibold text-purple-400 mb-1">4x Earnings Increase</p>
                 <p className="text-xs">Community reports show SSA can quadruple your honey production</p>
               </div>
-              <p>The Supreme Star Amulet is one of the most impactful items in the game. Prioritize obtaining it once you reach endgame.</p>
-              <p className="text-xs text-amber-500">Tip: Work on Star Jelly collection and Star Treat acquisition</p>
+              <p>The Supreme Star Amulet is one of the most impactful items in the game. It represents a major milestone in your progression.</p>
+
+              <div>
+                <p className="font-semibold text-foreground mb-2">Strategic Importance:</p>
+                <ul className="space-y-1 text-xs">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span><strong>Before SSA:</strong> Keep your hive diverse with all colors for maximum versatility</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span><strong>After SSA:</strong> Choose your color specialization (Red/Blue/White) for focused optimization</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="p-2 rounded bg-amber-500/10 border border-amber-500/20">
+                <p className="text-xs text-amber-400"><strong>Acquisition Tips:</strong> Focus on Star Jelly collection, complete Star Journey quests, and save for Star Treats. Many players report 2-4 weeks of dedicated farming to obtain SSA.</p>
+              </div>
             </CardContent>
           </Card>
         </div>
@@ -621,12 +652,18 @@ export default function GuidesPage() {
             </CardHeader>
             <CardContent className="space-y-3 text-sm text-muted-foreground">
               <p>Allows offline progress accumulation for up to 24 hours:</p>
-              <ul className="list-disc list-inside space-y-1">
+              <ul className="list-disc list-inside space-y-1 text-xs">
                 <li>Planters continue growing</li>
                 <li>Blender keeps processing</li>
                 <li>Gingerbread House produces items</li>
               </ul>
-              <p className="text-xs mt-2 text-amber-500">Tip: Use before logging off for max benefit!</p>
+
+              <div className="p-3 rounded-lg bg-blue-500/10 border border-blue-500/20 mt-3">
+                <p className="font-semibold text-blue-400 mb-1 text-xs">🔄 Refresh Cycle:</p>
+                <p className="text-xs">Offline Voucher refreshes every <strong>24 hours</strong>. Can also be purchased from the shop for 2 Gingerbread Bears.</p>
+              </div>
+
+              <p className="text-xs text-amber-500"><strong>Pro Tip:</strong> Activate before long offline sessions. Community reports getting planters + blender progress overnight!</p>
             </CardContent>
           </Card>
 
@@ -794,6 +831,178 @@ export default function GuidesPage() {
                   <span>Learn the attack patterns to dodge effectively</span>
                 </li>
               </ul>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Community Q&A */}
+      <section className="mb-16">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="h-10 w-10 rounded-lg bg-cyan-500/20 flex items-center justify-center">
+            <Users className="h-5 w-5 text-cyan-500" />
+          </div>
+          <h2 className="text-2xl font-bold">Community Q&amp;A</h2>
+        </div>
+
+        <p className="text-muted-foreground mb-6">
+          Hot topics and frequently asked questions from the official BSS Discord community (updated January 2026).
+        </p>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>How do I get a Mythic Bee?</CardTitle>
+              <CardDescription>Acquisition methods and probabilities</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <div className="p-3 rounded-lg bg-purple-500/10 border border-purple-500/20">
+                <p className="font-semibold text-purple-400 mb-1">📊 Official Probability:</p>
+                <p className="text-xs font-mono text-honey text-lg">1 in 25,000</p>
+                <p className="text-xs mt-1">Applies to both Royal Jelly and Star Eggs</p>
+              </div>
+
+              <div>
+                <p className="font-semibold text-foreground mb-2">Acquisition Methods:</p>
+                <ul className="space-y-2 text-xs">
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-400">1.</span>
+                    <div>
+                      <strong className="text-foreground">Royal Jelly</strong>
+                      <p>Use on any bee slot. Very low chance but costs less</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-400">2.</span>
+                    <div>
+                      <strong className="text-foreground">Star Eggs</strong>
+                      <p>Same 1/25,000 odds. More expensive but provides Star Treats as consolation</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-400">3.</span>
+                    <div>
+                      <strong className="text-foreground">Mythic Egg (Guaranteed)</strong>
+                      <p>Complete the egg hunt or obtain from special events</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <p className="text-xs text-amber-500"><strong>Community Tip:</strong> Don&apos;t burn all your resources chasing Mythics. Focus on progression and they&apos;ll come naturally over time.</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Is Windy Bee grinding worth it?</CardTitle>
+              <CardDescription>Community perspectives from #game-help</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <p className="font-semibold text-foreground mb-2">Short Answer: Depends on your stage</p>
+
+              <div className="space-y-3">
+                <div className="p-3 rounded-lg bg-green-500/10 border border-green-500/20">
+                  <p className="font-semibold text-green-400 mb-1 text-xs">✓ Worth it if:</p>
+                  <ul className="text-xs space-y-1">
+                    <li>• You&apos;re in mid-late game (lvl 12+)</li>
+                    <li>• You have good field coverage</li>
+                    <li>• You need cloud vials for quests</li>
+                  </ul>
+                </div>
+
+                <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20">
+                  <p className="font-semibold text-red-400 mb-1 text-xs">✗ Not worth if:</p>
+                  <ul className="text-xs space-y-1">
+                    <li>• You&apos;re early game (focus on bees first)</li>
+                    <li>• You have limited cloud vials</li>
+                    <li>• Other progression paths are more urgent</li>
+                  </ul>
+                </div>
+              </div>
+
+              <p className="text-xs"><strong>Community Consensus:</strong> Windy Bee is a long-term investment. The tornado ability is useful but not game-changing compared to SSA or proper hive configuration.</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>What defines &quot;late game&quot;?</CardTitle>
+              <CardDescription>Community benchmarks</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/20">
+                <p className="font-semibold text-amber-400 mb-2">Community Standard:</p>
+                <div className="space-y-2 text-xs">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-green-400" />
+                    <span><strong>Level 17+ Hive</strong></span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-green-400" />
+                    <span><strong>Dark Scythe</strong> (unlocked from Spirit Bear)</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-green-400" />
+                    <span><strong>Coco Belt</strong> (requires Coconut Field access)</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <p className="font-semibold text-foreground mb-2 text-xs">Optional but Common:</p>
+                <ul className="space-y-1 text-xs">
+                  <li>• SSA (Supreme Star Amulet)</li>
+                  <li>• Petal Belt and matching Petal Wand</li>
+                  <li>• Gummy Boots or better</li>
+                  <li>• Diamond/Demon Mask</li>
+                  <li>• Full set of high-potential beequips</li>
+                </ul>
+              </div>
+
+              <p className="text-xs text-muted-foreground">Most late game players have 40B+ honey and are working on endgame quests like Spirit Bear&apos;s final challenges.</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Do Violet Blooms spawn naturally?</CardTitle>
+              <CardDescription>Bloom mechanics clarification</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <div className="p-3 rounded-lg bg-purple-500/10 border border-purple-500/20">
+                <p className="font-semibold text-purple-400 mb-1">Yes, but rarely</p>
+                <p className="text-xs">Violet Blooms can spawn naturally in Clover Field, but the spawn rate is very low.</p>
+              </div>
+
+              <div>
+                <p className="font-semibold text-foreground mb-2 text-xs">Best Ways to Get Violet Blooms:</p>
+                <ul className="space-y-2 text-xs">
+                  <li className="flex items-start gap-2">
+                    <span className="text-purple-400">1.</span>
+                    <div>
+                      <strong className="text-foreground">Field Dice</strong>
+                      <p>Use in Clover Field for guaranteed Violet Bloom</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-purple-400">2.</span>
+                    <div>
+                      <strong className="text-foreground">Nectar Boost</strong>
+                      <p>Some nectar types increase bloom spawn rates</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-purple-400">3.</span>
+                    <div>
+                      <strong className="text-foreground">Natural Spawn</strong>
+                      <p>Wait and hope - very rare but possible</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <p className="text-xs text-amber-500"><strong>Tip:</strong> Save your Field Dice for when you really need specific blooms. Don&apos;t waste them on common blooms that spawn frequently.</p>
             </CardContent>
           </Card>
         </div>
