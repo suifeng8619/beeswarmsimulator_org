@@ -623,7 +623,7 @@ export default function GuidesPage() {
               <CheckCircle2 className="h-4 w-4 text-green-500" />
               Update Timeline
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-3 text-xs">
               <div className="bg-background/50 rounded p-2">
                 <div className="font-mono text-honey">Dec 19</div>
                 <div className="text-muted-foreground">Player File Rework</div>
@@ -635,6 +635,10 @@ export default function GuidesPage() {
               <div className="bg-background/50 rounded p-2">
                 <div className="font-mono text-honey">Dec 26</div>
                 <div className="text-muted-foreground">Soft Launch</div>
+              </div>
+              <div className="bg-background/50 rounded p-2">
+                <div className="font-mono text-honey">Dec 28</div>
+                <div className="text-muted-foreground">Bee Bear Quest Fixes</div>
               </div>
               <div className="bg-background/50 rounded p-2">
                 <div className="font-mono text-honey">v588-v589</div>
@@ -846,7 +850,7 @@ export default function GuidesPage() {
         </div>
 
         <p className="text-muted-foreground mb-6">
-          Hot topics and frequently asked questions from the official BSS Discord community (updated January 2026).
+          Hot topics and frequently asked questions from the official BSS Discord community (updated January 12, 2026).
         </p>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -1003,6 +1007,93 @@ export default function GuidesPage() {
               </div>
 
               <p className="text-xs text-amber-500"><strong>Tip:</strong> Save your Field Dice for when you really need specific blooms. Don&apos;t waste them on common blooms that spawn frequently.</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Should I use Ginger Breads now?</CardTitle>
+              <CardDescription>Hot topic from #game-discussion (Jan 2026)</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/20">
+                <p className="font-semibold text-amber-400 mb-1">Community Split:</p>
+                <p className="text-xs">Opinions vary on whether to use Ginger Breads immediately or save them for later</p>
+              </div>
+
+              <div>
+                <p className="font-semibold text-foreground mb-2">Arguments for Using Now:</p>
+                <ul className="space-y-1 text-xs">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span>Immediate stat boost helps current progression</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span>More Ginger Breads can be earned during Beesmas</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <p className="font-semibold text-foreground mb-2">Arguments for Saving:</p>
+                <ul className="space-y-1 text-xs">
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-500">⏳</span>
+                    <span>Limited-time item, may have future uses</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-500">⏳</span>
+                    <span>Wait for community to discover optimal strategies</span>
+                  </li>
+                </ul>
+              </div>
+
+              <p className="text-xs"><strong>Recommendation:</strong> Use some now if you need the boost, but keep a reserve for potential future updates.</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Best way to get Royal Jelly?</CardTitle>
+              <CardDescription>Frequently asked in #game-help</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <div>
+                <p className="font-semibold text-foreground mb-2">Top Methods (Early-Mid Game):</p>
+                <ul className="space-y-2 text-xs">
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-400">1.</span>
+                    <div>
+                      <strong className="text-foreground">Sprouts</strong>
+                      <p>Pop sprouts in any field - guaranteed RJ drops</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-400">2.</span>
+                    <div>
+                      <strong className="text-foreground">Royal Jelly Shop</strong>
+                      <p>Buy directly with honey (becomes more affordable as you progress)</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-400">3.</span>
+                    <div>
+                      <strong className="text-foreground">Mob Drops</strong>
+                      <p>Kill mobs like Ladybugs, Rhino Beetles for occasional RJ</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-400">4.</span>
+                    <div>
+                      <strong className="text-foreground">Quest Rewards</strong>
+                      <p>Complete bear quests for bulk RJ rewards</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <p className="text-xs text-amber-500"><strong>Pro Tip:</strong> Moon sprouts and night memory matches are especially good for RJ farming.</p>
             </CardContent>
           </Card>
         </div>
@@ -1234,19 +1325,47 @@ export default function GuidesPage() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="border-amber-500/30">
             <CardHeader>
-              <CardTitle>Error 267 - Kicked from Game</CardTitle>
-              <CardDescription>Common connection error and how to fix it</CardDescription>
+              <CardTitle>Error 267 - Save Error / Session Locked</CardTitle>
+              <CardDescription>Known issue since Beesmas 2025 update (from official Discord FAQ)</CardDescription>
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground space-y-3">
-              <p>Error 267 usually means you were disconnected due to server issues or anti-cheat detection. Try these solutions:</p>
-              <ul className="list-disc list-inside space-y-2">
-                <li><strong className="text-foreground">Wait 5 minutes</strong> - Give the server time to reset your session</li>
-                <li><strong className="text-foreground">Use a private server</strong> - Less crowded servers are more stable</li>
-                <li><strong className="text-foreground">Join Hive Hub first</strong> - Then teleport to the main game from there</li>
-                <li><strong className="text-foreground">Check your internet</strong> - Unstable connections can trigger kicks</li>
-              </ul>
+              <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/20">
+                <p className="font-semibold text-amber-400 mb-2">What This Error Means:</p>
+                <p className="text-xs">Your save file could not be saved properly, and the server kicked you to prevent further bugs and data corruption. This issue has been present since the Beesmas update.</p>
+              </div>
+
+              <div>
+                <p className="font-semibold text-foreground mb-2">Solutions (from Onett via #game-news):</p>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500 font-bold">1.</span>
+                    <div>
+                      <strong className="text-foreground">Wait at least 5 minutes</strong>
+                      <p className="text-xs">The issue often resolves itself after a short wait</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500 font-bold">2.</span>
+                    <div>
+                      <strong className="text-foreground">Use a fresh private server</strong>
+                      <p className="text-xs">Create a new private server with no one else inside to ensure you have the newest server version</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500 font-bold">3.</span>
+                    <div>
+                      <strong className="text-foreground">Join Hive Hub Server first</strong>
+                      <p className="text-xs">Some players report success by joining the Hive Hub and then returning to the main game</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="p-3 rounded-lg bg-blue-500/10 border border-blue-500/20">
+                <p className="text-xs"><strong className="text-blue-400">Developer Note:</strong> Onett is aware of this issue. Discord moderators cannot help with in-game issues. If the problem persists after trying all solutions, it may be related to a previous file reset (potentially from exploitation).</p>
+              </div>
             </CardContent>
           </Card>
 
