@@ -664,7 +664,11 @@ export default function GuidesPage() {
 
               <div className="p-3 rounded-lg bg-blue-500/10 border border-blue-500/20 mt-3">
                 <p className="font-semibold text-blue-400 mb-1 text-xs">🔄 Refresh Cycle:</p>
-                <p className="text-xs">Offline Voucher refreshes every <strong>24 hours</strong>. Can also be purchased from the shop for 2 Gingerbread Bears.</p>
+                <p className="text-xs">Free Offline Voucher refreshes every <strong>24 hours</strong> in Gift Box 14. Can also be purchased from the shop for 2 Gingerbread Bears.</p>
+              </div>
+
+              <div className="p-2 rounded bg-green-500/10 border border-green-500/20 mt-2">
+                <p className="text-xs"><strong className="text-green-400">How It Works:</strong> Activate the voucher, then go offline. When you return (within 24 hours), your Planters and Blender will have progressed as if you were playing!</p>
               </div>
 
               <p className="text-xs text-amber-500"><strong>Pro Tip:</strong> Activate before long offline sessions. Community reports getting planters + blender progress overnight!</p>
@@ -850,7 +854,7 @@ export default function GuidesPage() {
         </div>
 
         <p className="text-muted-foreground mb-6">
-          Hot topics and frequently asked questions from the official BSS Discord community (updated January 12, 2026).
+          Hot topics and frequently asked questions from the official BSS Discord community (updated January 13, 2026).
         </p>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -1055,6 +1059,48 @@ export default function GuidesPage() {
 
           <Card>
             <CardHeader>
+              <CardTitle>Amulet Keep or Replace?</CardTitle>
+              <CardDescription>Hot topic from #game-help (Jan 2026)</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <div className="p-3 rounded-lg bg-purple-500/10 border border-purple-500/20">
+                <p className="font-semibold text-purple-400 mb-1">Common Question:</p>
+                <p className="text-xs">Should I keep my current amulet or replace it?</p>
+              </div>
+
+              <div>
+                <p className="font-semibold text-foreground mb-2">Key Factors to Consider:</p>
+                <ul className="space-y-2 text-xs">
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-400">1.</span>
+                    <div>
+                      <strong className="text-foreground">Check Your Hive Color</strong>
+                      <p>Match amulet bonuses to your hive specialization for maximum benefit</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-400">2.</span>
+                    <div>
+                      <strong className="text-foreground">Compare Total Stats</strong>
+                      <p>Sometimes a lower-tier amulet with perfect stats beats a higher-tier with bad rolls</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-400">3.</span>
+                    <div>
+                      <strong className="text-foreground">Star Saw vs Pop Star</strong>
+                      <p>Star Saw for attack builds, Pop Star for pollen-focused builds. Neither is universally better</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <p className="text-xs text-amber-500"><strong>Tip:</strong> Screenshot your current amulet before rolling. You cannot get it back once replaced!</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
               <CardTitle>Best way to get Royal Jelly?</CardTitle>
               <CardDescription>Frequently asked in #game-help</CardDescription>
             </CardHeader>
@@ -1129,6 +1175,9 @@ export default function GuidesPage() {
                 >
                   → Open Test Realm Game
                 </a>
+              </div>
+              <div className="p-2 rounded bg-green-500/10 border border-green-500/20">
+                <p className="text-xs"><strong className="text-green-400">Currently Testing:</strong> File saving improvements and trading system changes</p>
               </div>
               <ul className="text-xs space-y-1">
                 <li className="flex items-start gap-2">
