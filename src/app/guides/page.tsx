@@ -854,7 +854,7 @@ export default function GuidesPage() {
         </div>
 
         <p className="text-muted-foreground mb-6">
-          Hot topics and frequently asked questions from the official BSS Discord community (updated January 13, 2026).
+          Hot topics and frequently asked questions from the official BSS Discord community (updated January 14, 2026).
         </p>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -1140,6 +1140,127 @@ export default function GuidesPage() {
               </div>
 
               <p className="text-xs text-amber-500"><strong>Pro Tip:</strong> Moon sprouts and night memory matches are especially good for RJ farming.</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Best Puffshroom Strategy?</CardTitle>
+              <CardDescription>Hot topic from #game-help (Jan 14)</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <div className="p-3 rounded-lg bg-green-500/10 border border-green-500/20">
+                <p className="font-semibold text-green-400 mb-1">Community Consensus:</p>
+                <p className="text-xs">Puffshrooms are one of the best ways to farm materials and honey in mid-late game.</p>
+              </div>
+
+              <div>
+                <p className="font-semibold text-foreground mb-2">Optimal Strategy:</p>
+                <ul className="space-y-2 text-xs">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-400">1.</span>
+                    <div>
+                      <strong className="text-foreground">Use Planters Strategically</strong>
+                      <p>Plant in fields with high mob spawn rates for combo bonuses</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-400">2.</span>
+                    <div>
+                      <strong className="text-foreground">Stack with Events</strong>
+                      <p>Activate during x2 pollen events for maximum efficiency</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-400">3.</span>
+                    <div>
+                      <strong className="text-foreground">High-Level Bees Help</strong>
+                      <p>Bring attack bees like Vicious and Lion for faster kills</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <p className="text-xs text-amber-500"><strong>Tip:</strong> Don&apos;t ignore small puffshrooms - they add up quickly!</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Backpack Capacity Tips</CardTitle>
+              <CardDescription>Discussed in #game-ideas (Jan 14)</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <div className="p-3 rounded-lg bg-blue-500/10 border border-blue-500/20">
+                <p className="font-semibold text-blue-400 mb-1">Key Insight:</p>
+                <p className="text-xs">Backpack capacity directly affects your farming efficiency. Higher capacity = fewer trips to hive.</p>
+              </div>
+
+              <div>
+                <p className="font-semibold text-foreground mb-2">Upgrade Priority:</p>
+                <ul className="space-y-2 text-xs">
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-400">1.</span>
+                    <div>
+                      <strong className="text-foreground">Port-O-Hive → Mondo Belt Bag</strong>
+                      <p>The jump from Port-O-Hive to Mondo Belt Bag is game-changing</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-400">2.</span>
+                    <div>
+                      <strong className="text-foreground">Beequips with Capacity</strong>
+                      <p>Look for beequips that boost capacity percentage</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-400">3.</span>
+                    <div>
+                      <strong className="text-foreground">Amulet Rolls</strong>
+                      <p>Capacity bonuses on amulets are highly valued</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <p className="text-xs"><strong>Community Note:</strong> Some players suggest capacity is more important than convert rate in early-mid game.</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Beesmas 2025 Event Tips</CardTitle>
+              <CardDescription>Active discussion from #game-discussion (Jan 14)</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20">
+                <p className="font-semibold text-red-400 mb-1">Event Still Active!</p>
+                <p className="text-xs">Beesmas 2025 is ongoing. Make sure to complete all quests before the event ends.</p>
+              </div>
+
+              <div>
+                <p className="font-semibold text-foreground mb-2">Priority Checklist:</p>
+                <ul className="space-y-1 text-xs">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span>Collect all Gift Boxes daily (especially #14 for Offline Voucher)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span>Complete Bee Bear quests for exclusive rewards</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span>Participate in Blooms events for extra materials</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span>Check Catalog for limited-time items</span>
+                  </li>
+                </ul>
+              </div>
+
+              <p className="text-xs text-amber-500"><strong>Reminder:</strong> Gingerbread Bears offer expires February 28th!</p>
             </CardContent>
           </Card>
         </div>
