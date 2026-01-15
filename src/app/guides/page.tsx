@@ -854,7 +854,7 @@ export default function GuidesPage() {
         </div>
 
         <p className="text-muted-foreground mb-6">
-          Hot topics and frequently asked questions from the official BSS Discord community (updated January 14, 2026).
+          Hot topics and frequently asked questions from the official BSS Discord community (updated January 15, 2026).
         </p>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -1261,6 +1261,172 @@ export default function GuidesPage() {
               </div>
 
               <p className="text-xs text-amber-500"><strong>Reminder:</strong> Gingerbread Bears offer expires February 28th!</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Are Beequips Worth It at Level 8-10?</CardTitle>
+              <CardDescription>Hot topic from #game-discussion (Jan 15)</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <div className="p-3 rounded-lg bg-green-500/10 border border-green-500/20">
+                <p className="font-semibold text-green-400 mb-1">Community Consensus:</p>
+                <p className="text-xs font-semibold">&quot;Beequips are ALWAYS useful&quot;</p>
+              </div>
+
+              <div>
+                <p className="font-semibold text-foreground mb-2">Why Beequips Matter Early:</p>
+                <ul className="space-y-2 text-xs">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span><strong>Hive Bonuses scale</strong> - Even low-tier beequips provide meaningful stat boosts</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span><strong>Stacks with progression</strong> - Beequip bonuses compound as your hive grows</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span><strong>Trading value</strong> - Extra beequips can be traded for items you need</span>
+                  </li>
+                </ul>
+              </div>
+
+              <p className="text-xs text-amber-500"><strong>Tip:</strong> Focus on beequips that match your hive color for maximum efficiency. Don&apos;t stress about getting perfect rolls early.</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Gifted Diamond Bee Pricing</CardTitle>
+              <CardDescription>Trading reference from #game-help (Jan 15)</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <div className="p-3 rounded-lg bg-blue-500/10 border border-blue-500/20">
+                <p className="font-semibold text-blue-400 mb-1">Current Market Value:</p>
+                <p className="text-lg font-mono text-honey">~3 Billion Honey</p>
+              </div>
+
+              <div>
+                <p className="font-semibold text-foreground mb-2">Value Context:</p>
+                <ul className="space-y-2 text-xs">
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-400">•</span>
+                    <span>Gifted Diamond Bee is a valuable event bee</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-400">•</span>
+                    <span>Price fluctuates based on supply during events</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-400">•</span>
+                    <span>Alt accounts with macros can earn ~10B/night (with Bubble Mask)</span>
+                  </li>
+                </ul>
+              </div>
+
+              <p className="text-xs"><strong>Reference:</strong> Check our <a href="/values" className="text-honey hover:underline">Value List</a> for current market prices on all items.</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Diamond Shell Amulet: Keep or Replace?</CardTitle>
+              <CardDescription>Common question from #game-help (Jan 15)</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <div className="p-3 rounded-lg bg-purple-500/10 border border-purple-500/20">
+                <p className="font-semibold text-purple-400 mb-1">Decision Framework:</p>
+                <p className="text-xs">Diamond Shell Amulet decisions depend on your current stats and playstyle</p>
+              </div>
+
+              <div>
+                <p className="font-semibold text-foreground mb-2">When to KEEP:</p>
+                <ul className="space-y-1 text-xs">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span>Your current amulet has high-roll stats (check percentiles)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span>Stats match your hive color specialization</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span>You have limited materials for re-rolling</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <p className="font-semibold text-foreground mb-2">When to REPLACE:</p>
+                <ul className="space-y-1 text-xs">
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-500">↻</span>
+                    <span>Stats don&apos;t align with your build (wrong color bonuses)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-500">↻</span>
+                    <span>Low-roll values compared to average</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-500">↻</span>
+                    <span>You have excess materials and want to optimize</span>
+                  </li>
+                </ul>
+              </div>
+
+              <p className="text-xs text-red-400"><strong>Warning:</strong> Screenshot your amulet before replacing - you cannot recover it!</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>How to Get Gingerbread?</CardTitle>
+              <CardDescription>Beesmas resource from #game-discussion (Jan 15)</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/20">
+                <p className="font-semibold text-amber-400 mb-1">Gingerbread Acquisition Methods:</p>
+                <p className="text-xs">Multiple ways to collect this Beesmas resource</p>
+              </div>
+
+              <div>
+                <p className="font-semibold text-foreground mb-2">Primary Sources:</p>
+                <ul className="space-y-2 text-xs">
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-400">1.</span>
+                    <div>
+                      <strong className="text-foreground">Gift Boxes</strong>
+                      <p>Daily gift boxes drop gingerbread regularly</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-400">2.</span>
+                    <div>
+                      <strong className="text-foreground">Bee Bear Quests</strong>
+                      <p>Complete quests for gingerbread rewards</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-400">3.</span>
+                    <div>
+                      <strong className="text-foreground">Gingerbread House</strong>
+                      <p>Produces gingerbread over time (works with Offline Voucher)</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-400">4.</span>
+                    <div>
+                      <strong className="text-foreground">Field Blooms</strong>
+                      <p>Beesmas blooms can drop gingerbread</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <p className="text-xs text-green-400"><strong>Pro Tip:</strong> Use Offline Voucher before logging off to maximize Gingerbread House production!</p>
             </CardContent>
           </Card>
         </div>
