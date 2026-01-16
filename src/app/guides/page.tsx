@@ -499,6 +499,7 @@ export default function GuidesPage() {
                 <div>
                   <p className="font-semibold text-foreground">Diamond Mask (Recommended)</p>
                   <p className="text-sm text-muted-foreground">Community consensus: Diamond Mask outperforms Gummy Mask even without macros. Better for active play.</p>
+                  <p className="text-xs text-green-400 mt-1"><strong>Update (Jan 2026):</strong> Diamond Mask no longer requires Diamond Eggs to craft!</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -524,6 +525,9 @@ export default function GuidesPage() {
                 <p className="text-xs">Players report Diamond Mask outperforms Gummy Mask even without macro usage</p>
               </div>
               <p>The Diamond Mask provides better overall performance for most playstyles, especially for active players.</p>
+              <div className="p-2 rounded bg-green-500/10 border border-green-500/20">
+                <p className="text-xs text-green-400"><strong>Crafting Update (Jan 2026):</strong> Diamond Mask no longer requires Diamond Eggs! Check Wiki for updated requirements.</p>
+              </div>
               <p className="text-xs text-muted-foreground">Note: Gummy Mask may still be viable for specific strategies</p>
             </CardContent>
           </Card>
@@ -774,6 +778,42 @@ export default function GuidesPage() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
+          <Card className="border-green-500/30">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Zap className="h-5 w-5 text-green-500" />
+                Bug Runs Strategy
+              </CardTitle>
+              <CardDescription>Hot tip from #game-discussion (Jan 16, 2026)</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <div className="p-3 rounded-lg bg-green-500/10 border border-green-500/20">
+                <p className="font-semibold text-green-400 mb-1">Community Consensus: OP Method</p>
+                <p className="text-xs">Bug Runs provide excellent snowflakes AND crafting materials simultaneously</p>
+              </div>
+              <p><strong className="text-foreground">What are Bug Runs?</strong></p>
+              <p className="text-xs">Focused farming sessions targeting bug mobs (Ladybugs, Rhino Beetles, Mantises, etc.) across multiple fields.</p>
+              <div>
+                <p className="font-semibold text-foreground mb-2">Why Bug Runs are Effective:</p>
+                <ul className="space-y-2 text-xs">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span><strong>Dual rewards</strong> - Snowflakes for Beesmas + materials for crafting</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span><strong>Consistent income</strong> - More reliable than RNG-based methods</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span><strong>Field coverage</strong> - Naturally covers multiple fields for quests</span>
+                  </li>
+                </ul>
+              </div>
+              <p className="text-xs text-amber-500"><strong>Pro Tip:</strong> Bring Vicious Bee and other attack bees. Onett being online may affect spawn rates!</p>
+            </CardContent>
+          </Card>
+
           <Card>
             <CardHeader>
               <CardTitle>Mutation Farming Guide</CardTitle>
@@ -854,7 +894,7 @@ export default function GuidesPage() {
         </div>
 
         <p className="text-muted-foreground mb-6">
-          Hot topics and frequently asked questions from the official BSS Discord community (updated January 15, 2026).
+          Hot topics and frequently asked questions from the official BSS Discord community (updated January 16, 2026).
         </p>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -1016,6 +1056,37 @@ export default function GuidesPage() {
 
           <Card>
             <CardHeader>
+              <CardTitle>Will Festive Bean drop Tropical Drinks?</CardTitle>
+              <CardDescription>Common question from #game-help (Jan 16, 2026)</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/20">
+                <p className="font-semibold text-amber-400 mb-1">Short Answer: No</p>
+                <p className="text-xs">Festive Beans are primarily for buffs, not item drops</p>
+              </div>
+              <div>
+                <p className="font-semibold text-foreground mb-2">How Festive Beans Work:</p>
+                <ul className="space-y-2 text-xs">
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-400">•</span>
+                    <span><strong>Primary Use:</strong> Festive Beans provide temporary buffs and bonuses</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-400">•</span>
+                    <span><strong>Field-Specific:</strong> Planting in Coconut Field gives coconut-related buffs, not tropical drink drops</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-400">•</span>
+                    <span><strong>Beesmas Item:</strong> Limited to Beesmas event period</span>
+                  </li>
+                </ul>
+              </div>
+              <p className="text-xs text-green-400"><strong>To Get Tropical Drinks:</strong> Farm in Coconut Field with proper planters, or obtain from Coconut Crab/quests.</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
               <CardTitle>Should I use Ginger Breads now?</CardTitle>
               <CardDescription>Hot topic from #game-discussion (Jan 2026)</CardDescription>
             </CardHeader>
@@ -1096,6 +1167,46 @@ export default function GuidesPage() {
               </div>
 
               <p className="text-xs text-amber-500"><strong>Tip:</strong> Screenshot your current amulet before rolling. You cannot get it back once replaced!</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>How to Grind for Cobalt/Crimson Guard?</CardTitle>
+              <CardDescription>Common question from #game-help (Jan 16, 2026)</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground space-y-3">
+              <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20">
+                <p className="font-semibold text-red-400 mb-1">Material Grinding Priority</p>
+                <p className="text-xs">Focus on the most time-consuming materials first</p>
+              </div>
+              <div>
+                <p className="font-semibold text-foreground mb-2">Recommended Approach:</p>
+                <ul className="space-y-2 text-xs">
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-400">1.</span>
+                    <div>
+                      <strong className="text-foreground">Bug Runs</strong>
+                      <p>Kill mobs for materials + snowflakes (see Bug Runs Strategy above)</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-400">2.</span>
+                    <div>
+                      <strong className="text-foreground">Field Grinding</strong>
+                      <p>Focus on color-specific fields (Red: Rose, Blue: Pine Tree)</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-purple-400">3.</span>
+                    <div>
+                      <strong className="text-foreground">Planters</strong>
+                      <p>Use appropriate planters in relevant fields for passive collection</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <p className="text-xs text-amber-500"><strong>Tip:</strong> Don&apos;t neglect your regular quests while grinding - they often give material rewards!</p>
             </CardContent>
           </Card>
 
