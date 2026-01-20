@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Metadata } from 'next'
-import { Search, Scale, Calculator, Grid3X3, Ticket, Bot, ArrowRight, TrendingUp, BookOpen, Zap, Star, HelpCircle, Sparkles, Target, Shield, Sword, Crown, Map, Users, Award, Clock, Gift, Flame, Droplets, Sun, Heart, ChevronRight, CheckCircle, AlertCircle, Lightbulb, Trophy, Gem, Leaf } from 'lucide-react'
+import { Search, Scale, Calculator, Grid3X3, Ticket, Bot, ArrowRight, TrendingUp, BookOpen, Zap, Star, HelpCircle, Sparkles, Target, Shield, Sword, Crown, Map, Users, Award, Clock, Gift, Flame, Droplets, Sun, Heart, ChevronRight, CheckCircle, AlertCircle, Lightbulb, Trophy, Gem, Leaf, Megaphone, Wrench } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -84,8 +84,8 @@ const gameTips = [
   },
   {
     icon: Sparkles,
-    title: 'Collect Gifted Bees',
-    description: 'Gifted bees provide unique hive bonuses. Use star treats wisely!',
+    title: 'Gifted Carpenter Bee',
+    description: 'Gifted Carpenter Bee now gives x1.25 multiplicative bonus - prioritize getting it gifted!',
   },
   {
     icon: Shield,
@@ -94,8 +94,8 @@ const gameTips = [
   },
   {
     icon: Zap,
-    title: 'Use Codes Regularly',
-    description: 'Check for new codes often - they provide free boosts and items!',
+    title: 'Use Petal Shurikens',
+    description: 'Petal Shurikens now spawn Petals when hitting Blooms - great for petal farming!',
   },
 ]
 
@@ -297,6 +297,46 @@ const quickLinks = [
   { name: 'Active Codes', href: '/codes', icon: Ticket },
 ]
 
+// Latest game updates from official Discord (January 2026)
+const latestUpdates = [
+  {
+    type: 'new',
+    title: 'New Code: DiscordMillion',
+    description: 'Celebrate 1 Million Discord members! Get x2 Honeyday buff (48h), Mondo Chick Blessing x10, Marshmallow Bee & Pink Balloon. Expires Jan 31!',
+    date: 'Jan 19, 2026',
+  },
+  {
+    type: 'buff',
+    title: 'Petal Shurikens Buff',
+    description: 'Petal Shurikens now spawn Petals when hitting Blooms, making them more valuable for petal farming strategies.',
+    date: 'Jan 17, 2026',
+  },
+  {
+    type: 'new',
+    title: 'Star Stickers in Catalog',
+    description: 'Star stickers are now available in the Catalog for 10,000 Snowflakes each during the winter event.',
+    date: 'Jan 17, 2026',
+  },
+  {
+    type: 'change',
+    title: 'Carpenter Bee Rework',
+    description: 'Gifted Carpenter Bee hive bonus changed from +25% additive to x1.25 multiplicative - a significant buff!',
+    date: 'Jan 17, 2026',
+  },
+  {
+    type: 'fix',
+    title: 'Tools Pollen Fix',
+    description: 'Fixed a bug where pollen from tools multiplier was being applied twice. Honey rates may feel lower but are now correct.',
+    date: 'Jan 17, 2026',
+  },
+  {
+    type: 'new',
+    title: 'New Bee Bear Quests',
+    description: '5 new Bee Bear quests added, plus the 16th Dapper Bear quest is now available for endgame players.',
+    date: 'Jan 17, 2026',
+  },
+]
+
 // Stats for credibility
 const siteStats = [
   { label: 'Daily Users', value: '10K+' },
@@ -417,6 +457,53 @@ export default function HomePage() {
                 </Button>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Latest Updates Section */}
+      <section className="py-12 bg-gradient-to-b from-honey/5 to-transparent">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <Megaphone className="h-6 w-6 text-honey" />
+              <h2 className="text-2xl md:text-3xl font-bold">Latest Game Updates</h2>
+            </div>
+            <Badge variant="outline" className="text-honey border-honey/50">
+              Jan 2026
+            </Badge>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {latestUpdates.map((update, index) => {
+              const typeStyles: Record<string, { bg: string; text: string; icon: string }> = {
+                buff: { bg: 'bg-green-500/10', text: 'text-green-500', icon: 'arrow-up' },
+                new: { bg: 'bg-blue-500/10', text: 'text-blue-500', icon: 'plus' },
+                change: { bg: 'bg-amber-500/10', text: 'text-amber-500', icon: 'refresh' },
+                fix: { bg: 'bg-purple-500/10', text: 'text-purple-500', icon: 'wrench' },
+              }
+              const style = typeStyles[update.type] || typeStyles.new
+              return (
+                <Card key={index} className={`${style.bg} border-none`}>
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <Badge variant="secondary" className={`${style.text} text-xs uppercase`}>
+                        {update.type}
+                      </Badge>
+                      <span className="text-xs text-muted-foreground">{update.date}</span>
+                    </div>
+                    <h3 className="font-semibold mb-1">{update.title}</h3>
+                    <p className="text-sm text-muted-foreground">{update.description}</p>
+                  </CardContent>
+                </Card>
+              )
+            })}
+          </div>
+          <div className="mt-6 text-center">
+            <Button asChild variant="outline" className="gap-2">
+              <Link href="/guides">
+                View All Tips & Guides <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

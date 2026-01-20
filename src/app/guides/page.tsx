@@ -22,6 +22,8 @@ import {
   Users,
   TestTube,
   Award,
+  Megaphone,
+  Wrench,
 } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -311,6 +313,103 @@ export default function GuidesPage() {
             </div>
           </CardContent>
         </Card>
+      </section>
+
+      {/* Latest Game Updates - January 17, 2026 */}
+      <section className="mb-16">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="h-10 w-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+            <Megaphone className="h-5 w-5 text-green-500" />
+          </div>
+          <h2 className="text-2xl font-bold">Latest Updates (Jan 17, 2026)</h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+          <Card className="border-green-500/30 bg-green-500/5">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-green-400">
+                <Zap className="h-5 w-5" />
+                Petal Shurikens Buff
+              </CardTitle>
+              <CardDescription>Gameplay change</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground">
+              <p>Petal Shurikens now spawn Petals when hitting Blooms! This makes them much more valuable for petal farming strategies.</p>
+              <p className="mt-2 text-xs text-green-400"><strong>Strategy:</strong> Prioritize Petal Shurikens when farming fields with Blooms for bonus petal drops.</p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-amber-500/30 bg-amber-500/5">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-amber-400">
+                <Sparkles className="h-5 w-5" />
+                Carpenter Bee Rework
+              </CardTitle>
+              <CardDescription>Significant buff</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground">
+              <p>Gifted Carpenter Bee hive bonus changed from <strong>+25% additive</strong> to <strong>x1.25 multiplicative</strong>.</p>
+              <p className="mt-2 text-xs text-amber-400"><strong>Impact:</strong> This is a significant buff! Gifted Carpenter Bee is now more valuable - prioritize getting it gifted if you haven&apos;t already.</p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-blue-500/30 bg-blue-500/5">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-blue-400">
+                <Gift className="h-5 w-5" />
+                Star Stickers in Catalog
+              </CardTitle>
+              <CardDescription>New item availability</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground">
+              <p>Star stickers are now available in the Beesmas Catalog for <strong>10,000 Snowflakes</strong> each.</p>
+              <p className="mt-2 text-xs text-blue-400"><strong>Tip:</strong> Farm snowflakes during the event to stock up on star stickers for your collection or trading.</p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-purple-500/30 bg-purple-500/5">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-purple-400">
+                <Wrench className="h-5 w-5" />
+                Tools Pollen Bug Fix
+              </CardTitle>
+              <CardDescription>Bug fix</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground">
+              <p>Fixed a bug where pollen from tools multiplier was being applied twice.</p>
+              <p className="mt-2 text-xs text-purple-400"><strong>Note:</strong> Honey rates may feel lower after this fix, but this is the correct intended behavior. Your earnings are now accurate.</p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-pink-500/30 bg-pink-500/5">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-pink-400">
+                <Target className="h-5 w-5" />
+                New Bee Bear Quests
+              </CardTitle>
+              <CardDescription>New content</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground">
+              <p><strong>5 new Bee Bear quests</strong> have been added to the game!</p>
+              <p className="mt-2">The <strong>16th Dapper Bear quest</strong> is also now available for endgame players.</p>
+              <p className="mt-2 text-xs text-pink-400"><strong>Tip:</strong> Complete these for valuable Beesmas rewards before the event ends.</p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-gray-500/30 bg-gray-500/5">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-gray-400">
+                <TestTube className="h-5 w-5" />
+                Test Realm Status
+              </CardTitle>
+              <CardDescription>Server info</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground">
+              <p>Test Realm remains <strong>closed</strong> since December 10, 2025.</p>
+              <p className="mt-2 text-xs text-gray-400">Last activity was related to the December 19 player file rework. No new test realm content expected until after Beesmas.</p>
+            </CardContent>
+          </Card>
+        </div>
       </section>
 
       {/* Hive Building */}
