@@ -315,13 +315,44 @@ export default function GuidesPage() {
         </Card>
       </section>
 
+      {/* Latest News - January 26, 2026 */}
+      <section className="mb-16">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="h-10 w-10 rounded-lg bg-red-500/20 flex items-center justify-center">
+            <AlertTriangle className="h-5 w-5 text-red-500" />
+          </div>
+          <h2 className="text-2xl font-bold">Latest News (Jan 26, 2026)</h2>
+        </div>
+
+        <Card className="border-red-500/30 bg-red-500/5 mb-6">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-red-400">
+              <Wrench className="h-5 w-5" />
+              Permanent Buffs Issue & Galentines Shrine
+            </CardTitle>
+            <CardDescription>Official announcement from Onett</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3 text-sm text-muted-foreground">
+            <p>
+              <strong className="text-foreground">Permanent Buffs Being Fixed:</strong> Some players have experienced permanent buffs being removed. Onett is working on restoring these buffs, but it may take <strong>a few days</strong> before all stacks are returned.
+            </p>
+            <p>
+              <strong className="text-foreground">Galentines Shrine Not Working:</strong> The Galentines Shrine is currently <strong>not activating</strong> when you donate Strawberries. Do not donate Strawberries until this is fixed - they will not count.
+            </p>
+            <p className="text-xs text-red-400">
+              <strong>Good News:</strong> All Strawberries donated during this bug will be restored when the fix is applied. Your donations are being tracked and will count once the shrine is working again.
+            </p>
+          </CardContent>
+        </Card>
+      </section>
+
       {/* Latest Game Updates - January 17, 2026 */}
       <section className="mb-16">
         <div className="flex items-center gap-3 mb-6">
           <div className="h-10 w-10 rounded-lg bg-green-500/20 flex items-center justify-center">
             <Megaphone className="h-5 w-5 text-green-500" />
           </div>
-          <h2 className="text-2xl font-bold">Latest Updates (Jan 17, 2026)</h2>
+          <h2 className="text-2xl font-bold">Updates (Jan 17, 2026)</h2>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">

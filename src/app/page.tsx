@@ -300,6 +300,12 @@ const quickLinks = [
 // Latest game updates from official Discord (January 2026)
 const latestUpdates = [
   {
+    type: 'fix',
+    title: 'Permanent Buffs Being Restored',
+    description: 'Some permanent buffs were accidentally removed. Onett is working on restoring them - may take a few days. Galentines Shrine is also not working yet.',
+    date: 'Jan 26, 2026',
+  },
+  {
     type: 'new',
     title: 'New Code: DiscordMillion',
     description: 'Celebrate 1 Million Discord members! Get x2 Honeyday buff (48h), Mondo Chick Blessing x10, Marshmallow Bee & Pink Balloon. Expires Jan 31!',
